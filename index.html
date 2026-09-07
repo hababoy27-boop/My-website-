@@ -187,6 +187,269 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 .download-btn{
   background:#0284c7;color:#fff;border:none;padding:9px 16px;border-radius:8px;font-weight:bold;font-size:13px;margin-top:6px;display:inline-flex;align-items:center;gap:6px;text-decoration:none;
 }
+
+/* ================= MY PROFILE SYSTEM ================= */
+.profile-page-wrap{max-width:1000px;margin:auto;padding:16px 14px 90px}
+.profile-hero{background:linear-gradient(135deg,#17143b,#26104b);border:1px solid #7e22ce;border-radius:20px;padding:22px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.profile-avatar-wrap{position:relative;width:104px;height:104px;margin:0 auto 12px}
+.profile-avatar{width:104px;height:104px;border-radius:50%;object-fit:cover;border:3px solid #a855f7;background:#0f172a;display:block}
+.profile-avatar-edit{position:absolute;right:-2px;bottom:0;width:34px;height:34px;border-radius:50%;border:2px solid #111629;background:#9333ea;color:#fff;font-size:16px}
+.profile-nickname{font-size:23px;font-weight:800;margin-top:4px}
+.profile-email{font-size:12px;color:#94a3b8;margin-top:5px;word-break:break-all}
+.profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.profile-stat{background:#111629;border:1px solid #252b45;border-radius:12px;padding:13px 8px;text-align:center}
+.profile-stat b{display:block;color:#4ade80;font-size:18px}.profile-stat span{display:block;color:#8e95b1;font-size:11px;margin-top:4px}
+.profile-box{background:#111629;border:1px solid #252b45;border-radius:16px;padding:18px;margin-top:14px}
+.profile-box h3{margin-bottom:5px}.profile-help{font-size:12px;color:#94a3b8;line-height:1.6}
+.profile-file{background:#080b16;border:1px dashed #475569;padding:12px;border-radius:10px;margin-top:8px}
+.profile-save{background:#16a34a}.profile-secondary{background:#334155}
+.profile-mini-card{background:#111629;border:1px solid #252b45;border-radius:14px;padding:14px;margin:16px 0;display:flex;align-items:center;gap:12px}
+.profile-mini-avatar{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid #9333ea;background:#0f172a}
+.profile-mini-info{flex:1}.profile-mini-info b{font-size:15px}.profile-mini-info small{display:block;color:#94a3b8;margin-top:3px}
+.profile-open-btn{width:auto;margin:0;padding:9px 13px;background:#9333ea}
+.profile-error{color:#f87171;font-size:12px;margin-top:6px;display:none}
+.profile-ok-banner{position:fixed;left:50%;top:24px;transform:translateX(-50%);z-index:99999;background:#fff;color:#111827;border:1px solid #d1d5db;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.28);padding:12px 14px;display:none;align-items:center;gap:12px;min-width:280px;max-width:92vw}
+.profile-ok-banner b{font-size:13px}.profile-ok-banner span{font-size:12px;color:#4b5563;display:block;margin-top:2px}.profile-ok-banner button{margin-left:auto;background:#111827;color:#fff;border:0;border-radius:8px;padding:7px 14px;font-weight:700}
+
+@media(max-width:520px){.profile-grid{grid-template-columns:repeat(3,1fr)}.profile-stat{padding:11px 5px}.profile-stat b{font-size:16px}}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="notifyBanner">
+  <span id="notifyText">Notification</span>
+  <button style="background:none;border:none;color:#fff;font-size:16px" onclick="hideNotification()">✖</button>
+</div>
+
+<div id="profileOkBanner" class="profile-ok-banner">
+  <div>
+    <b id="profileOkTitle">✅ Profile Update भयो</b>
+    <span id="profileOkText">तपाईंको Profile सफलतापूर्वक अपडेट भयो।</span>
+  </div>
+  <button onclick="hideProfileOkBanner()">OK</button>
+</div>
+
+<!-- 1. AUTH SCREEN -->
+<div id="login">
+  <div class="login-box">
+    <div class="game-logo">🎮</div>
+    <h1>Game<span style="color:#9333ea"> Esports</span></h1>
+    <p id="authSub">वास्तविक Gmail र पासवर्डबाट लगइन गर्नुहोस्</p>
+
+    <div class="tab-btn-group" style="margin-bottom:12px">
+      <button id="tabLoginBtn" class="active-tab" onclick="toggleAuthMode('login')">LOGIN</button>
+      <button id="tabRegBtn" onclick="toggleAuthMode('register')">REGISTER</button>
+    </div>
+
+    <input id="userEmail" type="email" placeholder="आफ्नो Real Gmail (e.g. name@gmail.com)">
+    <input id="userPassword" type="password" placeholder="Password (कम्तिमा ६ अक्षर)">
+    
+    <div id="regExtra" style="display:none">
+      <input id="userIGN" type="text" placeholder="गेम Nickname / IGN">
+    </div>
+
+    <button id="authActionBtn" class="btn" style="background:#9333ea" onclick="handleAuth()">🔐 LOGIN</button>
+    
+    <div id="forgotBox">
+      <button class="forgot-btn" onclick="handleForgotPassword()">🔑 Password बिर्सनुभयो? (Forgot Password)</button>
+    </div>
+
+    <button class="btn" style="background:#eab308;color:#111;margin-top:12px" onclick="showAdminLogin()">👨‍💻 ADMIN LOGIN</button>
+  </div>
+</div>
+
+<!-- 2. ADMIN LOGIN -->
+<div id="adminLogin" style="display:none">
+  <div class="login-box">
+    <div class="game-logo">👨‍💻</div>
+    <h1>Admin Login</h1>
+    <p>Game Esports Cloud Dashboard</p>
+    <input id="adminUsername" placeholder="Admin Username (admin)">
+    <input id="adminPassword" type="password" placeholder="Admin Password">
+    <button class="btn" style="background:#eab308;color:#111" onclick="adminLogin()">🔐 LOGIN AS ADMIN</button>
+    <button class="btn" style="background:#303752" onclick="backToLogin()">⬅ BACK</button>
+  </div>
+</div>
+
+<!-- 3. USER APP -->
+<div id="app" style="display:none">
+  <div class="header">
+    <div class="logo">🎮 Game<span> Esports</span></div>
+    <div class="header-buttons">
+      <button class="admin-btn" onclick="showAdminLogin()">Admin</button>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- HOME PAGE -->
+  <div id="home" class="page active">
+    <div class="container">
+      <div class="points-wallet">
+        <p>🪙 मेरो खाता (ONLINE BALANCE)</p>
+        <h1>रु <span id="myPoints">0</span></h1>
+        <div class="wallet-subtext">खेलाडी: <b id="displayPlayerEmail" style="color:#fff"></b></div>
+      </div>
+
+      <!-- MY PROFILE QUICK CARD -->
+      <div class="profile-mini-card">
+        <img id="homeProfileAvatar" class="profile-mini-avatar" src="" alt="Profile">
+        <div class="profile-mini-info">
+          <b id="homeProfileNickname">My Profile</b>
+          <small>आफ्नो Game Name, Game UID र Profile Picture व्यवस्थापन गर्नुहोस्</small>
+        </div>
+        <button class="btn profile-open-btn" onclick="showPage('profile')">👤 OPEN</button>
+      </div>
+
+      <!-- CREATE OWN ROOM BUTTON -->
+      <div style="background:linear-gradient(135deg, #059669, #0d9488);padding:14px;border-radius:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h3 style="font-size:15px">⚔️ आफ्नै Custom Room बनाउने?</h3>
+          <p style="font-size:12px;color:#e2e8f0;margin-top:2px">आफ्नो Room ID राख्नुहोस्, गन छान्नुहोस् र खेल सुरु गर्नुहोस्!</p>
+        </div>
+        <button class="btn" style="width:auto;padding:8px 14px;background:#fff;color:#059669;margin:0" onclick="openCreateCustomModal()">➕ CREATE ROOM</button>
+      </div>
+
+      <div class="stats" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat"><h2 id="tournamentCount">0</h2><p>Tournaments</p></div>
+        <div class="stat"><h2 id="playerCount">0</h2><p>Joined Games</p></div>
+        <div class="stat"><h2>🏆 #1</h2><p>Rank</p></div>
+      </div>
+
+      <!-- FILTER CONTROLS WITH REAL LOGOS -->
+      <div class="filter-container">
+        <div class="filter-title">🎮 गेम छान्नुहोस्:</div>
+        <div class="cat-btn-group">
+          <button class="cat-btn active-cat" onclick="setGameFilter('ALL', this)">🌐 ALL</button>
+          <button class="cat-btn" onclick="setGameFilter('Free Fire', this)">
+            <img src="https://images.seeklogo.com/logo-png/43/1/garena-free-fire-logo-png_seeklogo-434033.png"> Free Fire
+          </button>
+          <button class="cat-btn" onclick="setGameFilter('PUBG', this)">
+            <img src="https://images.seeklogo.com/logo-png/33/2/pubg-mobile-logo-png_seeklogo-337517.png"> PUBG
+          </button>
+          <button class="cat-btn" onclick="setGameFilter('Blood Strike', this)">
+            <img src="https://images.seeklogo.com/logo-png/38/2/valorant-logo-png_seeklogo-385551.png"> Blood Strike
+          </button>
+        </div>
+
+        <div class="filter-title" style="margin-top:10px">⚔️ मोड छान्नुहोस्:</div>
+        <div class="mode-btn-group">
+          <button class="mode-btn active-mode" onclick="setModeFilter('ALL', this)">सबै मोड</button>
+          <button class="mode-btn" onclick="setModeFilter('CS', this)">💥 CS (Short)</button>
+          <button class="mode-btn" onclick="setModeFilter('BR', this)">🗺️ BR (Long)</button>
+        </div>
+
+        <div class="filter-title" style="margin-top:10px">👥 म्याच प्रकार (Format):</div>
+        <div class="vs-btn-group">
+          <button class="vs-btn active-vs" onclick="setVsFilter('ALL', this)">सबै Format</button>
+          <button class="vs-btn" onclick="setVsFilter('1v1', this)">⚔️ 1v1</button>
+          <button class="vs-btn" onclick="setVsFilter('2v2', this)">⚔️ 2v2</button>
+          <button class="vs-btn" onclick="setVsFilter('4v4', this)">⚔️ 4v4</button>
+          <button class="vs-btn" onclick="setVsFilter('6v6', this)">⚔️ 6v6</button>
+        </div>
+      </div>
+
+      <h3 style="margin:20px 0 10px;">🔥 Available Tournaments (Admin & Players)</h3>
+      <div id="homeTournamentList" class="tournament-grid"></div>
+
+      <h3 style="margin:25px 0 10px;">🏆 Global Leaderboard</h3>
+      <div id="leaderboard" class="leaderboard"></div>
+    </div>
+  </div>
+
+  <!-- MY PROFILE PAGE -->
+  <div id="profile" class="page">
+    <div class="profile-page-wrap">
+      <h2 style="margin-bottom:10px">👤 My Profile</h2>
+
+      <div class="profile-hero">
+        <div class="profile-avatar-wrap">
+          <img id="profileAvatar" class="profile-avatar" src="" alt="Profile Picture">
+          <button class="profile-avatar-edit" onclick="doc.gun-tag{
+  display:inline-block;background:#14532d;color:#86efac;padding:3px 7px;border-radius:6px;margin:2px 2px;font-size:10px;font-weight:bold;border:1px solid #22c55e;
+}
+
+/* 🔫 GUN COLLECTION PILLS BOX */
+.gun-pill-container{
+  display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;background:#0d1326;padding:10px;border-radius:10px;border:1px solid #252b45;max-height:180px;overflow-y:auto;
+}
+.gun-pill{
+  background:#1e293b;color:#cbd5e1;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold;cursor:pointer;border:1px solid #334155;user-select:none;transition:0.2s;
+}
+.gun-pill.selected{
+  background:#16a34a;color:#fff;border-color:#4ade80;box-shadow:0 0 10px rgba(74,222,128,0.6);
+}
+
+.leaderboard,.register-box,.history-box,.admin-panel,.add-box{background:#111629;border-radius:16px;padding:18px;border:1px solid #252b45}
+.player{display:flex;align-items:center;padding:12px 4px;border-bottom:1px solid #252b45}
+.player:last-child{border-bottom:none}
+.player-info{flex:1;text-align:left;margin-left:10px}
+.points{color:#4ade80;font-weight:bold;font-size:15px}
+
+.registration-card,.history-item,.admin-player{background:#080b16;border:1px solid #252b45;padding:14px;border-radius:12px;margin-bottom:12px}
+.pending{color:#eab308;font-weight:bold}.approved{color:#4ade80;font-weight:bold}.rejected{color:#ef4444;font-weight:bold}
+
+.add-btn,.deduct-btn,.del-btn,.warn-btn,.ban-btn{border:none;padding:8px 12px;border-radius:8px;margin-top:8px;font-size:12px;font-weight:bold}
+.add-btn{background:#16a34a;color:#fff}.deduct-btn{background:#dc3545;color:#fff}
+.del-btn{background:#475569;color:#fff;margin-left:6px}
+.warn-btn{background:#d97706;color:#fff;margin-left:6px}
+.ban-btn{background:#b91c1c;color:#fff;margin-left:6px}
+
+.clear-hist-btn{
+  background:#1e293b;border:1px solid #475569;color:#f87171;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer;
+}
+.clear-hist-btn:hover{background:#b91c1c;color:#fff}
+
+.room-details-box{
+  background:#091e3a;border:1px dashed #38bdf8;border-radius:10px;padding:12px;margin-top:10px;
+}
+.room-details-box h4{color:#38bdf8;margin-bottom:4px;font-size:13px}
+.room-details-box p{font-size:13px;margin:2px 0}
+
+.payment-preview{
+  max-width:100%;max-height:180px;border-radius:8px;margin-top:6px;display:block;border:1px solid #334155;
+}
+.preview-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+
+.tab-btn-group{display:flex;gap:10px;margin-bottom:15px}
+.tab-btn-group button{
+  flex:1;padding:10px;border-radius:10px;border:1px solid #334155;
+  background:#111629;color:#fff;font-weight:bold;font-size:13px;
+}
+.tab-btn-group button.active-tab{background:#9333ea;border-color:#a855f7}
+
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#101528;border-top:1px solid #252b45;display:flex;justify-content:space-around;padding:10px 4px;z-index:30}
+.bottom-nav button{background:none;border:none;color:#8e95b1;font-size:11px}
+.empty{background:#111629;padding:24px;border-radius:14px;text-align:center;color:#9299b8}
+.page{display:none}.active{display:block}
+
+.custom-modal-overlay{
+  position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);
+  display:none;justify-content:center;align-items:center;z-index:99999;padding:16px;
+}
+.custom-modal{
+  background:#111629;border:2px solid #16a34a;border-radius:18px;padding:20px;
+  width:100%;max-width:480px;max-height:90vh;overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,0.8);
+}
+.modal-title{font-size:18px;font-weight:bold;margin-bottom:6px}
+.modal-actions{display:flex;gap:10px;margin-top:16px}
+.modal-actions button{flex:1;padding:12px;border:none;border-radius:10px;font-weight:bold;font-size:13px}
+.btn-green{background:#16a34a;color:#fff}
+.btn-red{background:#dc2626;color:#fff}
+.btn-gray{background:#334155;color:#fff}
+.upload-card{background:#080b16;padding:10px;border-radius:10px;border:1px solid #303752;margin-top:8px}
+
+.qr-received-card{
+  background:#091e3a;border:2px dashed #38bdf8;border-radius:14px;padding:16px;text-align:center;margin:14px 0;
+}
+.qr-img-tag{
+  width:180px;height:180px;object-fit:contain;background:#fff;padding:8px;border-radius:10px;margin:8px auto;display:block;
+}
+.download-btn{
+  background:#0284c7;color:#fff;border:none;padding:9px 16px;border-radius:8px;font-weight:bold;font-size:13px;margin-top:6px;display:inline-flex;align-items:center;gap:6px;text-decoration:none;
+}
 </style>
 </head>
 
