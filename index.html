@@ -17,11 +17,14 @@ button{cursor:pointer}
 button:disabled{opacity:.5;cursor:not-allowed}
 .header{background:#101528;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #252b45;position:sticky;top:0;z-index:20}
 .logo{font-size:18px;font-weight:bold;cursor:pointer;user-select:none}.logo span{color:#9333ea}
-.header-buttons{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
-.nav-top-btn,.logout-btn{border:none;color:#fff;padding:6px 9px;border-radius:6px;font-size:11px;font-weight:bold}
-.nav-top-btn{background:#1e293b;border:1px solid #334155}
-.nav-top-btn.active-top-nav{background:#9333ea;border-color:#a855f7}
-.logout-btn{background:#dc3545}
+
+/* THREE-DOT MENU STYLES */
+.menu-container{position:relative;display:inline-block}
+.menu-btn{background:#1e293b;border:1px solid #334155;color:#fff;padding:8px 12px;border-radius:8px;font-size:16px;font-weight:bold}
+.menu-dropdown{display:none;position:absolute;right:0;top:40px;background:#111629;min-width:160px;box-shadow:0px 8px 16px rgba(0,0,0,0.4);border-radius:10px;border:1px solid #303752;z-index:100;overflow:hidden}
+.menu-dropdown button{width:100%;text-align:left;background:none;border:none;color:#fff;padding:12px;font-size:13px;border-bottom:1px solid #1e293b}
+.menu-dropdown button:hover{background:#9333ea}
+.menu-dropdown.show{display:block}
 
 #notifyBanner{
   position:fixed;top:15px;left:5%;right:5%;background:linear-gradient(135deg,#9333ea,#4f46e5);
@@ -37,8 +40,6 @@ button:disabled{opacity:.5;cursor:not-allowed}
 input,select,textarea{width:100%;padding:12px;margin:7px 0;background:#080b16;color:#fff;border:1px solid #303752;border-radius:10px;outline:none;font-size:14px}
 input:focus,select:focus,textarea:focus{border-color:#9333ea}
 .btn{width:100%;padding:12px;margin-top:8px;border:none;border-radius:10px;background:#2563eb;color:#fff;font-size:14px;font-weight:bold}
-
-.forgot-btn{background:none;border:none;color:#a855f7;font-size:12px;margin-top:10px;text-decoration:underline;display:inline-block}
 
 .container{max-width:1000px;margin:auto;padding:16px 14px 40px}
 
@@ -247,13 +248,13 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
   </div>
 </div>
 
-<!-- 2. ADMIN LOGIN (HIDDEN SECRET PANEL) -->
+<!-- 2. ADMIN LOGIN -->
 <div id="adminLogin" style="display:none">
   <div class="login-box" id="adminLoginSection">
     <div class="game-logo">👨‍💻</div>
     <h1>Admin Login</h1>
     <p>Game Esports Cloud Dashboard</p>
-    <input id="adminEmailInput" type="email" placeholder="Admin Real Gmail" value="nirmalsaud140@gmail.com" required>
+    <input id="adminEmailInput" type="email" placeholder="Admin Real Gmail" required>
     <input id="adminPassword" type="password" placeholder="Admin Password" required>
     <button class="btn" style="background:#eab308;color:#111" onclick="adminLogin()">🔐 LOGIN AS ADMIN</button>
     
@@ -268,7 +269,7 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
     <div class="game-logo">🔑</div>
     <h1>Reset Admin Password</h1>
     <p>आफ्नो आधिकारिक (Real) एडमिन जिमेल लेख्नुहोस्</p>
-    <input id="adminResetEmailInput" type="email" placeholder="nirmalsaud140@gmail.com" value="nirmalsaud140@gmail.com" required>
+    <input id="adminResetEmailInput" type="email" placeholder="Admin Real Gmail" required>
     <button class="btn" style="background:#eab308;color:#111" onclick="handleAdminPasswordReset()">📤 SEND RESET LINK</button>
     <button class="btn" style="background:#303752; margin-top:10px;" onclick="hideAdminResetModal()">⬅ CANCEL</button>
   </div>
@@ -278,13 +279,18 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 <div id="app" style="display:none">
   <div class="header">
     <div class="logo" onclick="secretAdminTap()">🎮 Game<span> Esports</span></div>
-    <div class="header-buttons">
-      <button id="navBtn_home" class="nav-top-btn active-top-nav" onclick="showPage('home')">🏠 Home</button>
-      <button id="navBtn_tournaments" class="nav-top-btn" onclick="showPage('tournaments')">🏆 Games</button>
-      <button id="navBtn_profilePage" class="nav-top-btn" onclick="showPage('profilePage')">👤 Profile</button>
-      <button id="navBtn_registrations" class="nav-top-btn" onclick="showPage('registrations')">🏅 Join</button>
-      <button id="navBtn_walletPage" class="nav-top-btn" onclick="showPage('walletPage')">💰 Wallet</button>
-      <button class="logout-btn" onclick="logout()">Logout</button>
+    
+    <!-- THREE-DOT MENU FOR NAVIGATION -->
+    <div class="menu-container">
+      <button class="menu-btn" onclick="toggleMenuDropdown(event)">⋮</button>
+      <div id="navDropdownMenu" class="menu-dropdown">
+        <button onclick="showPage('home'); closeMenu()">🏠 Home</button>
+        <button onclick="showPage('tournaments'); closeMenu()">🏆 Games</button>
+        <button onclick="showPage('profilePage'); closeMenu()">👤 Profile</button>
+        <button onclick="showPage('registrations'); closeMenu()">🏅 Join</button>
+        <button onclick="showPage('walletPage'); closeMenu()">💰 Wallet</button>
+        <button onclick="logout(); closeMenu()" style="color:#f87171">🚪 Logout</button>
+      </div>
     </div>
   </div>
 
@@ -632,7 +638,7 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 
     <div class="admin-stats">
       <div class="admin-stat"><h2 id="adminTournamentCount">0</h2><p>Games</p></div>
-      <div class="admin-stat"><h2 id="adminQrRequestCount" style="color:#38bdf8">0</h2><p>QR Requests</p></div>
+      <div class="admin-stat"><h2 id="adminTotalRegisteredPlayers" style="color:#38bdf8">0</h2><p>Total Players</p></div>
       <div class="admin-stat"><h2 id="adminVictoriesCount" style="color:#4ade80">0</h2><p>Victory Claims</p></div>
       <div class="admin-stat"><h2 id="adminPendingCount">0</h2><p>Pending Dep</p></div>
     </div>
@@ -672,11 +678,31 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
       <div id="adminWithdrawList"></div>
     </div>
 
-    <div class="accordion-header" onclick="toggleAccordion('accPlayers')">
-      <span>👤 All Players (Online / Offline)</span> <span>▼</span>
+    <!-- ONLINE PLAYERS -->
+    <div class="accordion-header" onclick="toggleAccordion('accOnlinePlayers')">
+      <span>🟢 Online Players List (<span id="onlinePlayerBadge">0</span>)</span> <span>▼</span>
     </div>
-    <div id="accPlayers" class="accordion-content admin-panel">
-      <div id="adminPlayerList"></div>
+    <div id="accOnlinePlayers" class="accordion-content admin-panel">
+      <div id="adminOnlinePlayerList"></div>
+    </div>
+
+    <!-- OFFLINE PLAYERS -->
+    <div class="accordion-header" onclick="toggleAccordion('accOfflinePlayers')">
+      <span>⚪ Offline Players List (<span id="offlinePlayerBadge">0</span>)</span> <span>▼</span>
+    </div>
+    <div id="accOfflinePlayers" class="accordion-content admin-panel">
+      <div id="adminOfflinePlayerList"></div>
+    </div>
+
+    <!-- HIDDEN / RECOVER SECTION -->
+    <div class="accordion-header" onclick="toggleAccordion('accArchivedPlayers')">
+      <span>📁 Hidden / Removed Players (<span id="archivedPlayerBadge">0</span>)</span> <span>▼</span>
+    </div>
+    <div id="accArchivedPlayers" class="accordion-content admin-panel">
+      <div style="margin-bottom:12px">
+        <button class="add-btn" style="background:#0284c7" onclick="recoverAllPlayers()">♻️ RECOVER ALL PLAYERS (सबै फिर्ता ल्याउने)</button>
+      </div>
+      <div id="adminArchivedPlayerList"></div>
     </div>
 
     <div class="accordion-header" onclick="toggleAccordion('accBanned')">
@@ -830,6 +856,23 @@ function secretAdminTap(){
     document.getElementById("adminResetSection").style.display = "none";
   }
 }
+
+function toggleMenuDropdown(e){
+  e.stopPropagation();
+  const dropdown = document.getElementById("navDropdownMenu");
+  dropdown.classList.toggle("show");
+}
+
+function closeMenu(){
+  const dropdown = document.getElementById("navDropdownMenu");
+  if(dropdown) dropdown.classList.remove("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.menu-btn')) {
+    closeMenu();
+  }
+};
 
 let selectedGameCategory = "ALL";
 let selectedGameMode = "ALL";
@@ -1215,10 +1258,6 @@ function showPage(page){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   const target = document.getElementById(page);
   if(target) target.classList.add("active");
-
-  document.querySelectorAll(".nav-top-btn").forEach(b=>b.classList.remove("active-top-nav"));
-  const activeBtn = document.getElementById("navBtn_" + page);
-  if(activeBtn) activeBtn.classList.add("active-top-nav");
 
   if(page==="home"){renderTournaments();renderLeaderboard()}
   if(page==="tournaments")renderTournaments();
@@ -2081,7 +2120,9 @@ function loadAdmin(){
   displayAdminVictories();
   displayAdminReports();
   displayAdminBannedPlayers();
-  displayAdminPlayers();
+  displayAdminOnlinePlayers();
+  displayAdminOfflinePlayers();
+  displayAdminArchivedPlayers();
   displayAdminWithdrawals();
   displayAdminDeposits();
   displayAdminTournaments();
@@ -2312,23 +2353,27 @@ function deleteReport(id){
   });
 }
 
-function displayAdminPlayers(){
-  const list = document.getElementById("adminPlayerList");
+function displayAdminOnlinePlayers(){
+  const list = document.getElementById("adminOnlinePlayerList");
   if(!list) return;
   list.innerHTML = "";
-  const allPlayers = Object.values(onlineUsers);
   
-  if(!allPlayers.length){
-    list.innerHTML = `<div class="empty">कुनै खेलाडी छैनन्</div>`; return;
+  const allUsersArr = Object.values(onlineUsers);
+  const activeUsers = allUsersArr.filter(u => u.status === "active");
+
+  document.getElementById("adminTotalRegisteredPlayers").innerText = allUsersArr.length;
+  document.getElementById("onlinePlayerBadge").innerText = activeUsers.length;
+
+  if(!activeUsers.length){
+    list.innerHTML = `<div class="empty">कुनै अनलाइन खेलाडी छैनन्</div>`;
+    return;
   }
 
-  allPlayers.forEach(u=>{
+  activeUsers.forEach((u, index)=>{
     const div = document.createElement("div");
     div.className = "admin-player";
-    const isOnline = u.status === "active";
-    const statusText = isOnline ? '<b style="color:#4ade80">● Online</b>' : '<b style="color:#f87171">○ Offline/Banned</b>';
     div.innerHTML = `
-      <h3>👤 ${escapeHTML(u.email || u.uid)} ${statusText}</h3>
+      <h3>${index + 1}. 🟢 ${escapeHTML(u.email || u.uid)} <b style="color:#4ade80">● Online</b></h3>
       <div class="info">
         IGN: <b>${escapeHTML(u.ign||'N/A')}</b> | UID: <b>${escapeHTML(u.gameUid||'N/A')}</b> | ब्यालेन्स: <b style="color:#4ade80">रु ${Number(u.points||0)}</b><br>
         🕒 Last Seen: <small style="color:#94a3b8">${escapeHTML(u.lastActive || "Recently")}</small>
@@ -2336,9 +2381,101 @@ function displayAdminPlayers(){
       <button class="add-btn" onclick="directBalance('${u.uid}', 1)">➕ रु थप्नुहोस्</button>
       <button class="deduct-btn" onclick="directBalance('${u.uid}', -1)">➖ रु घटाउनुहोस्</button>
       <button class="ban-btn" onclick="banPlayer('${u.uid}')">🚫 BAN</button>
-      <button class="del-btn" onclick="deletePlayerPermanent('${u.uid}')">🗑️ DELETE</button>
+      <button class="del-btn" onclick="archivePlayer('${u.uid}')" style="background:#eab308;color:#111">📁 HIDE / REMOVE</button>
     `;
     list.appendChild(div);
+  });
+}
+
+function displayAdminOfflinePlayers(){
+  const list = document.getElementById("adminOfflinePlayerList");
+  if(!list) return;
+  list.innerHTML = "";
+  
+  const allUsersArr = Object.values(onlineUsers);
+  const offlineUsers = allUsersArr.filter(u => u.status === "offline" || !u.status || u.status === "");
+
+  document.getElementById("offlinePlayerBadge").innerText = offlineUsers.length;
+
+  if(!offlineUsers.length){
+    list.innerHTML = `<div class="empty">कुनै अफलाइन खेलाडी छैनन्</div>`;
+    return;
+  }
+
+  offlineUsers.forEach((u, index)=>{
+    const div = document.createElement("div");
+    div.className = "admin-player";
+    div.innerHTML = `
+      <h3>${index + 1}. ⚪ ${escapeHTML(u.email || u.uid)} <b style="color:#f87171">○ Offline</b></h3>
+      <div class="info">
+        IGN: <b>${escapeHTML(u.ign||'N/A')}</b> | UID: <b>${escapeHTML(u.gameUid||'N/A')}</b> | ब्यालेन्स: <b style="color:#4ade80">रु ${Number(u.points||0)}</b><br>
+        🕒 Last Seen: <small style="color:#94a3b8">${escapeHTML(u.lastActive || "Long ago")}</small>
+      </div>
+      <button class="add-btn" onclick="directBalance('${u.uid}', 1)">➕ रु थप्नुहोस्</button>
+      <button class="deduct-btn" onclick="directBalance('${u.uid}', -1)">➖ रु घटाउनुहोस्</button>
+      <button class="ban-btn" onclick="banPlayer('${u.uid}')">🚫 BAN</button>
+      <button class="del-btn" onclick="archivePlayer('${u.uid}')" style="background:#eab308;color:#111">📁 HIDE / REMOVE</button>
+    `;
+    list.appendChild(div);
+  });
+}
+
+function displayAdminArchivedPlayers(){
+  const list = document.getElementById("adminArchivedPlayerList");
+  if(!list) return;
+  list.innerHTML = "";
+  const archivedPlayers = Object.values(onlineUsers).filter(u => u.status === "archived");
+
+  document.getElementById("archivedPlayerBadge").innerText = archivedPlayers.length;
+
+  if(!archivedPlayers.length){
+    list.innerHTML = `<div class="empty">कुनै लुकाइएको (Hidden) खेलाडी छैन</div>`; return;
+  }
+
+  archivedPlayers.forEach((u, index)=>{
+    const div = document.createElement("div");
+    div.className = "admin-player";
+    div.style.borderColor = "#eab308";
+    div.innerHTML = `
+      <h3>${index + 1}. 📁 ${escapeHTML(u.email || u.uid)} <b style="color:#eab308">(Hidden)</b></h3>
+      <div class="info">
+        IGN: <b>${escapeHTML(u.ign||'N/A')}</b> | UID: <b>${escapeHTML(u.gameUid||'N/A')}</b> | ब्यालेन्स: रु ${Number(u.points||0)}<br>
+      </div>
+      <button class="add-btn" onclick="recoverPlayer('${u.uid}')">♻️ RECOVER PLAYER</button>
+    `;
+    list.appendChild(div);
+  });
+}
+
+function archivePlayer(uid){
+  if(!confirm("के यो खेलाडीलाई लिस्टबाट हटाउन (Hide गर्न) चाहनुहुन्छ? (एकाउन्ट डिलिट हुँदैन, रिकभर गर्न मिल्छ)")) return;
+  db.ref("users/" + uid + "/status").set("archived").then(()=>{
+    alert("📁 खेलाडीलाई लिस्टबाट हटाइयो! 'Hidden / Removed Players' मा गएर रिकभर गर्न सक्नुहुन्छ।");
+    loadAdmin();
+  });
+}
+
+function recoverPlayer(uid){
+  if(!confirm("के यो खेलाडीलाई फेरि सक्रिय (Recover) गर्न चाहनुहुन्छ?")) return;
+  db.ref("users/" + uid + "/status").set("active").then(()=>{
+    alert("♻️ खेलाडी सफलतापूर्वक रिकभर भयो!");
+    loadAdmin();
+  });
+}
+
+function recoverAllPlayers(){
+  if(!confirm("के तपाईंले हटाएका सम्पूर्ण खेलाडीहरूलाई एकैचोटि रिकभर (फिर्ता) गर्न चाहनुहुन्छ?")) return;
+  
+  const updates = {};
+  Object.values(onlineUsers).forEach(u => {
+    if(u.status === "archived"){
+      updates["users/" + u.uid + "/status"] = "active";
+    }
+  });
+
+  db.ref().update(updates).then(()=>{
+    alert("♻️ सबै खेलाडीहरू सफलतापूर्वक रिकभर भए!");
+    loadAdmin();
   });
 }
 
@@ -2363,15 +2500,6 @@ function unbanPlayer(uid){
   });
 }
 
-function deletePlayerPermanent(uid){
-  if(!confirm("⚠️ खेलाडीको सम्पूर्ण डाटा डिलिट गर्ने?")) return;
-  db.ref("users/" + uid).remove();
-  db.ref("registrations/" + uid).remove();
-  db.ref("history/" + uid).remove();
-  alert("🗑️ खेलाडी पूर्ण रूपमा डिलिट भयो!");
-  loadAdmin();
-}
-
 function displayAdminBannedPlayers(){
   const list = document.getElementById("adminBannedList");
   if(!list) return;
@@ -2382,18 +2510,17 @@ function displayAdminBannedPlayers(){
     list.innerHTML = `<div class="empty">कुनै खेलाडी ब्यान गरिएको छैन</div>`; return;
   }
 
-  bannedPlayers.forEach(u=>{
+  bannedPlayers.forEach((u, index)=>{
     const div = document.createElement("div");
     div.className = "admin-player";
     div.style.borderColor = "#ef4444";
     div.innerHTML = `
-      <h3 style="color:#ef4444">🚫 ${escapeHTML(u.email || u.uid)}</h3>
+      <h3>${index + 1}. 🚫 ${escapeHTML(u.email || u.uid)}</h3>
       <div class="info">
         IGN: <b>${escapeHTML(u.ign||'N/A')}</b> | बाँकी ब्यालेन्स: रु ${Number(u.points||0)}<br>
         📅 ब्यान मिति: <small style="color:#fca5a5">${escapeHTML(u.bannedAt || "N/A")}</small>
       </div>
       <button class="add-btn" onclick="unbanPlayer('${u.uid}')">✅ UNBAN</button>
-      <button class="del-btn" onclick="deletePlayerPermanent('${u.uid}')">🗑️ DELETE</button>
     `;
     list.appendChild(div);
   });
