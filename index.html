@@ -12,14 +12,16 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#080b16;color:#fff;min-height:100vh;padding-bottom:70px}
+body{font-family:Arial,sans-serif;background:#080b16;color:#fff;min-height:100vh;padding-bottom:30px}
 button{cursor:pointer}
 button:disabled{opacity:.5;cursor:not-allowed}
-.header{background:#101528;padding:15px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #252b45;position:sticky;top:0;z-index:20}
-.logo{font-size:20px;font-weight:bold}.logo span{color:#9333ea}
-.header-buttons{display:flex;gap:6px}
-.admin-btn,.logout-btn{border:none;color:#fff;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:bold}
-.admin-btn{background:#eab308;color:#111}.logout-btn{background:#dc3545}
+.header{background:#101528;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #252b45;position:sticky;top:0;z-index:20}
+.logo{font-size:18px;font-weight:bold;cursor:pointer;user-select:none}.logo span{color:#9333ea}
+.header-buttons{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-top-btn,.logout-btn{border:none;color:#fff;padding:6px 9px;border-radius:6px;font-size:11px;font-weight:bold}
+.nav-top-btn{background:#1e293b;border:1px solid #334155}
+.nav-top-btn.active-top-nav{background:#9333ea;border-color:#a855f7}
+.logout-btn{background:#dc3545}
 
 #notifyBanner{
   position:fixed;top:15px;left:5%;right:5%;background:linear-gradient(135deg,#9333ea,#4f46e5);
@@ -38,20 +40,17 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 
 .forgot-btn{background:none;border:none;color:#a855f7;font-size:12px;margin-top:10px;text-decoration:underline;display:inline-block}
 
-.container{max-width:1000px;margin:auto;padding:16px 14px 80px}
-.points-wallet{background:linear-gradient(135deg,#1e1b4b,#31104b);border:1px solid #7e22ce;padding:18px;border-radius:16px;margin-bottom:16px}
-.points-wallet p{color:#c084fc;font-size:13px;font-weight:bold}
-.points-wallet h1{margin-top:6px;color:#4ade80;font-size:26px}
-.wallet-subtext{font-size:12px;color:#94a3b8;margin-top:4px}
+.container{max-width:1000px;margin:auto;padding:16px 14px 40px}
 
-.profile-card-box{
-  background:linear-gradient(135deg,#111629,#1e1b4b);border:2px solid #9333ea;padding:18px;border-radius:16px;margin-bottom:16px;display:flex;align-items:center;gap:16px;
-}
-.profile-avatar-container{position:relative;width:70px;height:70px;border-radius:50%;overflow:hidden;border:2px solid #c084fc;background:#080b16;flex-shrink:0}
-.profile-avatar-img{width:100%;height:100%;object-fit:cover}
-.profile-info-text{flex:1}
-.profile-info-text h3{font-size:16px;color:#fff}
-.profile-info-text p{font-size:12px;color:#cbd5e1;margin-top:3px}
+.points-wallet{background:linear-gradient(135deg,#1e1b4b,#31104b);border:1px solid #7e22ce;padding:16px;border-radius:16px;margin-bottom:16px}
+.profile-wallet-row{display:flex;align-items:center;gap:14px}
+.wallet-avatar-box{width:60px;height:60px;border-radius:50%;overflow:hidden;border:2px solid #c084fc;background:#080b16;flex-shrink:0}
+.wallet-avatar-img{width:100%;height:100%;object-fit:cover}
+.wallet-info-col{flex:1}
+.wallet-info-col h3{font-size:15px;color:#fff}
+.wallet-info-col p{font-size:11px;color:#cbd5e1;margin-top:2px}
+.wallet-balance-box{margin-top:12px;border-top:1px solid rgba(255,255,255,0.1);padding-top:10px;display:flex;justify-content:space-between;align-items:center}
+.wallet-balance-box h1{color:#4ade80;font-size:22px;margin-top:2px}
 
 .rule-notice{
   background:rgba(234,179,8,0.12);border:1px dashed #eab308;color:#fde047;
@@ -84,7 +83,7 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
   background:#059669;color:#fff;border-color:#34d399;box-shadow:0 0 8px rgba(52,211,153,0.4);
 }
 
-.stats,.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.stats,.admin-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
 .stat,.admin-stat{background:#111629;padding:14px 6px;border-radius:12px;text-align:center;border:1px solid #252b45}
 .stat h2,.admin-stat h2{color:#a855f7;font-size:18px}
 .stat p,.admin-stat p{color:#8e95b1;font-size:11px;margin-top:4px}
@@ -93,15 +92,8 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 .tournament-card{background:#111629;border:1px solid #252b45;border-radius:16px;padding:16px;position:relative}
 
 .game-card-emoji{
-  font-size:32px;
-  background:#080b16;
-  width:44px;
-  height:44px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:10px;
-  border:1px solid #3b4261;
+  font-size:32px;background:#080b16;width:44px;height:44px;display:flex;
+  align-items:center;justify-content:center;border-radius:10px;border:1px solid #3b4261;
 }
 
 .status{display:inline-block;padding:4px 8px;border-radius:16px;font-size:11px;margin:8px 0;font-weight:bold}
@@ -189,8 +181,6 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 }
 .tab-btn-group button.active-tab{background:#9333ea;border-color:#a855f7}
 
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#101528;border-top:1px solid #252b45;display:flex;justify-content:space-around;padding:10px 4px;z-index:30}
-.bottom-nav button{background:none;border:none;color:#8e95b1;font-size:11px}
 .empty{background:#111629;padding:24px;border-radius:14px;text-align:center;color:#9299b8}
 .page{display:none}.active{display:block}
 
@@ -232,7 +222,7 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 <!-- 1. AUTH SCREEN -->
 <div id="login">
   <div class="login-box">
-    <div class="game-logo">🎮</div>
+    <div class="game-logo" onclick="secretAdminTap()" style="cursor:pointer">🎮</div>
     <h1>Game<span style="color:#9333ea"> Esports</span></h1>
     <p id="authSub">वास्तविक Gmail र पासवर्डबाट लगइन गर्नुहोस्</p>
 
@@ -254,18 +244,16 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
     <div id="forgotBox">
       <button class="forgot-btn" onclick="handleForgotPassword()">🔑 Password बिर्सनुभयो? (Forgot Password)</button>
     </div>
-
-    <button class="btn" style="background:#eab308;color:#111;margin-top:12px" onclick="showAdminLogin()">👨‍💻 ADMIN LOGIN</button>
   </div>
 </div>
 
-<!-- 2. ADMIN LOGIN -->
+<!-- 2. ADMIN LOGIN (HIDDEN SECRET PANEL) -->
 <div id="adminLogin" style="display:none">
   <div class="login-box" id="adminLoginSection">
     <div class="game-logo">👨‍💻</div>
     <h1>Admin Login</h1>
     <p>Game Esports Cloud Dashboard</p>
-    <input id="adminEmailInput" type="email" placeholder="Admin Real Gmail (nirmalsaud140@gmail.com)" value="nirmalsaud140@gmail.com" required>
+    <input id="adminEmailInput" type="email" placeholder="Admin Real Gmail" value="nirmalsaud140@gmail.com" required>
     <input id="adminPassword" type="password" placeholder="Admin Password" required>
     <button class="btn" style="background:#eab308;color:#111" onclick="adminLogin()">🔐 LOGIN AS ADMIN</button>
     
@@ -289,9 +277,13 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 <!-- 3. USER APP -->
 <div id="app" style="display:none">
   <div class="header">
-    <div class="logo">🎮 Game<span> Esports</span></div>
+    <div class="logo" onclick="secretAdminTap()">🎮 Game<span> Esports</span></div>
     <div class="header-buttons">
-      <button class="admin-btn" onclick="showAdminLogin()">Admin</button>
+      <button id="navBtn_home" class="nav-top-btn active-top-nav" onclick="showPage('home')">🏠 Home</button>
+      <button id="navBtn_tournaments" class="nav-top-btn" onclick="showPage('tournaments')">🏆 Games</button>
+      <button id="navBtn_profilePage" class="nav-top-btn" onclick="showPage('profilePage')">👤 Profile</button>
+      <button id="navBtn_registrations" class="nav-top-btn" onclick="showPage('registrations')">🏅 Join</button>
+      <button id="navBtn_walletPage" class="nav-top-btn" onclick="showPage('walletPage')">💰 Wallet</button>
       <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
   </div>
@@ -300,9 +292,22 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
   <div id="home" class="page active">
     <div class="container">
       <div class="points-wallet">
-        <p>🪙 मेरो खाता (ONLINE BALANCE)</p>
-        <h1>रु <span id="myPoints">0</span></h1>
-        <div class="wallet-subtext">खेलाडी: <b id="displayPlayerEmail" style="color:#fff"></b></div>
+        <div class="profile-wallet-row">
+          <div class="wallet-avatar-box">
+            <img id="userAvatarImg" class="wallet-avatar-img" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Avatar">
+          </div>
+          <div class="wallet-info-col">
+            <h3 id="profileDisplayIgn">Game Player</h3>
+            <p id="profileDisplayUid">UID: N/A</p>
+            <p id="profileDisplayEmail" style="color:#c084fc">email@gmail.com</p>
+          </div>
+        </div>
+        <div class="wallet-balance-box">
+          <div>
+            <p style="color:#c084fc;font-size:12px;font-weight:bold">🪙 मेरो खाता (ONLINE BALANCE)</p>
+            <h1>रु <span id="myPoints">0</span></h1>
+          </div>
+        </div>
       </div>
 
       <div style="background:linear-gradient(135deg, #059669, #0d9488);padding:14px;border-radius:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
@@ -313,13 +318,12 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
         <button class="btn" style="width:auto;padding:8px 14px;background:#fff;color:#059669;margin:0" onclick="openCreateCustomModal()">➕ CREATE ROOM</button>
       </div>
 
-      <div class="stats" style="grid-template-columns:repeat(3,1fr)">
+      <div class="stats">
         <div class="stat"><h2 id="tournamentCount">0</h2><p>Tournaments</p></div>
         <div class="stat"><h2 id="playerCount">0</h2><p>Joined Games</p></div>
         <div class="stat"><h2>🏆 #1</h2><p>Rank</p></div>
       </div>
 
-      <!-- FILTER CONTROLS WITH EMOJIS -->
       <div class="filter-container">
         <div class="filter-title">🎮 गेम छान्नुहोस्:</div>
         <div class="cat-btn-group">
@@ -421,29 +425,25 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
     <div class="container">
       <h2>👤 मेरो प्रोफाइल (My Profile)</h2>
       
-      <div class="profile-card-box">
-        <div class="profile-avatar-container">
-          <img id="userAvatarImg" class="profile-avatar-img" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Avatar">
+      <div class="profile-card-box" style="background:linear-gradient(135deg,#111629,#1e1b4b);border:2px solid #9333ea;padding:18px;border-radius:16px;margin-bottom:16px;display:flex;align-items:center;gap:16px;">
+        <div class="profile-avatar-container" style="position:relative;width:70px;height:70px;border-radius:50%;overflow:hidden;border:2px solid #c084fc;background:#080b16;flex-shrink:0">
+          <img id="profileAvatarImg" class="profile-avatar-img" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Avatar" style="width:100%;height:100%;object-fit:cover">
         </div>
-        <div class="profile-info-text">
-          <h3 id="profileDisplayIgn">Game Player</h3>
-          <p id="profileDisplayUid">UID: N/A</p>
-          <p id="profileDisplayEmail" style="color:#c084fc">email@gmail.com</p>
+        <div class="profile-info-text" style="flex:1">
+          <h3 id="profilePageIgn" style="font-size:16px;color:#fff">Game Player</h3>
+          <p id="profilePageUid" style="font-size:12px;color:#cbd5e1;margin-top:3px">UID: N/A</p>
+          <p id="profilePageEmail" style="font-size:12px;color:#c084fc;margin-top:3px">email@gmail.com</p>
         </div>
       </div>
 
       <div class="register-box">
         <h3 style="color:#a855f7;margin-bottom:10px">⚙️ प्रोफाइल अपडेट गर्नुहोस्</h3>
-
         <label style="font-size:12px;color:#cbd5e1">📸 प्रोफाइल पिक्चर फेर्नुहोस्:</label>
         <input type="file" accept="image/*" onchange="uploadProfileAvatar(event)">
-
         <label style="font-size:12px;color:#cbd5e1;margin-top:6px;display:block">गेम Nickname / IGN:</label>
         <input id="editUserIgn" type="text" placeholder="तपाईंको गेम नाम">
-
         <label style="font-size:12px;color:#cbd5e1">Game UID (खेलाडी आईडी):</label>
         <input id="editUserUid" type="text" placeholder="तपाईंको गेम UID">
-
         <button class="btn" style="background:#9333ea;margin-top:12px" onclick="saveUserProfileChanges()">💾 UPDATE PROFILE</button>
       </div>
     </div>
@@ -521,14 +521,6 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
       </div>
       <div id="historyList"></div>
     </div>
-  </div>
-
-  <div class="bottom-nav">
-    <button onclick="showPage('home')">🏠<br>Home</button>
-    <button onclick="showPage('tournaments')">🏆<br>Games</button>
-    <button onclick="showPage('profilePage')">👤<br>My Profile</button>
-    <button onclick="showPage('registrations')">🏅<br>My Join</button>
-    <button onclick="showPage('walletPage')">💰<br>Wallet</button>
   </div>
 </div>
 
@@ -792,7 +784,6 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch((erro
 const auth = firebase.auth();
 const db = firebase.database();
 
-// इमेजको सट्टा इमोजीम्याप
 const GAME_EMOJIS = {
   "Free Fire": "🔥",
   "PUBG": "🪂",
@@ -819,6 +810,26 @@ let selectedTournament = null;
 let currentDepositImageBase64 = "";
 let currentAdminPass = "admin123";
 let currentAdminEmail = "nirmalsaud140@gmail.com";
+
+let adminTapCount = 0;
+let adminTapTimer = null;
+
+function secretAdminTap(){
+  adminTapCount++;
+  clearTimeout(adminTapTimer);
+  adminTapTimer = setTimeout(() => {
+    adminTapCount = 0;
+  }, 1000);
+
+  if(adminTapCount >= 5){
+    adminTapCount = 0;
+    document.getElementById("login").style.display = "none";
+    document.getElementById("app").style.display = "none";
+    document.getElementById("adminLogin").style.display = "flex";
+    document.getElementById("adminLoginSection").style.display = "block";
+    document.getElementById("adminResetSection").style.display = "none";
+  }
+}
 
 let selectedGameCategory = "ALL";
 let selectedGameMode = "ALL";
@@ -1022,8 +1033,6 @@ auth.onAuthStateChanged(user => {
       } else {
         currentUid = user.uid;
         currentEmail = user.email;
-        document.getElementById("displayPlayerEmail").innerText = currentEmail;
-
         db.ref("users/" + currentUid).update({
           status: "active",
           lastActive: new Date().toLocaleString()
@@ -1038,6 +1047,7 @@ auth.onAuthStateChanged(user => {
     currentEmail = "";
     lastKnownPoints = null;
     document.getElementById("app").style.display = "none";
+    document.getElementById("adminLogin").style.display = "none";
     document.getElementById("login").style.display = "flex";
   }
 });
@@ -1070,8 +1080,14 @@ function listenToUserData(uid){
       document.getElementById("profileDisplayIgn").innerText = data.ign || "No IGN set";
       document.getElementById("profileDisplayUid").innerText = "UID: " + (data.gameUid || "N/A");
       document.getElementById("profileDisplayEmail").innerText = data.email || currentEmail;
+
+      document.getElementById("profilePageIgn").innerText = data.ign || "No IGN set";
+      document.getElementById("profilePageUid").innerText = "UID: " + (data.gameUid || "N/A");
+      document.getElementById("profilePageEmail").innerText = data.email || currentEmail;
+
       if(data.avatar){
         document.getElementById("userAvatarImg").src = data.avatar;
+        document.getElementById("profileAvatarImg").src = data.avatar;
       }
       document.getElementById("editUserIgn").value = data.ign || "";
       document.getElementById("editUserUid").value = data.gameUid || "";
@@ -1199,6 +1215,11 @@ function showPage(page){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   const target = document.getElementById(page);
   if(target) target.classList.add("active");
+
+  document.querySelectorAll(".nav-top-btn").forEach(b=>b.classList.remove("active-top-nav"));
+  const activeBtn = document.getElementById("navBtn_" + page);
+  if(activeBtn) activeBtn.classList.add("active-top-nav");
+
   if(page==="home"){renderTournaments();renderLeaderboard()}
   if(page==="tournaments")renderTournaments();
   if(page==="registrations")updateRegistrationList();
@@ -1273,6 +1294,7 @@ function setVsFilter(vsFormat, btn){
 function renderTournaments(){
   const list = document.getElementById("tournamentList");
   const home = document.getElementById("homeTournamentList");
+  if(!list || !home) return;
   list.innerHTML = ""; home.innerHTML = "";
 
   const filtered = onlineTournaments.filter(t => {
@@ -1322,7 +1344,6 @@ function createTournamentCard(t){
   const vsBadge = `<span class="badge-mode badge-vs">⚔️ ${escapeHTML(t.vsFormat || 'Custom')}</span>`;
   const hostBadge = t.hostedByPlayer ? `<span class="badge-host">👤 Player Hosted (${escapeHTML(t.hostEmail || 'User')})</span>` : `<span class="badge-host" style="background:#9333ea">👑 Official</span>`;
 
-  // इमेजको सट्टा इमोजी प्रयोग गरिएको
   const gameEmoji = GAME_EMOJIS[t.gameCategory] || "🎮";
   const allowedGunsArr = t.allowedGuns ? t.allowedGuns.split(", ") : ["ALL GUNS"];
   let gunsBadgesHtml = allowedGunsArr.map(g => `<span class="gun-tag">🔫 ${escapeHTML(g)}</span>`).join(" ");
@@ -1683,6 +1704,7 @@ function addHistory(uid, amount, reason){
 
 function updateHistory(){
   const list = document.getElementById("historyList");
+  if(!list) return;
   list.innerHTML = "";
   if(!onlineHistory.length){
     list.innerHTML = `<div class="empty">कुनै कारोबार विवरण छैन</div>`; return;
@@ -1718,6 +1740,7 @@ function clearWalletHistory(){
 
 function updateRegistrationList(){
   const list = document.getElementById("registrationList");
+  if(!list) return;
   const data = onlineRegistrations[currentUid] || [];
   list.innerHTML = "";
   if(!data.length){
@@ -1902,6 +1925,7 @@ function submitReportModal(){
 
 function renderLeaderboard(){
   const list = document.getElementById("leaderboard");
+  if(!list) return;
   const arr = Object.values(onlineUsers).filter(u => u.status === "active").sort((a,b)=>Number(b.points||0)-Number(a.points||0));
   list.innerHTML = "";
   arr.slice(0, 10).forEach((u, idx)=>{
@@ -1919,16 +1943,9 @@ function renderLeaderboard(){
 function logout(){
   auth.signOut().then(()=>{
     document.getElementById("app").style.display="none";
+    document.getElementById("adminLogin").style.display="none";
     document.getElementById("login").style.display="flex";
   });
-}
-
-function showAdminLogin(){
-  document.getElementById("login").style.display="none";
-  document.getElementById("app").style.display="none";
-  document.getElementById("adminLogin").style.display="flex";
-  document.getElementById("adminLoginSection").style.display="block";
-  document.getElementById("adminResetSection").style.display="none";
 }
 
 function showAdminResetModal(e){
@@ -2008,6 +2025,7 @@ function selectAdminVs(format, defaultSlots, el){
 function onAdminGameSelected(){
   const gameCat = document.getElementById("newGameSelect").value;
   const container = document.getElementById("adminGunPills");
+  if(!container) return;
   container.innerHTML = "";
   currentlySelectedGuns = ["ALL GUNS"];
 
@@ -2071,6 +2089,7 @@ function loadAdmin(){
 
 function displayAdminQrRequests(){
   const list = document.getElementById("adminQrRequestsList");
+  if(!list) return;
   list.innerHTML = "";
   const pendingRequests = onlineQrRequests.filter(r => r.status === "Pending");
   document.getElementById("adminQrRequestCount").innerText = pendingRequests.length;
@@ -2166,6 +2185,7 @@ function sendAdminChatMessage(uid){
 
 function displayAdminVictories(){
   const list = document.getElementById("adminVictoryList");
+  if(!list) return;
   list.innerHTML = "";
   if(!onlineVictories.length){
     list.innerHTML = `<div class="empty">कुनै जीतको दाबी आएको छैन</div>`; return;
@@ -2247,6 +2267,7 @@ function deleteVictoryProof(id){
 
 function displayAdminReports(){
   const list = document.getElementById("adminReportList");
+  if(!list) return;
   list.innerHTML = "";
   if(!onlineReports.length){
     list.innerHTML = `<div class="empty">कुनै चिटिङ रिपोर्ट छैन</div>`; return;
@@ -2293,6 +2314,7 @@ function deleteReport(id){
 
 function displayAdminPlayers(){
   const list = document.getElementById("adminPlayerList");
+  if(!list) return;
   list.innerHTML = "";
   const allPlayers = Object.values(onlineUsers);
   
@@ -2352,6 +2374,7 @@ function deletePlayerPermanent(uid){
 
 function displayAdminBannedPlayers(){
   const list = document.getElementById("adminBannedList");
+  if(!list) return;
   list.innerHTML = "";
   const bannedPlayers = Object.values(onlineUsers).filter(u => u.status === "banned");
 
@@ -2378,6 +2401,7 @@ function displayAdminBannedPlayers(){
 
 function displayAdminWithdrawals(){
   const list = document.getElementById("adminWithdrawList");
+  if(!list) return;
   list.innerHTML = "";
   if(!onlineWithdrawals.length){
     list.innerHTML = `<div class="empty">कुनै विथड्रल अनुरोध छैन</div>`; return;
@@ -2443,6 +2467,7 @@ function deleteWithdrawal(id){
 
 function displayAdminDeposits(){
   const list = document.getElementById("adminDepositList");
+  if(!list) return;
   list.innerHTML = "";
   if(!onlineDeposits.length){
     list.innerHTML = `<div class="empty">कुनै डिपोजिट छैन</div>`; return;
@@ -2518,6 +2543,7 @@ function deleteDepositProof(id){
 function displayAdminTournaments(){
   const csList = document.getElementById("adminCsTournamentList");
   const brList = document.getElementById("adminBrTournamentList");
+  if(!csList || !brList) return;
   csList.innerHTML = "";
   brList.innerHTML = "";
 
