@@ -44,6 +44,15 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 .points-wallet h1{margin-top:6px;color:#4ade80;font-size:26px}
 .wallet-subtext{font-size:12px;color:#94a3b8;margin-top:4px}
 
+.profile-card-box{
+  background:linear-gradient(135deg,#111629,#1e1b4b);border:2px solid #9333ea;padding:18px;border-radius:16px;margin-bottom:16px;display:flex;align-items:center;gap:16px;
+}
+.profile-avatar-container{position:relative;width:70px;height:70px;border-radius:50%;overflow:hidden;border:2px solid #c084fc;background:#080b16;flex-shrink:0}
+.profile-avatar-img{width:100%;height:100%;object-fit:cover}
+.profile-info-text{flex:1}
+.profile-info-text h3{font-size:16px;color:#fff}
+.profile-info-text p{font-size:12px;color:#cbd5e1;margin-top:3px}
+
 .rule-notice{
   background:rgba(234,179,8,0.12);border:1px dashed #eab308;color:#fde047;
   padding:12px;border-radius:10px;font-size:12px;line-height:1.5;margin-bottom:14px;
@@ -58,7 +67,6 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
   display:flex;align-items:center;justify-content:center;gap:6px;
 }
 .cat-btn.active-cat{background:#9333ea;border-color:#a855f7;color:#fff}
-.cat-btn img{width:16px;height:16px;border-radius:4px;object-fit:cover}
 
 .mode-btn-group{display:flex;gap:8px;margin-top:6px}
 .mode-btn{
@@ -84,9 +92,16 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 .tournament-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
 .tournament-card{background:#111629;border:1px solid #252b45;border-radius:16px;padding:16px;position:relative}
 
-.game-card-logo{
-  width:44px;height:44px;border-radius:10px;object-fit:cover;border:1px solid #3b4261;
-  box-shadow:0 4px 10px rgba(0,0,0,0.5);
+.game-card-emoji{
+  font-size:32px;
+  background:#080b16;
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  border:1px solid #3b4261;
 }
 
 .status{display:inline-block;padding:4px 8px;border-radius:16px;font-size:11px;margin:8px 0;font-weight:bold}
@@ -108,7 +123,6 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
   display:inline-block;background:#14532d;color:#86efac;padding:3px 7px;border-radius:6px;margin:2px 2px;font-size:10px;font-weight:bold;border:1px solid #22c55e;
 }
 
-/* 🔫 GUN COLLECTION PILLS BOX */
 .gun-pill-container{
   display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;background:#0d1326;padding:10px;border-radius:10px;border:1px solid #252b45;max-height:180px;overflow-y:auto;
 }
@@ -119,7 +133,7 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
   background:#16a34a;color:#fff;border-color:#4ade80;box-shadow:0 0 10px rgba(74,222,128,0.6);
 }
 
-.leaderboard,.register-box,.history-box,.admin-panel,.add-box{background:#111629;border-radius:16px;padding:18px;border:1px solid #252b45}
+.leaderboard,.register-box,.history-box,.admin-panel,.add-box{background:#111629;border-radius:16px;padding:18px;border:1px solid #252b45;margin-bottom:16px}
 .player{display:flex;align-items:center;padding:12px 4px;border-bottom:1px solid #252b45}
 .player:last-child{border-bottom:none}
 .player-info{flex:1;text-align:left;margin-left:10px}
@@ -139,268 +153,23 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 }
 .clear-hist-btn:hover{background:#b91c1c;color:#fff}
 
-.room-details-box{
-  background:#091e3a;border:1px dashed #38bdf8;border-radius:10px;padding:12px;margin-top:10px;
+.accordion-header{
+  background:#1e293b;color:#38bdf8;padding:14px 16px;border-radius:12px;font-size:15px;font-weight:bold;
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;border:1px solid #334155;
+  margin-bottom:12px;
 }
-.room-details-box h4{color:#38bdf8;margin-bottom:4px;font-size:13px}
-.room-details-box p{font-size:13px;margin:2px 0}
+.accordion-header:hover{background:#334155}
+.accordion-content{display:none;padding-top:6px}
+.accordion-content.open-acc{display:block}
 
-.payment-preview{
-  max-width:100%;max-height:180px;border-radius:8px;margin-top:6px;display:block;border:1px solid #334155;
-}
-.preview-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
-
-.tab-btn-group{display:flex;gap:10px;margin-bottom:15px}
-.tab-btn-group button{
-  flex:1;padding:10px;border-radius:10px;border:1px solid #334155;
-  background:#111629;color:#fff;font-weight:bold;font-size:13px;
-}
-.tab-btn-group button.active-tab{background:#9333ea;border-color:#a855f7}
-
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#101528;border-top:1px solid #252b45;display:flex;justify-content:space-around;padding:10px 4px;z-index:30}
-.bottom-nav button{background:none;border:none;color:#8e95b1;font-size:11px}
-.empty{background:#111629;padding:24px;border-radius:14px;text-align:center;color:#9299b8}
-.page{display:none}.active{display:block}
-
-.custom-modal-overlay{
-  position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);
-  display:none;justify-content:center;align-items:center;z-index:99999;padding:16px;
-}
-.custom-modal{
-  background:#111629;border:2px solid #16a34a;border-radius:18px;padding:20px;
-  width:100%;max-width:480px;max-height:90vh;overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,0.8);
-}
-.modal-title{font-size:18px;font-weight:bold;margin-bottom:6px}
-.modal-actions{display:flex;gap:10px;margin-top:16px}
-.modal-actions button{flex:1;padding:12px;border:none;border-radius:10px;font-weight:bold;font-size:13px}
-.btn-green{background:#16a34a;color:#fff}
-.btn-red{background:#dc2626;color:#fff}
-.btn-gray{background:#334155;color:#fff}
-.upload-card{background:#080b16;padding:10px;border-radius:10px;border:1px solid #303752;margin-top:8px}
-
-.qr-received-card{
-  background:#091e3a;border:2px dashed #38bdf8;border-radius:14px;padding:16px;text-align:center;margin:14px 0;
-}
-.qr-img-tag{
-  width:180px;height:180px;object-fit:contain;background:#fff;padding:8px;border-radius:10px;margin:8px auto;display:block;
-}
-.download-btn{
-  background:#0284c7;color:#fff;border:none;padding:9px 16px;border-radius:8px;font-weight:bold;font-size:13px;margin-top:6px;display:inline-flex;align-items:center;gap:6px;text-decoration:none;
-}
-
-/* ================= MY PROFILE SYSTEM ================= */
-.profile-page-wrap{max-width:1000px;margin:auto;padding:16px 14px 90px}
-.profile-hero{background:linear-gradient(135deg,#17143b,#26104b);border:1px solid #7e22ce;border-radius:20px;padding:22px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-.profile-avatar-wrap{position:relative;width:104px;height:104px;margin:0 auto 12px}
-.profile-avatar{width:104px;height:104px;border-radius:50%;object-fit:cover;border:3px solid #a855f7;background:#0f172a;display:block}
-.profile-avatar-edit{position:absolute;right:-2px;bottom:0;width:34px;height:34px;border-radius:50%;border:2px solid #111629;background:#9333ea;color:#fff;font-size:16px}
-.profile-nickname{font-size:23px;font-weight:800;margin-top:4px}
-.profile-email{font-size:12px;color:#94a3b8;margin-top:5px;word-break:break-all}
-.profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
-.profile-stat{background:#111629;border:1px solid #252b45;border-radius:12px;padding:13px 8px;text-align:center}
-.profile-stat b{display:block;color:#4ade80;font-size:18px}.profile-stat span{display:block;color:#8e95b1;font-size:11px;margin-top:4px}
-.profile-box{background:#111629;border:1px solid #252b45;border-radius:16px;padding:18px;margin-top:14px}
-.profile-box h3{margin-bottom:5px}.profile-help{font-size:12px;color:#94a3b8;line-height:1.6}
-.profile-file{background:#080b16;border:1px dashed #475569;padding:12px;border-radius:10px;margin-top:8px}
-.profile-save{background:#16a34a}.profile-secondary{background:#334155}
-.profile-mini-card{background:#111629;border:1px solid #252b45;border-radius:14px;padding:14px;margin:16px 0;display:flex;align-items:center;gap:12px}
-.profile-mini-avatar{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid #9333ea;background:#0f172a}
-.profile-mini-info{flex:1}.profile-mini-info b{font-size:15px}.profile-mini-info small{display:block;color:#94a3b8;margin-top:3px}
-.profile-open-btn{width:auto;margin:0;padding:9px 13px;background:#9333ea}
-.profile-error{color:#f87171;font-size:12px;margin-top:6px;display:none}
-.profile-ok-banner{position:fixed;left:50%;top:24px;transform:translateX(-50%);z-index:99999;background:#fff;color:#111827;border:1px solid #d1d5db;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.28);padding:12px 14px;display:none;align-items:center;gap:12px;min-width:280px;max-width:92vw}
-.profile-ok-banner b{font-size:13px}.profile-ok-banner span{font-size:12px;color:#4b5563;display:block;margin-top:2px}.profile-ok-banner button{margin-left:auto;background:#111827;color:#fff;border:0;border-radius:8px;padding:7px 14px;font-weight:700}
-
-@media(max-width:520px){.profile-grid{grid-template-columns:repeat(3,1fr)}.profile-stat{padding:11px 5px}.profile-stat b{font-size:16px}}
-
-</style>
-
-</head>
-
-<body>
-
-<div id="notifyBanner">
-  <span id="notifyText">Notification</span>
-  <button style="background:none;border:none;color:#fff;font-size:16px" onclick="hideNotification()">✖</button>
-</div>
-
-<div id="profileOkBanner" class="profile-ok-banner">
-  <div>
-    <b id="profileOkTitle">✅ Profile Update भयो</b>
-    <span id="profileOkText">तपाईंको Profile सफलतापूर्वक अपडेट भयो।</span>
-  </div>
-  <button onclick="hideProfileOkBanner()">OK</button>
-</div>
-
-<!-- 1. AUTH SCREEN -->
-<div id="login">
-  <div class="login-box">
-    <div class="game-logo">🎮</div>
-    <h1>Game<span style="color:#9333ea"> Esports</span></h1>
-    <p id="authSub">वास्तविक Gmail र पासवर्डबाट लगइन गर्नुहोस्</p>
-
-    <div class="tab-btn-group" style="margin-bottom:12px">
-      <button id="tabLoginBtn" class="active-tab" onclick="toggleAuthMode('login')">LOGIN</button>
-      <button id="tabRegBtn" onclick="toggleAuthMode('register')">REGISTER</button>
-    </div>
-
-    <input id="userEmail" type="email" placeholder="आफ्नो Real Gmail (e.g. name@gmail.com)">
-    <input id="userPassword" type="password" placeholder="Password (कम्तिमा ६ अक्षर)">
-    
-    <div id="regExtra" style="display:none">
-      <input id="userIGN" type="text" placeholder="गेम Nickname / IGN">
-    </div>
-
-    <button id="authActionBtn" class="btn" style="background:#9333ea" onclick="handleAuth()">🔐 LOGIN</button>
-    
-    <div id="forgotBox">
-      <button class="forgot-btn" onclick="handleForgotPassword()">🔑 Password बिर्सनुभयो? (Forgot Password)</button>
-    </div>
-
-    <button class="btn" style="background:#eab308;color:#111;margin-top:12px" onclick="showAdminLogin()">👨‍💻 ADMIN LOGIN</button>
-  </div>
-</div>
-
-<!-- 2. ADMIN LOGIN -->
-<div id="adminLogin" style="display:none">
-  <div class="login-box">
-    <div class="game-logo">👨‍💻</div>
-    <h1>Admin Login</h1>
-    <p>Game Esports Cloud Dashboard</p>
-    <input id="adminUsername" placeholder="Admin Username (admin)">
-    <input id="adminPassword" type="password" placeholder="Admin Password">
-    <button class="btn" style="background:#eab308;color:#111" onclick="adminLogin()">🔐 LOGIN AS ADMIN</button>
-    <button class="btn" style="background:#303752" onclick="backToLogin()">⬅ BACK</button>
-  </div>
-</div>
-
-<!-- 3. USER APP -->
-<div id="app" style="display:none">
-  <div class="header">
-    <div class="logo">🎮 Game<span> Esports</span></div>
-    <div class="header-buttons">
-      <button class="admin-btn" onclick="showAdminLogin()">Admin</button>
-      <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
-  </div>
-
-  <!-- HOME PAGE -->
-  <div id="home" class="page active">
-    <div class="container">
-      <div class="points-wallet">
-        <p>🪙 मेरो खाता (ONLINE BALANCE)</p>
-        <h1>रु <span id="myPoints">0</span></h1>
-        <div class="wallet-subtext">खेलाडी: <b id="displayPlayerEmail" style="color:#fff"></b></div>
-      </div>
-
-      <!-- MY PROFILE QUICK CARD -->
-      <div class="profile-mini-card">
-        <img id="homeProfileAvatar" class="profile-mini-avatar" src="" alt="Profile">
-        <div class="profile-mini-info">
-          <b id="homeProfileNickname">My Profile</b>
-          <small>आफ्नो Game Name, Game UID र Profile Picture व्यवस्थापन गर्नुहोस्</small>
-        </div>
-        <button class="btn profile-open-btn" onclick="showPage('profile')">👤 OPEN</button>
-      </div>
-
-      <!-- CREATE OWN ROOM BUTTON -->
-      <div style="background:linear-gradient(135deg, #059669, #0d9488);padding:14px;border-radius:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
-        <div>
-          <h3 style="font-size:15px">⚔️ आफ्नै Custom Room बनाउने?</h3>
-          <p style="font-size:12px;color:#e2e8f0;margin-top:2px">आफ्नो Room ID राख्नुहोस्, गन छान्नुहोस् र खेल सुरु गर्नुहोस्!</p>
-        </div>
-        <button class="btn" style="width:auto;padding:8px 14px;background:#fff;color:#059669;margin:0" onclick="openCreateCustomModal()">➕ CREATE ROOM</button>
-      </div>
-
-      <div class="stats" style="grid-template-columns:repeat(3,1fr)">
-        <div class="stat"><h2 id="tournamentCount">0</h2><p>Tournaments</p></div>
-        <div class="stat"><h2 id="playerCount">0</h2><p>Joined Games</p></div>
-        <div class="stat"><h2>🏆 #1</h2><p>Rank</p></div>
-      </div>
-
-      <!-- FILTER CONTROLS WITH REAL LOGOS -->
-      <div class="filter-container">
-        <div class="filter-title">🎮 गेम छान्नुहोस्:</div>
-        <div class="cat-btn-group">
-          <button class="cat-btn active-cat" onclick="setGameFilter('ALL', this)">🌐 ALL</button>
-          <button class="cat-btn" onclick="setGameFilter('Free Fire', this)">
-            <img src="https://images.seeklogo.com/logo-png/43/1/garena-free-fire-logo-png_seeklogo-434033.png"> Free Fire
-          </button>
-          <button class="cat-btn" onclick="setGameFilter('PUBG', this)">
-            <img src="https://images.seeklogo.com/logo-png/33/2/pubg-mobile-logo-png_seeklogo-337517.png"> PUBG
-          </button>
-          <button class="cat-btn" onclick="setGameFilter('Blood Strike', this)">
-            <img src="https://images.seeklogo.com/logo-png/38/2/valorant-logo-png_seeklogo-385551.png"> Blood Strike
-          </button>
-        </div>
-
-        <div class="filter-title" style="margin-top:10px">⚔️ मोड छान्नुहोस्:</div>
-        <div class="mode-btn-group">
-          <button class="mode-btn active-mode" onclick="setModeFilter('ALL', this)">सबै मोड</button>
-          <button class="mode-btn" onclick="setModeFilter('CS', this)">💥 CS (Short)</button>
-          <button class="mode-btn" onclick="setModeFilter('BR', this)">🗺️ BR (Long)</button>
-        </div>
-
-        <div class="filter-title" style="margin-top:10px">👥 म्याच प्रकार (Format):</div>
-        <div class="vs-btn-group">
-          <button class="vs-btn active-vs" onclick="setVsFilter('ALL', this)">सबै Format</button>
-          <button class="vs-btn" onclick="setVsFilter('1v1', this)">⚔️ 1v1</button>
-          <button class="vs-btn" onclick="setVsFilter('2v2', this)">⚔️ 2v2</button>
-          <button class="vs-btn" onclick="setVsFilter('4v4', this)">⚔️ 4v4</button>
-          <button class="vs-btn" onclick="setVsFilter('6v6', this)">⚔️ 6v6</button>
-        </div>
-      </div>
-
-      <h3 style="margin:20px 0 10px;">🔥 Available Tournaments (Admin & Players)</h3>
-      <div id="homeTournamentList" class="tournament-grid"></div>
-
-      <h3 style="margin:25px 0 10px;">🏆 Global Leaderboard</h3>
-      <div id="leaderboard" class="leaderboard"></div>
-    </div>
-  </div>
-
-  <!-- MY PROFILE PAGE -->
-  <div id="profile" class="page">
-    <div class="profile-page-wrap">
-      <h2 style="margin-bottom:10px">👤 My Profile</h2>
-
-      <div class="profile-hero">
-        <div class="profile-avatar-wrap">
-          <img id="profileAvatar" class="profile-avatar" src="" alt="Profile Picture">
-          <button class="profile-avatar-edit" onclick="doc.gun-tag{
-  display:inline-block;background:#14532d;color:#86efac;padding:3px 7px;border-radius:6px;margin:2px 2px;font-size:10px;font-weight:bold;border:1px solid #22c55e;
-}
-
-/* 🔫 GUN COLLECTION PILLS BOX */
-.gun-pill-container{
-  display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;background:#0d1326;padding:10px;border-radius:10px;border:1px solid #252b45;max-height:180px;overflow-y:auto;
-}
-.gun-pill{
-  background:#1e293b;color:#cbd5e1;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold;cursor:pointer;border:1px solid #334155;user-select:none;transition:0.2s;
-}
-.gun-pill.selected{
-  background:#16a34a;color:#fff;border-color:#4ade80;box-shadow:0 0 10px rgba(74,222,128,0.6);
-}
-
-.leaderboard,.register-box,.history-box,.admin-panel,.add-box{background:#111629;border-radius:16px;padding:18px;border:1px solid #252b45}
-.player{display:flex;align-items:center;padding:12px 4px;border-bottom:1px solid #252b45}
-.player:last-child{border-bottom:none}
-.player-info{flex:1;text-align:left;margin-left:10px}
-.points{color:#4ade80;font-weight:bold;font-size:15px}
-
-.registration-card,.history-item,.admin-player{background:#080b16;border:1px solid #252b45;padding:14px;border-radius:12px;margin-bottom:12px}
-.pending{color:#eab308;font-weight:bold}.approved{color:#4ade80;font-weight:bold}.rejected{color:#ef4444;font-weight:bold}
-
-.add-btn,.deduct-btn,.del-btn,.warn-btn,.ban-btn{border:none;padding:8px 12px;border-radius:8px;margin-top:8px;font-size:12px;font-weight:bold}
-.add-btn{background:#16a34a;color:#fff}.deduct-btn{background:#dc3545;color:#fff}
-.del-btn{background:#475569;color:#fff;margin-left:6px}
-.warn-btn{background:#d97706;color:#fff;margin-left:6px}
-.ban-btn{background:#b91c1c;color:#fff;margin-left:6px}
-
-.clear-hist-btn{
-  background:#1e293b;border:1px solid #475569;color:#f87171;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer;
-}
-.clear-hist-btn:hover{background:#b91c1c;color:#fff}
+.chat-container{background:#080b16;border:1px solid #303752;border-radius:12px;padding:12px;margin-top:14px}
+.chat-messages{height:160px;overflow-y:auto;background:#03050b;padding:10px;border-radius:8px;border:1px solid #1e293b;margin-bottom:8px}
+.chat-msg{font-size:12px;margin-bottom:6px;line-height:1.4}
+.chat-msg.user{color:#38bdf8}
+.chat-msg.admin{color:#4ade80}
+.chat-input-row{display:flex;gap:6px}
+.chat-input-row input{margin:0;flex:1}
+.chat-input-row button{width:auto;margin:0;padding:0 14px;background:#9333ea}
 
 .room-details-box{
   background:#091e3a;border:1px dashed #38bdf8;border-radius:10px;padding:12px;margin-top:10px;
@@ -477,6 +246,7 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
     
     <div id="regExtra" style="display:none">
       <input id="userIGN" type="text" placeholder="गेम Nickname / IGN">
+      <input id="userGameUid" type="text" placeholder="Game UID (खेलाडी आईडी)">
     </div>
 
     <button id="authActionBtn" class="btn" style="background:#9333ea" onclick="handleAuth()">🔐 LOGIN</button>
@@ -491,14 +261,28 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 
 <!-- 2. ADMIN LOGIN -->
 <div id="adminLogin" style="display:none">
-  <div class="login-box">
+  <div class="login-box" id="adminLoginSection">
     <div class="game-logo">👨‍💻</div>
     <h1>Admin Login</h1>
     <p>Game Esports Cloud Dashboard</p>
-    <input id="adminUsername" placeholder="Admin Username (admin)">
-    <input id="adminPassword" type="password" placeholder="Admin Password">
+    <input id="adminEmailInput" type="email" placeholder="Admin Real Gmail (nirmalsaud140@gmail.com)" value="nirmalsaud140@gmail.com" required>
+    <input id="adminPassword" type="password" placeholder="Admin Password" required>
     <button class="btn" style="background:#eab308;color:#111" onclick="adminLogin()">🔐 LOGIN AS ADMIN</button>
-    <button class="btn" style="background:#303752" onclick="backToLogin()">⬅ BACK</button>
+    
+    <div class="forgot-password-link" style="text-align:center; margin-top:12px;">
+      <a href="#" onclick="showAdminResetModal(event)" style="color:#a855f7; font-size:12px; text-decoration:underline;">Forgot Admin Password?</a>
+    </div>
+
+    <button class="btn" style="background:#303752; margin-top:10px;" onclick="backToLogin()">⬅ BACK</button>
+  </div>
+
+  <div class="login-box" id="adminResetSection" style="display:none;">
+    <div class="game-logo">🔑</div>
+    <h1>Reset Admin Password</h1>
+    <p>आफ्नो आधिकारिक (Real) एडमिन जिमेल लेख्नुहोस्</p>
+    <input id="adminResetEmailInput" type="email" placeholder="nirmalsaud140@gmail.com" value="nirmalsaud140@gmail.com" required>
+    <button class="btn" style="background:#eab308;color:#111" onclick="handleAdminPasswordReset()">📤 SEND RESET LINK</button>
+    <button class="btn" style="background:#303752; margin-top:10px;" onclick="hideAdminResetModal()">⬅ CANCEL</button>
   </div>
 </div>
 
@@ -521,7 +305,6 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
         <div class="wallet-subtext">खेलाडी: <b id="displayPlayerEmail" style="color:#fff"></b></div>
       </div>
 
-      <!-- CREATE OWN ROOM BUTTON -->
       <div style="background:linear-gradient(135deg, #059669, #0d9488);padding:14px;border-radius:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
         <div>
           <h3 style="font-size:15px">⚔️ आफ्नै Custom Room बनाउने?</h3>
@@ -536,20 +319,14 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
         <div class="stat"><h2>🏆 #1</h2><p>Rank</p></div>
       </div>
 
-      <!-- FILTER CONTROLS WITH REAL LOGOS -->
+      <!-- FILTER CONTROLS WITH EMOJIS -->
       <div class="filter-container">
         <div class="filter-title">🎮 गेम छान्नुहोस्:</div>
         <div class="cat-btn-group">
           <button class="cat-btn active-cat" onclick="setGameFilter('ALL', this)">🌐 ALL</button>
-          <button class="cat-btn" onclick="setGameFilter('Free Fire', this)">
-            <img src="https://images.seeklogo.com/logo-png/43/1/garena-free-fire-logo-png_seeklogo-434033.png"> Free Fire
-          </button>
-          <button class="cat-btn" onclick="setGameFilter('PUBG', this)">
-            <img src="https://images.seeklogo.com/logo-png/33/2/pubg-mobile-logo-png_seeklogo-337517.png"> PUBG
-          </button>
-          <button class="cat-btn" onclick="setGameFilter('Blood Strike', this)">
-            <img src="https://images.seeklogo.com/logo-png/38/2/valorant-logo-png_seeklogo-385551.png"> Blood Strike
-          </button>
+          <button class="cat-btn" onclick="setGameFilter('Free Fire', this)">🔥 Free Fire</button>
+          <button class="cat-btn" onclick="setGameFilter('PUBG', this)">🪂 PUBG</button>
+          <button class="cat-btn" onclick="setGameFilter('Blood Strike', this)">⚡ Blood Strike</button>
         </div>
 
         <div class="filter-title" style="margin-top:10px">⚔️ मोड छान्नुहोस्:</div>
@@ -585,15 +362,9 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
       <div class="filter-container" style="margin-top:10px">
         <div class="cat-btn-group">
           <button class="cat-btn active-cat" onclick="setGameFilter('ALL', this)">🌐 ALL</button>
-          <button class="cat-btn" onclick="setGameFilter('Free Fire', this)">
-            <img src="https://images.seeklogo.com/logo-png/43/1/garena-free-fire-logo-png_seeklogo-434033.png"> Free Fire
-          </button>
-          <button class="cat-btn" onclick="setGameFilter('PUBG', this)">
-            <img src="https://images.seeklogo.com/logo-png/33/2/pubg-mobile-logo-png_seeklogo-337517.png"> PUBG
-          </button>
-          <button class="cat-btn" onclick="setGameFilter('Blood Strike', this)">
-            <img src="https://images.seeklogo.com/logo-png/38/2/valorant-logo-png_seeklogo-385551.png"> Blood Strike
-          </button>
+          <button class="cat-btn" onclick="setGameFilter('Free Fire', this)">🔥 Free Fire</button>
+          <button class="cat-btn" onclick="setGameFilter('PUBG', this)">🪂 PUBG</button>
+          <button class="cat-btn" onclick="setGameFilter('Blood Strike', this)">⚡ Blood Strike</button>
         </div>
         <div class="mode-btn-group">
           <button class="mode-btn active-mode" onclick="setModeFilter('ALL', this)">सबै मोड</button>
@@ -645,7 +416,40 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
     </div>
   </div>
 
-  <!-- WALLET PAGE (DEPOSIT & QR DOWNLOAD SYSTEM) -->
+  <!-- MY PROFILE PAGE -->
+  <div id="profilePage" class="page">
+    <div class="container">
+      <h2>👤 मेरो प्रोफाइल (My Profile)</h2>
+      
+      <div class="profile-card-box">
+        <div class="profile-avatar-container">
+          <img id="userAvatarImg" class="profile-avatar-img" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Avatar">
+        </div>
+        <div class="profile-info-text">
+          <h3 id="profileDisplayIgn">Game Player</h3>
+          <p id="profileDisplayUid">UID: N/A</p>
+          <p id="profileDisplayEmail" style="color:#c084fc">email@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="register-box">
+        <h3 style="color:#a855f7;margin-bottom:10px">⚙️ प्रोफाइल अपडेट गर्नुहोस्</h3>
+
+        <label style="font-size:12px;color:#cbd5e1">📸 प्रोफाइल पिक्चर फेर्नुहोस्:</label>
+        <input type="file" accept="image/*" onchange="uploadProfileAvatar(event)">
+
+        <label style="font-size:12px;color:#cbd5e1;margin-top:6px;display:block">गेम Nickname / IGN:</label>
+        <input id="editUserIgn" type="text" placeholder="तपाईंको गेम नाम">
+
+        <label style="font-size:12px;color:#cbd5e1">Game UID (खेलाडी आईडी):</label>
+        <input id="editUserUid" type="text" placeholder="तपाईंको गेम UID">
+
+        <button class="btn" style="background:#9333ea;margin-top:12px" onclick="saveUserProfileChanges()">💾 UPDATE PROFILE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WALLET PAGE -->
   <div id="walletPage" class="page">
     <div class="container">
       <h2>💰 Online Wallet & Banking</h2>
@@ -660,7 +464,6 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
         <button id="tabWithBtn" onclick="switchWalletSubTab('withdraw')">➖ Withdraw (पैसा निकाल्ने)</button>
       </div>
 
-      <!-- DEPOSIT SECTION WITH ADMIN QR REQUEST -->
       <div id="secDeposit" class="register-box">
         <h3>📲 वालेट डिपोजिट (Deposit Steps)</h3>
         
@@ -670,17 +473,22 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
           <button class="btn" style="background:#0284c7" onclick="requestAdminQR()">📲 REQUEST ADMIN QR (क्युआर कोड माग्नुहोस्)</button>
         </div>
 
-        <!-- ADMIN SENT QR CODE DISPLAY & DOWNLOAD -->
         <div id="receivedQrContainer" class="qr-received-card" style="display:none">
-          <h4 style="color:#38bdf8">✅ एडमिनले पठाउनुभएको पेमेन्ट QR कोड:</h4>
+          <h4 style="color:#38bdf8">✅ एडमिनले तपाईंलाई पठाउनुभएको पेमेन्ट QR कोड:</h4>
           <p style="font-size:12px;color:#94a3b8;margin-top:2px">रकम: <b id="displayQrAmount" style="color:#4ade80">रु 0</b></p>
           <img id="adminQrImageDisplay" class="qr-img-tag" src="" alt="Admin QR">
           <div>
             <button class="download-btn" onclick="downloadAdminQR()">⬇️ DOWNLOAD QR CODE (क्युआर डाउनलोड)</button>
           </div>
-          <small style="color:#94a3b8;font-size:11px;display:block;margin-top:8px">
-            यो QR डाउनलोड गरेर वा सिधै eSewa/Khalti/Fonepay एप खोलेर स्क्यान गरी पेमेन्ट गर्नुहोस्।
-          </small>
+        </div>
+
+        <div class="chat-container">
+          <h4 style="color:#38bdf8;font-size:13px;margin-bottom:6px">💬 Live Support Chat with Admin</h4>
+          <div id="userChatMessages" class="chat-messages"></div>
+          <div class="chat-input-row">
+            <input id="userChatInput" type="text" placeholder="एडमिनसँग कुरा गर्नुहोस्...">
+            <button class="btn" onclick="sendUserChatMessage()">SEND</button>
+          </div>
         </div>
 
         <div style="margin-top:14px">
@@ -692,7 +500,6 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
         </div>
       </div>
 
-      <!-- WITHDRAW SECTION -->
       <div id="secWithdraw" class="register-box" style="display:none">
         <h3>🏦 रकम निकाल्नुहोस् (Withdraw Request)</h3>
         <div class="rule-notice" style="background:rgba(239,68,68,0.12);border-color:#ef4444;color:#fca5a5">
@@ -716,28 +523,25 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
     </div>
   </div>
 
-  <!-- BOTTOM NAV -->
   <div class="bottom-nav">
     <button onclick="showPage('home')">🏠<br>Home</button>
     <button onclick="showPage('tournaments')">🏆<br>Games</button>
+    <button onclick="showPage('profilePage')">👤<br>My Profile</button>
     <button onclick="showPage('registrations')">🏅<br>My Join</button>
     <button onclick="showPage('walletPage')">💰<br>Wallet</button>
   </div>
 </div>
 
-<!-- ================= PLAYER SELF-HOST CUSTOM ROOM MODAL ================= -->
+<!-- ================= MODALS ================= -->
 <div id="createCustomModalOverlay" class="custom-modal-overlay">
   <div class="custom-modal" style="border-color:#059669">
     <div class="modal-title" style="color:#34d399">⚔️ Create Custom Match (आफ्नो रुम बनाउनुहोस्)</div>
-    <p style="color:#94a3b8;font-size:12px;margin-bottom:10px">आफ्नो कस्टम कार्डको विवरण भर्नुहोस् र गन छान्नुहोस्:</p>
-
     <label style="font-size:12px;color:#cbd5e1">गेम छान्नुहोस्:</label>
     <select id="pHostGame" onchange="onPlayerGameSelected()">
       <option value="Free Fire">🔥 Free Fire</option>
       <option value="PUBG">🪂 PUBG Mobile</option>
       <option value="Blood Strike">⚡ Blood Strike</option>
     </select>
-
     <label style="font-size:12px;color:#cbd5e1">म्याच प्रकार (Format):</label>
     <select id="pHostVs">
       <option value="1v1">⚔️ 1v1 Solo Challenge</option>
@@ -745,35 +549,26 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
       <option value="4v4">⚔️ 4v4 Squad Clash</option>
       <option value="6v6">⚔️ 6v6 Custom</option>
     </select>
-
     <label style="font-size:12px;color:#34d399;font-weight:bold">🔑 तपाईंको Custom Room ID:</label>
     <input id="pHostRoomId" type="text" placeholder="Game को Room ID लेख्नुहोस्">
-
     <label style="font-size:12px;color:#34d399;font-weight:bold">🔒 Room Password:</label>
     <input id="pHostRoomPass" type="text" placeholder="Room को Password">
-
     <label style="font-size:12px;color:#cbd5e1">💰 Entry Fee प्रति खेलाडी (रु):</label>
-    <input id="pHostFee" type="number" min="10" placeholder="Entry Fee (e.g. 20, 50)">
-
+    <input id="pHostFee" type="number" min="10" placeholder="Entry Fee">
     <label style="font-size:12px;color:#cbd5e1">🛡️ Gloo Wall / Ammo:</label>
     <select id="pHostWall">
-      <option value="Unlimited Wall">Unlimited Gloo Wall (वाल अनलिमिटेड)</option>
-      <option value="Limited Wall">Limited Gloo Wall (वाल सीमित)</option>
+      <option value="Unlimited Wall">Unlimited Gloo Wall</option>
+      <option value="Limited Wall">Limited Gloo Wall</option>
       <option value="No Gloo Wall">No Gloo Wall</option>
     </select>
-
     <label style="font-size:12px;color:#cbd5e1">🎯 शट नियम (Shot Rule):</label>
     <select id="pHostHeadshot">
-      <option value="Normal (Head + Body)">Normal (Head + Body दुवै चल्ने)</option>
-      <option value="Only Headshot (One Tap)">🎯 Only Headshot (हेडसट मात्र लाग्ने)</option>
-      <option value="Body Shot Allowed">💥 Body Shot Allowed (बडी शट)</option>
+      <option value="Normal (Head + Body)">Normal (Head + Body)</option>
+      <option value="Only Headshot (One Tap)">🎯 Only Headshot</option>
+      <option value="Body Shot Allowed">💥 Body Shot Allowed</option>
     </select>
-
-    <label style="font-size:12px;color:#4ade80;font-weight:bold;margin-top:10px;display:block">
-      🔫 खेल्न दिने गनहरू छान्नुहोस् (Desert Eagle, M1887, Woodpecker आदि):
-    </label>
+    <label style="font-size:12px;color:#4ade80;font-weight:bold;margin-top:10px;display:block">🔫 गनहरू छान्नुहोस्:</label>
     <div id="playerGunPills" class="gun-pill-container"></div>
-
     <div class="modal-actions">
       <button class="btn-green" onclick="submitPlayerCustomRoom()">🚀 PUBLISH MY ROOM</button>
       <button class="btn-gray" onclick="closeCreateCustomModal()">✖ CANCEL</button>
@@ -781,43 +576,28 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
   </div>
 </div>
 
-<!-- ================= 2 SCREENSHOT VICTORY MODAL ================= -->
 <div id="victoryModalOverlay" class="custom-modal-overlay">
   <div class="custom-modal" style="border-color:#16a34a">
     <div class="modal-title" style="color:#4ade80">🏆 Claim Victory (२ वटा स्क्रिनसट पठाउनुहोस्)</div>
-    
-    <div class="rule-notice" style="background:rgba(34,197,94,0.12);border-color:#22c55e;color:#86efac;margin-bottom:12px">
-      📸 <b>प्रमाण नियम:</b> प्राइज पाउनको लागि <b>Booyah भएको मुख्य स्क्रिन</b> र खेलको <b>Kills/Scoreboard स्क्रिनसट</b> दुवै अनिवार्य पठाउनुपर्छ।
-    </div>
-
     <label style="font-size:12px;color:#cbd5e1">नतिजा / स्थान (Rank):</label>
     <select id="vicRank">
       <option value="Booyah #1">🥇 Booyah (Rank #1)</option>
       <option value="Rank #2">🥈 2nd Place (Rank #2)</option>
       <option value="Rank #3">🥉 3rd Place (Rank #3)</option>
       <option value="Top 5">🎖️ Top 5</option>
-      <option value="Kill Record">🎯 Kill Record</option>
     </select>
-
     <label style="font-size:12px;color:#cbd5e1">गरेको Kills संख्या:</label>
-    <input id="vicKills" type="number" min="0" placeholder="कति Kill गर्नुभयो? (e.g. 5)">
-
+    <input id="vicKills" type="number" min="0" placeholder="कति Kill गर्नुभयो?">
     <div class="upload-card">
-      <label style="font-size:12px;color:#4ade80;font-weight:bold;display:block">
-        📸 १. Booyah / Victory Screen:
-      </label>
+      <label style="font-size:12px;color:#4ade80;font-weight:bold;display:block">📸 १. Booyah / Victory Screen:</label>
       <input id="vicImage1Input" type="file" accept="image/*" onchange="previewVicImg(1, event)">
       <img id="vicImg1Preview" class="payment-preview" style="display:none">
     </div>
-
     <div class="upload-card">
-      <label style="font-size:12px;color:#38bdf8;font-weight:bold;display:block">
-        📊 २. Match History / Scoreboard:
-      </label>
+      <label style="font-size:12px;color:#38bdf8;font-weight:bold;display:block">📊 २. Match History / Scoreboard:</label>
       <input id="vicImage2Input" type="file" accept="image/*" onchange="previewVicImg(2, event)">
       <img id="vicImg2Preview" class="payment-preview" style="display:none">
     </div>
-
     <div class="modal-actions">
       <button class="btn-green" onclick="submitVictoryModal()">✅ DONE / OK</button>
       <button class="btn-gray" onclick="closeVictoryModal()">✖ CANCEL</button>
@@ -825,28 +605,22 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
   </div>
 </div>
 
-<!-- ================= CHEATER REPORT MODAL ================= -->
 <div id="reportModalOverlay" class="custom-modal-overlay">
   <div class="custom-modal" style="border-color:#ef4444">
-    <div class="modal-title" style="color:#ef4444">⚠️ Report Cheater / Hacker (चिटिङ रिपोर्ट)</div>
+    <div class="modal-title" style="color:#ef4444">⚠️ Report Cheater / Hacker</div>
     <label style="font-size:12px;color:#cbd5e1">ह्याकरको IGN वा UID:</label>
     <input id="repIGN" type="text" placeholder="ह्याक गर्ने खेलाडीको नाम">
-
-    <label style="font-size:12px;color:#cbd5e1">चिटिङको प्रकार (Rules Violated):</label>
+    <label style="font-size:12px;color:#cbd5e1">चिटिङको प्रकार:</label>
     <select id="repReason">
       <option value="Auto-Aim / Headshot Hack">🎯 Auto-Aim / Headshot Hack</option>
-      <option value="Wall Hack / Ghost Hack">🧱 Wall Hack / Ghost Penetration</option>
-      <option value="Illegal Teaming in Solo/Duo">🤝 Illegal Teaming (मिलेमतो)</option>
-      <option value="Speed / Location Hack">⚡ Speed Hack / Fast Run</option>
-      <option value="Other Rule Break">🤬 नियम विपरीत खेल वा अन्य</option>
+      <option value="Wall Hack">🧱 Wall Hack</option>
+      <option value="Illegal Teaming">🤝 Illegal Teaming</option>
     </select>
-
     <div class="upload-card">
-      <label style="font-size:12px;color:#ef4444;font-weight:bold;display:block">चिटिङको प्रमाण (फोटो स्क्रिनसट):</label>
+      <label style="font-size:12px;color:#ef4444;font-weight:bold;display:block">प्रमाणको फोटो:</label>
       <input id="repImageInput" type="file" accept="image/*" onchange="previewReportModalImage(event)">
       <img id="repImagePreview" class="payment-preview" style="display:none">
     </div>
-
     <div class="modal-actions">
       <button class="btn-red" onclick="submitReportModal()">🚨 SUBMIT REPORT</button>
       <button class="btn-gray" onclick="closeReportModal()">✖ CANCEL</button>
@@ -871,138 +645,126 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
       <div class="admin-stat"><h2 id="adminPendingCount">0</h2><p>Pending Dep</p></div>
     </div>
 
-    <!-- ADMIN QR CODE MANAGEMENT & BROADCAST -->
-    <div class="add-box" style="border:1px solid #38bdf8;margin-bottom:20px">
-      <h3 style="color:#38bdf8">💳 Admin Master QR Code (यसलाई सेभ गर्दा सबै युजरमा नोटिफिकेसन जान्छ)</h3>
-      <p style="font-size:12px;color:#94a3b8;margin-top:2px">यो QR खेलाडीहरूले डिपोजिट गर्दा जानेछ:</p>
-      
-      <input id="adminMasterQrInput" type="file" accept="image/*" onchange="previewMasterQr(event)" style="margin-top:6px">
-      <img id="masterQrPreview" class="payment-preview" style="max-height:160px;margin-top:8px;display:none">
-      <button class="btn" style="background:#0284c7" onclick="saveMasterQR()">💾 SAVE MASTER QR CODE & NOTIFY USERS</button>
+    <div class="accordion-header" onclick="toggleAccordion('accQrReq')">
+      <span>🔔 Live Player QR Requests & Chats (<span id="qrReqBadge">0</span>)</span> <span>▼</span>
     </div>
-
-    <!-- LIVE PLAYER QR REQUESTS PANEL -->
-    <div class="admin-panel" style="border:2px solid #eab308;margin-bottom:20px">
-      <h2 style="color:#eab308">🔔 Live Player QR Requests (खेलाडीले QR मागेका)</h2>
+    <div id="accQrReq" class="accordion-content admin-panel">
       <div id="adminQrRequestsList"></div>
     </div>
 
-    <div class="add-box" style="border:1px solid #eab308;margin-bottom:20px">
+    <div class="accordion-header" onclick="toggleAccordion('accVictories')">
+      <span>🏆 Victory Claims (<span id="vicBadge">0</span>)</span> <span>▼</span>
+    </div>
+    <div id="accVictories" class="accordion-content admin-panel">
+      <div id="adminVictoryList"></div>
+    </div>
+
+    <div class="accordion-header" onclick="toggleAccordion('accReports')">
+      <span>⚠️ Cheater Reports (<span id="repBadge">0</span>)</span> <span>▼</span>
+    </div>
+    <div id="accReports" class="accordion-content admin-panel">
+      <div id="adminReportList"></div>
+    </div>
+
+    <div class="accordion-header" onclick="toggleAccordion('accDeposits')">
+      <span>📸 Deposit Verification (<span id="depBadge">0</span>)</span> <span>▼</span>
+    </div>
+    <div id="accDeposits" class="accordion-content admin-panel">
+      <div id="adminDepositList"></div>
+    </div>
+
+    <div class="accordion-header" onclick="toggleAccordion('accWithdraws')">
+      <span>💸 Withdrawal Requests</span> <span>▼</span>
+    </div>
+    <div id="accWithdraws" class="accordion-content admin-panel">
+      <div id="adminWithdrawList"></div>
+    </div>
+
+    <div class="accordion-header" onclick="toggleAccordion('accPlayers')">
+      <span>👤 All Players (Online / Offline)</span> <span>▼</span>
+    </div>
+    <div id="accPlayers" class="accordion-content admin-panel">
+      <div id="adminPlayerList"></div>
+    </div>
+
+    <div class="accordion-header" onclick="toggleAccordion('accBanned')">
+      <span>🚫 Banned Players</span> <span>▼</span>
+    </div>
+    <div id="accBanned" class="accordion-content admin-panel">
+      <div id="adminBannedList"></div>
+    </div>
+
+    <div class="accordion-header" onclick="toggleAccordion('accCsTourn')">
+      <span>🎮 CS Tournaments</span> <span>▼</span>
+    </div>
+    <div id="accCsTourn" class="accordion-content admin-panel">
+      <div id="adminCsTournamentList"></div>
+    </div>
+
+    <div class="accordion-header" onclick="toggleAccordion('accBrTourn')">
+      <span>🗺️ BR Tournaments</span> <span>▼</span>
+    </div>
+    <div id="accBrTourn" class="accordion-content admin-panel">
+      <div id="adminBrTournamentList"></div>
+    </div>
+
+    <div class="add-box" style="border:1px solid #eab308;margin-top:20px">
       <h3 style="color:#eab308">🔐 Change Admin Password</h3>
       <input id="newAdminPasswordInput" type="password" placeholder="नयाँ Admin Password">
       <button class="btn" style="background:#eab308;color:#111" onclick="changeAdminPassword()">💾 UPDATE ADMIN PASSWORD</button>
     </div>
 
-    <!-- ADD TOURNAMENT -->
-    <div class="add-box" style="margin-bottom:20px;border:1px solid #38bdf8">
+    <div class="add-box" style="margin-top:20px;border:1px solid #38bdf8">
       <h3 style="color:#38bdf8">➕ Add Official Tournament (Admin Hosted)</h3>
-      
-      <label style="font-size:12px;color:#cbd5e1">१. कुन खेल हो? (Select Game):</label>
+      <label style="font-size:12px;color:#cbd5e1">१. कुन खेल हो?:</label>
       <select id="newGameSelect" onchange="onAdminGameSelected()">
         <option value="Free Fire">🔥 Free Fire</option>
         <option value="PUBG">🪂 PUBG Mobile</option>
         <option value="Blood Strike">⚡ Blood Strike</option>
       </select>
-
-      <label style="font-size:12px;color:#cbd5e1">२. कुन मोड हो? (Select Mode):</label>
+      <label style="font-size:12px;color:#cbd5e1">२. कुन मोड हो?:</label>
       <select id="newModeSelect">
-        <option value="CS">💥 CS / Clash Squad Custom (Short Game)</option>
-        <option value="BR">🗺️ BR / Battle Royale Ranked (Long Game)</option>
+        <option value="CS">💥 CS / Clash Squad Custom</option>
+        <option value="BR">🗺️ BR / Battle Royale Ranked</option>
       </select>
-
-      <label style="font-size:12px;color:#34d399;font-weight:bold;margin-top:6px;display:block">
-        ३. म्याच प्रकार छान्नुहोस् (Match Format):
-      </label>
+      <label style="font-size:12px;color:#34d399;font-weight:bold;margin-top:6px;display:block">३. म्याच प्रकार:</label>
       <div class="vs-btn-group" id="adminVsPills">
         <span class="vs-btn" onclick="selectAdminVs('1v1', 2, this)">⚔️ 1v1</span>
         <span class="vs-btn" onclick="selectAdminVs('2v2', 4, this)">⚔️ 2v2</span>
-        <span class="vs-btn" onclick="selectAdminVs('3v3', 6, this)">⚔️ 3v3</span>
         <span class="vs-btn active-vs" onclick="selectAdminVs('4v4', 8, this)">⚔️ 4v4</span>
         <span class="vs-btn" onclick="selectAdminVs('6v6', 12, this)">⚔️ 6v6</span>
-        <span class="vs-btn" onclick="selectAdminVs('BR Solo', 48, this)">🗺️ Solo (BR)</span>
-        <span class="vs-btn" onclick="selectAdminVs('BR Squad', 48, this)">🗺️ Squad (BR)</span>
+        <span class="vs-btn" onclick="selectAdminVs('BR Solo', 48, this)">🗺️ Solo</span>
+        <span class="vs-btn" onclick="selectAdminVs('BR Squad', 48, this)">🗺️ Squad</span>
       </div>
-
       <input id="newGameTitle" placeholder="टुर्नामेन्ट शीर्षक">
-
       <div style="background:#080b16;padding:12px;border-radius:10px;margin:8px 0;border:1px solid #252b45">
         <h4 style="color:#38bdf8;font-size:13px;margin-bottom:8px">⚙️ Custom Match Rules:</h4>
-        
-        <label style="font-size:12px;color:#cbd5e1">🛡️ Gloo Wall / Ammo:</label>
+        <label style="font-size:12px;color:#cbd5e1">🛡️ Gloo Wall:</label>
         <select id="newRuleWall">
           <option value="Unlimited Wall">Unlimited Gloo Wall</option>
           <option value="Limited Wall">Limited Gloo Wall</option>
           <option value="No Gloo Wall">No Gloo Wall</option>
         </select>
-
-        <label style="font-size:12px;color:#cbd5e1">🎯 शट नियम (Shot Rules):</label>
+        <label style="font-size:12px;color:#cbd5e1">🎯 शट नियम:</label>
         <select id="newRuleHeadshot">
           <option value="Normal (Head + Body)">Normal (Head + Body)</option>
           <option value="Only Headshot (One Tap)">🎯 Only Headshot</option>
           <option value="Body Shot Allowed">💥 Body Shot Allowed</option>
         </select>
-
         <label style="font-size:12px;color:#cbd5e1">⚡ Character Skill:</label>
         <select id="newRuleSkill">
           <option value="Skill YES">Skill YES</option>
           <option value="Skill NO">Skill NO</option>
         </select>
-
-        <!-- 🔫 एडमिन प्यानलको लागि गन सेलेक्सन बक्स (हुबहु प्लेयरको जस्तै) -->
-        <label style="font-size:12px;color:#4ade80;font-weight:bold;margin-top:10px;display:block">
-          🔫 खेल्न दिने गनहरू छान्नुहोस् (Desert Eagle, M1887, Woodpecker आदि):
-        </label>
+        <label style="font-size:12px;color:#4ade80;font-weight:bold;margin-top:10px;display:block">🔫 गनहरू:</label>
         <div id="adminGunPills" class="gun-pill-container"></div>
       </div>
-
       <input id="newDate" placeholder="Date (e.g. 20 September 2026)">
       <input id="newTime" placeholder="Time (e.g. 7:00 PM)">
       <input id="newFee" type="number" min="0" placeholder="Entry Fee (रु)">
       <input id="newPrize" type="number" min="0" placeholder="Prize Pool (रु)">
       <input id="newSlots" type="number" min="1" placeholder="Total Slots">
       <button class="btn" style="background:#16a34a" onclick="addTournament()">➕ PUBLISH TOURNAMENT</button>
-    </div>
-
-    <!-- VICTORY CLAIMS -->
-    <div class="admin-panel" style="border:1px solid #4ade80;margin-bottom:20px">
-      <h2 style="color:#4ade80">🏆 Victory Claims (Booyah र History दुवै स्क्रिनसट)</h2>
-      <div id="adminVictoryList"></div>
-    </div>
-
-    <!-- CHEATER REPORTS -->
-    <div class="admin-panel" style="border:1px solid #ef4444;margin-bottom:20px">
-      <h2 style="color:#ef4444">⚠️ Cheater & Hacker Reports</h2>
-      <div id="adminReportList"></div>
-    </div>
-
-    <!-- BANNED PLAYERS -->
-    <div class="admin-panel" style="border:1px solid #b91c1c;margin-bottom:20px">
-      <h2 style="color:#b91c1c">🚫 Banned Players</h2>
-      <div id="adminBannedList"></div>
-    </div>
-
-    <!-- ACTIVE PLAYERS & BALANCE -->
-    <div class="admin-panel" style="margin-bottom:20px">
-      <h2>👤 Active Players</h2>
-      <div id="adminPlayerList"></div>
-    </div>
-
-    <!-- WITHDRAWALS -->
-    <div class="admin-panel" style="border:1px solid #ef4444;margin-bottom:20px">
-      <h2 style="color:#ef4444">💸 Withdrawal Requests</h2>
-      <div id="adminWithdrawList"></div>
-    </div>
-
-    <!-- DEPOSITS -->
-    <div class="admin-panel" style="margin-bottom:20px">
-      <h2>📸 Deposit Verification</h2>
-      <div id="adminDepositList"></div>
-    </div>
-
-    <!-- ROOM ID & TOURNAMENTS -->
-    <div class="admin-panel" style="margin-bottom:20px">
-      <h2>🎮 Set Room ID & Manage Tournaments</h2>
-      <div id="adminTournamentList"></div>
     </div>
   </div>
 </div>
@@ -1022,16 +784,21 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch((error) => {
+  console.log("Persistence error: ", error);
+});
+
 const auth = firebase.auth();
 const db = firebase.database();
 
-const GAME_LOGOS = {
-  "Free Fire": "https://images.seeklogo.com/logo-png/43/1/garena-free-fire-logo-png_seeklogo-434033.png",
-  "PUBG": "https://images.seeklogo.com/logo-png/33/2/pubg-mobile-logo-png_seeklogo-337517.png",
-  "Blood Strike": "https://images.seeklogo.com/logo-png/38/2/valorant-logo-png_seeklogo-385551.png"
+// इमेजको सट्टा इमोजीम्याप
+const GAME_EMOJIS = {
+  "Free Fire": "🔥",
+  "PUBG": "🪂",
+  "Blood Strike": "⚡"
 };
 
-// 🔫 गनहरूको कलेक्सन (एडमिन र प्लेयर दुवैको लागि)
 const GAME_GUN_COLLECTION = {
   "Free Fire": [
     "ALL GUNS", "Desert Eagle", "M1887 (Shotgun)", "M1014", "Woodpecker", "AWM", "MP40", "UMP", 
@@ -1050,8 +817,8 @@ let currentEmail = "";
 let authMode = "login";
 let selectedTournament = null;
 let currentDepositImageBase64 = "";
-let masterAdminQrBase64 = "";
 let currentAdminPass = "admin123";
+let currentAdminEmail = "nirmalsaud140@gmail.com";
 
 let selectedGameCategory = "ALL";
 let selectedGameMode = "ALL";
@@ -1078,7 +845,6 @@ let onlineReports = [];
 let onlineQrRequests = [];
 let lastKnownPoints = null;
 
-// Audio Beep Sound Generator
 function playBeepSound() {
   try {
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1096,34 +862,23 @@ function playBeepSound() {
   }
 }
 
-// Global Master QR Listener & Real-time Notification
-db.ref("adminSettings/masterQR").on("value", snap => {
-  const qr = snap.val();
-  if(qr) {
-    masterAdminQrBase64 = qr;
-    const prev = document.getElementById("masterQrPreview");
-    if(prev){
-      prev.src = qr;
-      prev.style.display = "block";
-    }
-
-    if(currentUid){
-      playBeepSound();
-      triggerNotification("💳 Payment QR Updated!", "एडमिनले नयाँ पेमेन्ट QR कोड अपडेट गर्नुभयो। वालेटमा गएर चेक गर्नुहोस्!");
-      
-      const qrContainer = document.getElementById("receivedQrContainer");
-      if(qrContainer){
-        qrContainer.style.display = "block";
-        document.getElementById("adminQrImageDisplay").src = qr;
-        document.getElementById("displayQrAmount").innerText = "पेमेन्ट QR";
-      }
-    }
+function toggleAccordion(id){
+  const content = document.getElementById(id);
+  if(content.classList.contains("open-acc")){
+    content.classList.remove("open-acc");
+  } else {
+    content.classList.add("open-acc");
   }
-});
+}
 
 db.ref("adminSettings/password").on("value", snap => {
   const p = snap.val();
   if(p) currentAdminPass = p;
+});
+
+db.ref("adminSettings/email").on("value", snap => {
+  const e = snap.val();
+  if(e) currentAdminEmail = e;
 });
 
 function triggerNotification(title, msg){
@@ -1168,6 +923,7 @@ function handleAuth(){
   const email = document.getElementById("userEmail").value.trim();
   const pass = document.getElementById("userPassword").value.trim();
   const ign = document.getElementById("userIGN").value.trim();
+  const gameUid = document.getElementById("userGameUid").value.trim();
 
   if(!email || !email.includes("@") || !email.includes(".")){
     alert("❌ कृपया आफ्नो सक्कली Gmail ठेगाना लेख्नुहोस्!");
@@ -1183,8 +939,8 @@ function handleAuth(){
   btn.innerText = "⏳ पर्खनुहोस्...";
 
   if(authMode === "register"){
-    if(!ign){
-      alert("कृपया आफ्नो Nickname / IGN पनि लेख्नुहोस्!");
+    if(!ign || !gameUid){
+      alert("कृपया आफ्नो Nickname (IGN) र Game UID दुवै लेख्नुहोस्!");
       btn.disabled = false;
       btn.innerText = "📝 REGISTER WITH REAL GMAIL";
       return;
@@ -1196,6 +952,8 @@ function handleAuth(){
           uid: cred.user.uid,
           email: email,
           ign: ign,
+          gameUid: gameUid,
+          avatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
           points: 0,
           status: "active",
           lastActive: new Date().toLocaleString()
@@ -1308,6 +1066,15 @@ function listenToUserData(uid){
       document.getElementById("myPoints").innerText = pts;
       document.getElementById("walletPageBalance").innerText = pts;
       document.getElementById("joinPoints").innerText = pts;
+
+      document.getElementById("profileDisplayIgn").innerText = data.ign || "No IGN set";
+      document.getElementById("profileDisplayUid").innerText = "UID: " + (data.gameUid || "N/A");
+      document.getElementById("profileDisplayEmail").innerText = data.email || currentEmail;
+      if(data.avatar){
+        document.getElementById("userAvatarImg").src = data.avatar;
+      }
+      document.getElementById("editUserIgn").value = data.ign || "";
+      document.getElementById("editUserUid").value = data.gameUid || "";
     }
   });
 
@@ -1319,8 +1086,25 @@ function listenToUserData(uid){
       qrContainer.style.display = "block";
       document.getElementById("adminQrImageDisplay").src = req.qrImage;
       document.getElementById("displayQrAmount").innerText = `रु ${req.amount}`;
-      triggerNotification("💳 Admin QR Code Received!", `एडमिनले रु ${req.amount} को भुक्तानी QR कोड पठाइदिनुभयो।`);
+      triggerNotification("💳 Admin QR Code Received!", `एडमिनले तपाईंलाई रु ${req.amount} को लागि पेमेन्ट QR कोड पठाउनुभयो।`);
     }
+  });
+
+  db.ref("chats/" + uid).on("value", snap => {
+    const chatData = snap.val() || {};
+    const chatBox = document.getElementById("userChatMessages");
+    chatBox.innerHTML = "";
+    const msgs = Object.values(chatData);
+    if(!msgs.length){
+      chatBox.innerHTML = `<div style="color:#64748b;font-size:11px;text-align:center">कुनै कुराकानी छैन। एडमिनलाई मेसेज गर्नुहोस्।</div>`;
+      return;
+    }
+    msgs.sort((a,b)=>a.time - b.time).forEach(m => {
+      const cls = m.sender === "admin" ? "admin" : "user";
+      const senderName = m.sender === "admin" ? "👨‍💻 Admin" : "👤 You";
+      chatBox.innerHTML += `<div class="chat-msg ${cls}"><b>${senderName}:</b> ${escapeHTML(m.text)}</div>`;
+    });
+    chatBox.scrollTop = chatBox.scrollHeight;
   });
 
   db.ref("registrations/" + uid).on("value", snap => {
@@ -1343,19 +1127,7 @@ function initGlobalListeners(){
     document.getElementById("tournamentCount").innerText = onlineTournaments.length;
     renderTournaments();
     if(document.getElementById("adminDashboard").style.display === "block"){
-      displayAdminTournaments();
-    }
-  });
-
-  db.ref("tournaments").on("child_changed", snap => {
-    const t = snap.val();
-    if(!t || !currentUid) return;
-    const userRegs = onlineRegistrations[currentUid] || [];
-    const joined = userRegs.some(r => Number(r.tournamentId) === Number(t.id));
-
-    if(joined && (t.roomId || t.roomPass)){
-      triggerNotification("🔑 Room ID / Password Updated!", `${t.game} को Room ID: ${t.roomId} र Password: ${t.roomPass} आयो!`);
-      updateRegistrationList();
+      loadAdmin();
     }
   });
 
@@ -1433,6 +1205,36 @@ function showPage(page){
   if(page==="walletPage")updateHistory();
 }
 
+function uploadProfileAvatar(event){
+  const file = event.target.files[0];
+  if(!file || !currentUid) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const base64Img = e.target.result;
+    db.ref("users/" + currentUid + "/avatar").set(base64Img).then(()=>{
+      alert("✅ प्रोफाइल पिक्चर सफलतापूर्वक अपडेट भयो!");
+    });
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveUserProfileChanges(){
+  const ign = document.getElementById("editUserIgn").value.trim();
+  const gameUid = document.getElementById("editUserUid").value.trim();
+
+  if(!ign || !gameUid){
+    alert("कृपया IGN र UID दुवै लेख्नुहोस्!");
+    return;
+  }
+
+  db.ref("users/" + currentUid).update({
+    ign: ign,
+    gameUid: gameUid
+  }).then(()=>{
+    alert("💾 प्रोफाइल विवरण सफलतापूर्वक सेभ भयो!");
+  });
+}
+
 function switchWalletSubTab(tab){
   if(tab === "deposit"){
     document.getElementById("secDeposit").style.display = "block";
@@ -1474,14 +1276,15 @@ function renderTournaments(){
   list.innerHTML = ""; home.innerHTML = "";
 
   const filtered = onlineTournaments.filter(t => {
+    const isModelOpen = (t.status === "Open");
     const matchGame = (selectedGameCategory === "ALL") || (t.gameCategory === selectedGameCategory) || (t.game && t.game.includes(selectedGameCategory));
     const matchMode = (selectedGameMode === "ALL") || (t.gameMode === selectedGameMode);
     const matchVs = (selectedVsFormat === "ALL") || (t.vsFormat === selectedVsFormat) || (t.game && t.game.includes(selectedVsFormat));
-    return matchGame && matchMode && matchVs;
+    return isModelOpen && matchGame && matchMode && matchVs;
   });
 
   if(!filtered.length){
-    list.innerHTML = home.innerHTML = `<div class="empty">यो क्याटेगोरी/फर्म्याटमा कुनै प्रतियोगिता उपलब्ध छैन</div>`;
+    list.innerHTML = home.innerHTML = `<div class="empty">यो क्याटेगोरी/फर्म्याटमा हाल कुनै खुला (Open) प्रतियोगिता उपलब्ध छैन</div>`;
     return;
   }
 
@@ -1501,8 +1304,6 @@ function createTournamentCard(t){
   let joinButton = "";
   if(userJoined){
     joinButton = `<button class="btn" style="background:#16a34a" disabled>✅ REGISTERED / HOST</button>`;
-  } else if(t.status !== "Open"){
-    joinButton = `<button class="btn" disabled>🔴 CLOSED (FULL)</button>`;
   } else {
     joinButton = `<button class="btn" onclick="joinTournament('${t.id}')">JOIN — रु ${Number(t.fee)}</button>`;
   }
@@ -1521,8 +1322,8 @@ function createTournamentCard(t){
   const vsBadge = `<span class="badge-mode badge-vs">⚔️ ${escapeHTML(t.vsFormat || 'Custom')}</span>`;
   const hostBadge = t.hostedByPlayer ? `<span class="badge-host">👤 Player Hosted (${escapeHTML(t.hostEmail || 'User')})</span>` : `<span class="badge-host" style="background:#9333ea">👑 Official</span>`;
 
-  const gameLogoSrc = GAME_LOGOS[t.gameCategory] || GAME_LOGOS["Free Fire"];
-
+  // इमेजको सट्टा इमोजी प्रयोग गरिएको
+  const gameEmoji = GAME_EMOJIS[t.gameCategory] || "🎮";
   const allowedGunsArr = t.allowedGuns ? t.allowedGuns.split(", ") : ["ALL GUNS"];
   let gunsBadgesHtml = allowedGunsArr.map(g => `<span class="gun-tag">🔫 ${escapeHTML(g)}</span>`).join(" ");
 
@@ -1540,10 +1341,10 @@ function createTournamentCard(t){
 
   card.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <img src="${gameLogoSrc}" class="game-card-logo" alt="${escapeHTML(t.gameCategory)}">
+      <div class="game-card-emoji">${gameEmoji}</div>
       ${hostBadge}
     </div>
-    <span class="status ${t.status==='Open'?'open':'closed'}">● ${escapeHTML(t.status.toUpperCase())}</span>
+    <span class="status open">● OPEN</span>
     ${modeBadge} ${vsBadge}
     <h3 style="margin-top:6px">${escapeHTML(t.game)}</h3>
     <div class="info">
@@ -1570,6 +1371,12 @@ function joinTournament(id){
     📅 ${escapeHTML(selectedTournament.date)} | ⏰ ${escapeHTML(selectedTournament.time)}<br>
     💰 Entry: <b>रु ${Number(selectedTournament.fee)}</b> | 🏆 Prize: <b>रु ${Number(selectedTournament.prize)}</b>
   `;
+
+  if(onlineUsers[currentUid]){
+    document.getElementById("playerName").value = onlineUsers[currentUid].ign || "";
+    document.getElementById("gameId").value = onlineUsers[currentUid].gameUid || "";
+  }
+
   showPage("join");
 }
 
@@ -1615,12 +1422,9 @@ function confirmJoin(){
   });
 
   alert(`🎉 दर्ता सफल भयो!\nरु ${fee} काटियो।`);
-  document.getElementById("playerName").value = "";
-  document.getElementById("gameId").value = "";
   showPage("registrations");
 }
 
-/* ================= PLAYER SELF-HOST CUSTOM ROOM MODAL ================= */
 function openCreateCustomModal(){
   document.getElementById("pHostRoomId").value = "";
   document.getElementById("pHostRoomPass").value = "";
@@ -1753,7 +1557,6 @@ function submitPlayerCustomRoom(){
   showPage("registrations");
 }
 
-/* ================= QR CODE DEPOSIT REQUEST SYSTEM ================= */
 function requestAdminQR(){
   const amt = Number(document.getElementById("depAmount").value);
   if(!amt || amt <= 0){
@@ -1761,25 +1564,29 @@ function requestAdminQR(){
     return;
   }
 
-  if(!masterAdminQrBase64){
-    alert("⚠️ एडमिनले अहिलेसम्म Master QR अपलोड गर्नुभएको छैन। कृपया एडमिनले QR सेभ गर्नुपर्छ।");
-    return;
-  }
-
   db.ref("qrRequests/" + currentUid).set({
     uid: currentUid,
     userEmail: currentEmail,
     amount: amt,
-    status: "Sent",
-    qrImage: masterAdminQrBase64,
+    status: "Pending",
     requestedAt: new Date().toLocaleString()
   }).then(()=>{
-    const qrContainer = document.getElementById("receivedQrContainer");
-    qrContainer.style.display = "block";
-    document.getElementById("adminQrImageDisplay").src = masterAdminQrBase64;
-    document.getElementById("displayQrAmount").innerText = `रु ${amt}`;
-    alert(`✅ रु ${amt} को लागि पेमेन्ट QR कोड उपलब्ध भयो! अब स्क्यान वा डाउनलोड गर्न सक्नुहुन्छ।`);
+    alert(`✅ रु ${amt} को लागि एडमिनसँग QR अनुरोध पठाइयो! एडमिनले पठाएपछि यहाँ देखा पर्नेछ।`);
   });
+}
+
+function sendUserChatMessage(){
+  const input = document.getElementById("userChatInput");
+  const txt = input.value.trim();
+  if(!txt || !currentUid) return;
+
+  const msgId = Date.now().toString();
+  db.ref("chats/" + currentUid + "/" + msgId).set({
+    sender: "user",
+    text: txt,
+    time: Date.now()
+  });
+  input.value = "";
 }
 
 function downloadAdminQR(){
@@ -1829,7 +1636,7 @@ function submitDeposit(){
     date: new Date().toLocaleString()
   });
 
-  alert("✅ पेमेन्ट विवरण Server मा पठाइयो!\n⚡ २ देखि ५ मिनेटभित्र खातामा रकम थपिनेछ।");
+  alert("✅ पेमेन्ट विवरण Server मा पठाइयो!\n⚡ एडमिनले भेरिफाई गरेपछि वालेटमा रकम थपिनेछ।");
   document.getElementById("depAmount").value = "";
   document.getElementById("depTxn").value = "";
   document.getElementById("depProof").value = "";
@@ -1899,7 +1706,7 @@ function clearWalletHistory(){
     alert("तपाईंसँग खाली गर्नको लागि कुनै हिस्ट्री छैन।");
     return;
   }
-  if(!confirm("के तपाईं आफ्नो वालेटको सम्पूर्ण कारोबार विवरण (History) डिलिट गर्न निश्चित हुनुहुन्छ? यसले तपाईंको ब्यालेन्स मेटाउने छैन।")){
+  if(!confirm("के तपाईं आफ्नो वालेटको सम्पूर्ण कारोबार विवरण (History) डिलिट गर्न निश्चित हुनुहुन्छ?")){
     return;
   }
   db.ref("history/" + currentUid).remove().then(()=>{
@@ -2103,7 +1910,7 @@ function renderLeaderboard(){
     div.innerHTML = `
       <span style="font-weight:bold;width:24px">#${idx+1}</span>
       <div class="player-info"><b>${escapeHTML(u.ign || u.email)}</b></div>
-      <span class="points">रु ${Number(u.points||0)}</span>
+      <span class="points" style="color:#94a3b8">🔒 Hidden</span>
     `;
     list.appendChild(div);
   });
@@ -2116,100 +1923,63 @@ function logout(){
   });
 }
 
-/* ================= ADMIN DASHBOARD ================= */
 function showAdminLogin(){
   document.getElementById("login").style.display="none";
   document.getElementById("app").style.display="none";
   document.getElementById("adminLogin").style.display="flex";
+  document.getElementById("adminLoginSection").style.display="block";
+  document.getElementById("adminResetSection").style.display="none";
 }
+
+function showAdminResetModal(e){
+  e.preventDefault();
+  document.getElementById("adminLoginSection").style.display="none";
+  document.getElementById("adminResetSection").style.display="block";
+}
+
+function hideAdminResetModal(){
+  document.getElementById("adminResetSection").style.display="none";
+  document.getElementById("adminLoginSection").style.display="block";
+}
+
+function handleAdminPasswordReset(){
+  const emailInput = document.getElementById("adminResetEmailInput").value.trim();
+  if(!emailInput){
+    alert("❌ कृपया आफ्नो एडमिन जिमेल लेख्नुहोस्!");
+    return;
+  }
+
+  if(emailInput === currentAdminEmail){
+    alert("📧 एडमिन पासवर्ड रिसेट निर्देशनहरू तपाईंको रियल जिमेल (" + currentAdminEmail + ") मा पठाइएको छ।");
+    hideAdminResetModal();
+  } else {
+    alert("❌ यो जिमेल एडमिनको रूपमा दर्ता गरिएको छैन!");
+  }
+}
+
 function backToLogin(){
   document.getElementById("adminLogin").style.display="none";
   if(currentUid) document.getElementById("app").style.display="block";
   else document.getElementById("login").style.display="flex";
 }
+
 function adminLogin(){
-  const u = document.getElementById("adminUsername").value.trim();
-  const p = document.getElementById("adminPassword").value.trim();
+  const emailInput = document.getElementById("adminEmailInput").value.trim();
+  const passwordInput = document.getElementById("adminPassword").value.trim();
   
-  if(u === "admin" && p === currentAdminPass){
+  if(emailInput === currentAdminEmail && passwordInput === currentAdminPass){
     document.getElementById("adminLogin").style.display="none";
     document.getElementById("adminDashboard").style.display="block";
     loadAdmin();
     onAdminGameSelected();
   } else {
-    alert("❌ गलत Admin Username वा Password!");
+    alert("❌ गलत एडमिन जिमेल वा पासवर्ड! केवल आधिकारिक एडमिनले मात्र लगइन गर्न सक्नुहुन्छ।");
   }
 }
+
 function adminLogout(){
   document.getElementById("adminDashboard").style.display="none";
   document.getElementById("login").style.display="flex";
-}
-
-function previewMasterQr(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    masterAdminQrBase64 = ev.target.result;
-    const prev = document.getElementById("masterQrPreview");
-    prev.src = masterAdminQrBase64;
-    prev.style.display = "block";
-  };
-  reader.readAsDataURL(file);
-}
-
-function saveMasterQR(){
-  if(!masterAdminQrBase64){
-    alert("❌ कृपया आफ्नो QR कोड फोटो छान्नुहोस्!");
-    return;
-  }
-  db.ref("adminSettings/masterQR").set(masterAdminQrBase64).then(()=>{
-    alert("✅ Admin Master QR कोड सफलतापूर्वक सेभ भयो र सबै युजरकोमा नोटिफिकेसन पठाइयो!");
-  });
-}
-
-function displayAdminQrRequests(){
-  const list = document.getElementById("adminQrRequestsList");
-  list.innerHTML = "";
-  const pendingRequests = onlineQrRequests.filter(r => r.status === "Pending");
-  document.getElementById("adminQrRequestCount").innerText = pendingRequests.length;
-
-  if(!pendingRequests.length){
-    list.innerHTML = `<div class="empty">कुनै खेलाडीले QR मागेका छैनन्</div>`; return;
-  }
-
-  pendingRequests.forEach(r => {
-    const div = document.createElement("div");
-    div.className = "admin-player";
-    div.innerHTML = `
-      <h3 style="color:#eab308">🔔 QR Request from: ${escapeHTML(r.userEmail)}</h3>
-      <div class="info">
-        💰 माग्नुभएको रकम: <b style="color:#4ade80;font-size:16px">रु ${Number(r.amount)}</b><br>
-        🕒 समय: <small style="color:#94a3b8">${escapeHTML(r.requestedAt)}</small>
-      </div>
-      <div style="margin-top:8px">
-        <button class="add-btn" onclick="sendQrToPlayer('${r.uid}', ${r.amount})">🚀 SEND QR TO PLAYER (क्युआर पठाउनुहोस्)</button>
-      </div>
-    `;
-    list.appendChild(div);
-  });
-}
-
-function sendQrToPlayer(playerUid, amount){
-  let qrToSend = masterAdminQrBase64;
-  if(!qrToSend){
-    alert("⚠️ कृपया पहिले माथि Master QR सेभ गर्नुहोस्!");
-    return;
-  }
-
-  db.ref("qrRequests/" + playerUid).update({
-    status: "Sent",
-    qrImage: qrToSend,
-    sentAt: new Date().toLocaleString()
-  }).then(()=>{
-    alert(`✅ खेलाडीको स्क्रिनमा रु ${amount} को QR कोड पठाइयो!`);
-    loadAdmin();
-  });
 }
 
 function changeAdminPassword(){
@@ -2278,9 +2048,16 @@ function toggleGunPill(gun, el){
 
 function loadAdmin(){
   document.getElementById("adminTournamentCount").innerText = onlineTournaments.length;
-  document.getElementById("adminPendingCount").innerText = onlineDeposits.filter(d=>d.status==="Pending").length;
-  document.getElementById("adminVictoriesCount").innerText = onlineVictories.filter(v=>v.status==="Pending").length;
-  document.getElementById("adminReportsCount").innerText = onlineReports.filter(r=>r.status==="Pending").length;
+  
+  const pendingDeps = onlineDeposits.filter(d=>d.status==="Pending").length;
+  const pendingVics = onlineVictories.filter(v=>v.status==="Pending").length;
+  const pendingReps = onlineReports.filter(r=>r.status==="Pending").length;
+
+  document.getElementById("adminPendingCount").innerText = pendingDeps;
+  document.getElementById("adminVictoriesCount").innerText = pendingVics;
+  document.getElementById("depBadge").innerText = pendingDeps;
+  document.getElementById("vicBadge").innerText = pendingVics;
+  document.getElementById("repBadge").innerText = pendingReps;
 
   displayAdminQrRequests();
   displayAdminVictories();
@@ -2290,6 +2067,101 @@ function loadAdmin(){
   displayAdminWithdrawals();
   displayAdminDeposits();
   displayAdminTournaments();
+}
+
+function displayAdminQrRequests(){
+  const list = document.getElementById("adminQrRequestsList");
+  list.innerHTML = "";
+  const pendingRequests = onlineQrRequests.filter(r => r.status === "Pending");
+  document.getElementById("adminQrRequestCount").innerText = pendingRequests.length;
+  document.getElementById("qrReqBadge").innerText = pendingRequests.length;
+
+  if(!pendingRequests.length){
+    list.innerHTML = `<div class="empty">कुनै खेलाडीले QR मागेका छैनन्</div>`; return;
+  }
+
+  pendingRequests.forEach(r => {
+    const div = document.createElement("div");
+    div.className = "admin-player";
+    div.innerHTML = `
+      <h3 style="color:#eab308">🔔 QR Request from: ${escapeHTML(r.userEmail)}</h3>
+      <div class="info">
+        💰 माग्नुभएको रकम: <b style="color:#4ade80;font-size:16px">रु ${Number(r.amount)}</b><br>
+        🕒 समय: <small style="color:#94a3b8">${escapeHTML(r.requestedAt)}</small>
+      </div>
+      <div style="background:#111629;padding:10px;border-radius:10px;margin:10px 0">
+        <label style="font-size:12px;color:#38bdf8;font-weight:bold;display:block">यो खेलाडीलाई मात्र पठाउने QR कोड छान्नुहोस्:</label>
+        <input type="file" accept="image/*" id="adminFile_${r.uid}" style="margin-top:6px">
+        <button class="add-btn" onclick="sendIndividualQrToUser('${r.uid}', ${r.amount})">📤 SEND QR TO THIS USER ONLY</button>
+      </div>
+      <div class="chat-container">
+        <h4 style="color:#38bdf8;font-size:13px;margin-bottom:6px">💬 Live Chat with ${escapeHTML(r.userEmail)}</h4>
+        <div id="adminChatBox_${r.uid}" class="chat-messages" style="height:120px"></div>
+        <div class="chat-input-row">
+          <input id="adminChatInput_${r.uid}" type="text" placeholder="खेलाडीलाई मेसेज लेख्नुहोस्...">
+          <button class="btn" onclick="sendAdminChatMessage('${r.uid}')">REPLY</button>
+        </div>
+      </div>
+    `;
+    list.appendChild(div);
+    loadAdminChatForUser(r.uid);
+  });
+}
+
+function sendIndividualQrToUser(uid, amount){
+  const fileInput = document.getElementById("adminFile_" + uid);
+  const file = fileInput.files[0];
+  if(!file){
+    alert("कृपया QR कोडको फोटो छान्नुहोस्!");
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const qrBase64 = ev.target.result;
+    db.ref("qrRequests/" + uid).update({
+      status: "Sent",
+      qrImage: qrBase64,
+      sentAt: new Date().toLocaleString()
+    }).then(()=>{
+      alert(`✅ खेलाडीलाई रु ${amount} को QR सफलतापूर्वक पठाइयो!`);
+      loadAdmin();
+    });
+  };
+  reader.readAsDataURL(file);
+}
+
+function loadAdminChatForUser(uid){
+  db.ref("chats/" + uid).on("value", snap => {
+    const data = snap.val() || {};
+    const box = document.getElementById("adminChatBox_" + uid);
+    if(!box) return;
+    box.innerHTML = "";
+    const msgs = Object.values(data);
+    if(!msgs.length){
+      box.innerHTML = `<div style="color:#64748b;font-size:11px">कुनै मेसेज छैन</div>`;
+      return;
+    }
+    msgs.sort((a,b)=>a.time - b.time).forEach(m => {
+      const cls = m.sender === "admin" ? "admin" : "user";
+      const name = m.sender === "admin" ? "👨‍💻 You (Admin)" : "👤 Player";
+      box.innerHTML += `<div class="chat-msg ${cls}"><b>${name}:</b> ${escapeHTML(m.text)}</div>`;
+    });
+    box.scrollTop = box.scrollHeight;
+  });
+}
+
+function sendAdminChatMessage(uid){
+  const input = document.getElementById("adminChatInput_" + uid);
+  const txt = input.value.trim();
+  if(!txt) return;
+
+  const msgId = Date.now().toString();
+  db.ref("chats/" + uid + "/" + msgId).set({
+    sender: "admin",
+    text: txt,
+    time: Date.now()
+  });
+  input.value = "";
 }
 
 function displayAdminVictories(){
@@ -2422,24 +2294,26 @@ function deleteReport(id){
 function displayAdminPlayers(){
   const list = document.getElementById("adminPlayerList");
   list.innerHTML = "";
-  const activePlayers = Object.values(onlineUsers).filter(u => u.status === "active");
+  const allPlayers = Object.values(onlineUsers);
   
-  if(!activePlayers.length){
-    list.innerHTML = `<div class="empty">कुनै सक्रिय खेलाडी छैनन्</div>`; return;
+  if(!allPlayers.length){
+    list.innerHTML = `<div class="empty">कुनै खेलाडी छैनन्</div>`; return;
   }
 
-  activePlayers.forEach(u=>{
+  allPlayers.forEach(u=>{
     const div = document.createElement("div");
     div.className = "admin-player";
+    const isOnline = u.status === "active";
+    const statusText = isOnline ? '<b style="color:#4ade80">● Online</b>' : '<b style="color:#f87171">○ Offline/Banned</b>';
     div.innerHTML = `
-      <h3>👤 ${escapeHTML(u.email || u.uid)}</h3>
+      <h3>👤 ${escapeHTML(u.email || u.uid)} ${statusText}</h3>
       <div class="info">
-        IGN: <b>${escapeHTML(u.ign||'N/A')}</b> | ब्यालेन्स: <b style="color:#4ade80">रु ${Number(u.points||0)}</b><br>
+        IGN: <b>${escapeHTML(u.ign||'N/A')}</b> | UID: <b>${escapeHTML(u.gameUid||'N/A')}</b> | ब्यालेन्स: <b style="color:#4ade80">रु ${Number(u.points||0)}</b><br>
         🕒 Last Seen: <small style="color:#94a3b8">${escapeHTML(u.lastActive || "Recently")}</small>
       </div>
       <button class="add-btn" onclick="directBalance('${u.uid}', 1)">➕ रु थप्नुहोस्</button>
       <button class="deduct-btn" onclick="directBalance('${u.uid}', -1)">➖ रु घटाउनुहोस्</button>
-      <button class="ban-btn" onclick="banPlayer('${u.uid}')">🚫 BAN (ह्याकर ब्यान)</button>
+      <button class="ban-btn" onclick="banPlayer('${u.uid}')">🚫 BAN</button>
       <button class="del-btn" onclick="deletePlayerPermanent('${u.uid}')">🗑️ DELETE</button>
     `;
     list.appendChild(div);
@@ -2579,7 +2453,7 @@ function displayAdminDeposits(){
     let actionBtn = "";
     if(d.status === "Pending"){
       actionBtn = `
-        <button class="add-btn" onclick="approveDeposit('${d.id}')">✅ APPROVE & ADD रु ${d.amount}</button>
+        <button class="add-btn" onclick="approveDepositManually('${d.id}', '${d.uid}', ${d.amount})">✅ APPROVE & ADD BALANCE (हातले थप्ने)</button>
         <button class="deduct-btn" onclick="rejectDeposit('${d.id}')">❌ REJECT</button>
       `;
     } else {
@@ -2589,7 +2463,7 @@ function displayAdminDeposits(){
     div.innerHTML = `
       <h3>👤 Player: ${escapeHTML(d.userEmail)}</h3>
       <div class="info">
-        💰 रकम: <b style="color:#4ade80;font-size:16px">रु ${Number(d.amount)}</b><br>
+        💰 पठाइएको दाबी रकम: <b style="color:#4ade80;font-size:16px">रु ${Number(d.amount)}</b><br>
         🆔 Txn: ${escapeHTML(d.txn)} | 📅 ${escapeHTML(d.date)}
       </div>
       <a href="${d.image}" target="_blank">
@@ -2604,16 +2478,22 @@ function displayAdminDeposits(){
   });
 }
 
-function approveDeposit(id){
-  const d = onlineDeposits.find(x=>String(x.id)===String(id));
-  if(!d || d.status !== "Pending") return;
+function approveDepositManually(id, uid, defaultAmt){
+  const userEnteredAmt = prompt(`युजरको खातामा कति रुपैयाँ जम्मा गर्ने हो रकम लेख्नुहोस्:`, defaultAmt);
+  if(userEnteredAmt === null) return;
+  const addAmt = Number(userEnteredAmt);
 
-  const curBal = Number((onlineUsers[d.uid] && onlineUsers[d.uid].points) || 0);
-  db.ref("users/" + d.uid + "/points").set(curBal + Number(d.amount));
-  db.ref("deposits/" + id + "/status").set("Approved");
-  addHistory(d.uid, d.amount, "Payment Approved (Deposit)");
+  if(!addAmt || addAmt <= 0){
+    alert("❌ कृपया सही रकम लेख्नुहोस्!");
+    return;
+  }
 
-  alert(`✅ रु ${d.amount} खेलाडीको खातामा थपियो!`);
+  const curBal = Number((onlineUsers[uid] && onlineUsers[uid].points) || 0);
+  db.ref("users/" + uid + "/points").set(curBal + addAmt);
+  db.ref("deposits/" + id + "/status").set("Approved (रु " + addAmt + ")");
+  addHistory(uid, addAmt, "Payment Approved & Added Manually");
+
+  alert(`✅ सफलतापूर्वक खेलाडीको खातामा रु ${addAmt} थपियो!`);
   loadAdmin();
 }
 
@@ -2636,30 +2516,59 @@ function deleteDepositProof(id){
 }
 
 function displayAdminTournaments(){
-  const list = document.getElementById("adminTournamentList");
-  list.innerHTML = "";
-  onlineTournaments.forEach(t=>{
-    const div = document.createElement("div");
-    div.className = "admin-player";
-    div.innerHTML = `
-      <h3>🎮 ${escapeHTML(t.game)}</h3>
-      <div class="info">
-        🎯 Game: <b>${escapeHTML(t.gameCategory || 'General')}</b> | ⚔️ Format: <b style="color:#34d399">${escapeHTML(t.vsFormat || 'Custom')}</b><br>
-        🛡️ Wall: <b>${escapeHTML(t.ruleWall || 'Unlimited')}</b> | 🎯 Shot: <b>${escapeHTML(t.ruleHeadshot || 'Normal')}</b><br>
-        🔫 Guns: <b>${escapeHTML(t.allowedGuns || 'ALL GUNS')}</b><br>
-        📅 ${escapeHTML(t.date)} | ⏰ ${escapeHTML(t.time)}<br>
-        💰 Entry: रु ${Number(t.fee)} | 🏆 Prize: रु ${Number(t.prize)}
-      </div>
-      <div style="background:#111629;padding:10px;border-radius:10px;margin-top:8px">
-        <input type="text" id="adminRoomId_${t.id}" value="${escapeHTML(t.roomId||'')}" placeholder="Room ID">
-        <input type="text" id="adminRoomPass_${t.id}" value="${escapeHTML(t.roomPass||'')}" placeholder="Password">
-        <button class="add-btn" style="width:100%" onclick="saveRoomDetails('${t.id}')">💾 SAVE & NOTIFY PLAYERS</button>
-      </div>
-      <div style="margin-top:8px">
-        <button class="deduct-btn" style="width:100%" onclick="deleteTournament('${t.id}')">🗑️ DELETE GAME</button>
-      </div>
-    `;
-    list.appendChild(div);
+  const csList = document.getElementById("adminCsTournamentList");
+  const brList = document.getElementById("adminBrTournamentList");
+  csList.innerHTML = "";
+  brList.innerHTML = "";
+
+  const csTournaments = onlineTournaments.filter(t => t.gameMode === "CS");
+  const brTournaments = onlineTournaments.filter(t => t.gameMode === "BR");
+
+  if(!csTournaments.length){
+    csList.innerHTML = `<div class="empty">कुनै CS टुर्नामेन्ट छैन</div>`;
+  } else {
+    csTournaments.forEach(t => csList.appendChild(createAdminTournamentCard(t)));
+  }
+
+  if(!brTournaments.length){
+    brList.innerHTML = `<div class="empty">कुनै BR टुर्नामेन्ट छैन</div>`;
+  } else {
+    brTournaments.forEach(t => brList.appendChild(createAdminTournamentCard(t)));
+  }
+}
+
+function createAdminTournamentCard(t){
+  const div = document.createElement("div");
+  div.className = "admin-player";
+  const statusBadge = t.status === "Open" ? '<b style="color:#4ade80">● OPEN</b>' : '<b style="color:#f87171">● CLOSED</b>';
+  
+  div.innerHTML = `
+    <h3>🎮 ${escapeHTML(t.game)} | ${statusBadge}</h3>
+    <div class="info">
+      🎯 Game: <b>${escapeHTML(t.gameCategory || 'General')}</b> | ⚔️ Format: <b style="color:#34d399">${escapeHTML(t.vsFormat || 'Custom')}</b><br>
+      🛡️ Wall: <b>${escapeHTML(t.ruleWall || 'Unlimited')}</b> | 🎯 Shot: <b>${escapeHTML(t.ruleHeadshot || 'Normal')}</b><br>
+      🔫 Guns: <b>${escapeHTML(t.allowedGuns || 'ALL GUNS')}</b><br>
+      📅 ${escapeHTML(t.date)} | ⏰ ${escapeHTML(t.time)}<br>
+      💰 Entry: रु ${Number(t.fee)} | 🏆 Prize: रु ${Number(t.prize)}
+    </div>
+    <div style="background:#111629;padding:10px;border-radius:10px;margin-top:8px">
+      <input type="text" id="adminRoomId_${t.id}" value="${escapeHTML(t.roomId||'')}" placeholder="Room ID">
+      <input type="text" id="adminRoomPass_${t.id}" value="${escapeHTML(t.roomPass||'')}" placeholder="Password">
+      <button class="add-btn" style="width:100%" onclick="saveRoomDetails('${t.id}')">💾 SAVE & NOTIFY PLAYERS</button>
+    </div>
+    <div style="margin-top:8px; display:flex; gap:6px;">
+      <button class="add-btn" style="flex:1;background:#2563eb;" onclick="toggleTournamentStatus('${t.id}', '${t.status}')">🔄 STATUS: ${t.status === 'Open' ? 'CLOSE' : 'OPEN'}</button>
+      <button class="del-btn" style="flex:1;background:#b91c1c;margin:0" onclick="deleteTournament('${t.id}')">🗑️ DELETE GAME</button>
+    </div>
+  `;
+  return div;
+}
+
+function toggleTournamentStatus(id, currentStatus){
+  const newStatus = currentStatus === "Open" ? "Closed" : "Open";
+  db.ref("tournaments/" + id + "/status").set(newStatus).then(()=>{
+    alert(`✅ टुर्नामेन्टको स्थिति '${newStatus}' बनाइयो!`);
+    loadAdmin();
   });
 }
 
@@ -2675,7 +2584,7 @@ function saveRoomDetails(id){
 }
 
 function deleteTournament(id){
-  if(!confirm("यो प्रतियोगिता डिलिट गर्ने?")) return;
+  if(!confirm("के यो टुर्नामेन्टलाई सधैंको लागि डिलिट गर्ने निश्चित हुनुहुन्छ?")) return;
   db.ref("tournaments/" + id).remove().then(()=>{
     alert("🗑️ टुर्नामेन्ट डिलिट भयो!");
     loadAdmin();
