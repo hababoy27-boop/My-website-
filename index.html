@@ -156,7 +156,7 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 .accordion-content.open-acc{display:block}
 
 .chat-container{background:#080b16;border:1px solid #303752;border-radius:12px;padding:12px;margin-top:14px}
-.chat-messages{height:160px;overflow-y:auto;background:#03050b;padding:10px;border-radius:8px;border:1px solid #1e293b;margin-bottom:8px}
+.chat-messages{height:220px;overflow-y:auto;background:#03050b;padding:10px;border-radius:8px;border:1px solid #1e293b;margin-bottom:8px}
 .chat-msg{font-size:12px;margin-bottom:6px;line-height:1.4}
 .chat-msg.user{color:#38bdf8}
 .chat-msg.admin{color:#4ade80}
@@ -243,23 +243,23 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
     <button id="authActionBtn" class="btn" style="background:#9333ea" onclick="handleAuth()">🔐 LOGIN</button>
     
     <div id="forgotBox">
-      <button class="forgot-btn" onclick="handleForgotPassword()">🔑 Password बिर्सनुभयो? (Forgot Password)</button>
+      <button class="forgot-btn" onclick="handleForgotPassword()" style="background:none;border:none;color:#a855f7;margin-top:10px;text-decoration:underline;font-size:12px;">🔑 Password बिर्सनुभयो? (Forgot Password)</button>
     </div>
   </div>
 </div>
 
-<!-- 2. ADMIN LOGIN -->
+<!-- 2. COMPUTER (ADMIN) LOGIN -->
 <div id="adminLogin" style="display:none">
   <div class="login-box" id="adminLoginSection">
-    <div class="game-logo">👨‍💻</div>
-    <h1>Admin Login</h1>
+    <div class="game-logo">💻</div>
+    <h1>कम्प्युटर Login</h1>
     <p>Game Esports Cloud Dashboard</p>
-    <input id="adminEmailInput" type="email" placeholder="Admin Real Gmail" required>
-    <input id="adminPassword" type="password" placeholder="Admin Password" required>
-    <button class="btn" style="background:#eab308;color:#111" onclick="adminLogin()">🔐 LOGIN AS ADMIN</button>
+    <input id="adminEmailInput" type="email" placeholder="कम्प्युटर Real Gmail" required>
+    <input id="adminPassword" type="password" placeholder="कम्प्युटर Password" required>
+    <button class="btn" style="background:#eab308;color:#111" onclick="adminLogin()">🔐 LOGIN AS कम्प्युटर</button>
     
     <div class="forgot-password-link" style="text-align:center; margin-top:12px;">
-      <a href="#" onclick="showAdminResetModal(event)" style="color:#a855f7; font-size:12px; text-decoration:underline;">Forgot Admin Password?</a>
+      <a href="#" onclick="showAdminResetModal(event)" style="color:#a855f7; font-size:12px; text-decoration:underline;">Forgot कम्प्युटर Password?</a>
     </div>
 
     <button class="btn" style="background:#303752; margin-top:10px;" onclick="backToLogin()">⬅ BACK</button>
@@ -267,9 +267,9 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 
   <div class="login-box" id="adminResetSection" style="display:none;">
     <div class="game-logo">🔑</div>
-    <h1>Reset Admin Password</h1>
-    <p>आफ्नो आधिकारिक (Real) एडमिन जिमेल लेख्नुहोस्</p>
-    <input id="adminResetEmailInput" type="email" placeholder="Admin Real Gmail" required>
+    <h1>Reset कम्प्युटर Password</h1>
+    <p>आफ्नो आधिकारिक (Real) कम्प्युटर जिमेल लेख्नुहोस्</p>
+    <input id="adminResetEmailInput" type="email" placeholder="कम्प्युटर Real Gmail" required>
     <button class="btn" style="background:#eab308;color:#111" onclick="handleAdminPasswordReset()">📤 SEND RESET LINK</button>
     <button class="btn" style="background:#303752; margin-top:10px;" onclick="hideAdminResetModal()">⬅ CANCEL</button>
   </div>
@@ -289,6 +289,7 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
         <button onclick="showPage('profilePage'); closeMenu()">👤 Profile</button>
         <button onclick="showPage('registrations'); closeMenu()">🏅 Join</button>
         <button onclick="showPage('walletPage'); closeMenu()">💰 Wallet</button>
+        <button onclick="showPage('chatPage'); closeMenu()">💬 Live Chat (कम्प्युटर)</button>
         <button onclick="logout(); closeMenu()" style="color:#f87171">🚪 Logout</button>
       </div>
     </div>
@@ -356,7 +357,7 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
         </div>
       </div>
 
-      <h3 style="margin:20px 0 10px;">🔥 Available Tournaments (Admin & Players)</h3>
+      <h3 style="margin:20px 0 10px;">🔥 Available Tournaments (कम्प्युटर & Players)</h3>
       <div id="homeTournamentList" class="tournament-grid"></div>
 
       <h3 style="margin:25px 0 10px;">🏆 Global Leaderboard</h3>
@@ -476,24 +477,15 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
         <div style="background:#080b16;padding:12px;border-radius:12px;border:1px solid #252b45;margin:10px 0">
           <label style="font-size:12px;color:#a855f7;font-weight:bold;display:block">१. कति रुपैयाँ डिपोजिट गर्ने हो रकम लेख्नुहोस्:</label>
           <input id="depAmount" type="number" min="10" placeholder="रकम (e.g. 50, 100, 200)">
-          <button class="btn" style="background:#0284c7" onclick="requestAdminQR()">📲 REQUEST ADMIN QR (क्युआर कोड माग्नुहोस्)</button>
+          <button class="btn" style="background:#0284c7" onclick="requestAdminQR()">📲 REQUEST कम्प्युटर QR (क्युआर कोड माग्नुहोस्)</button>
         </div>
 
         <div id="receivedQrContainer" class="qr-received-card" style="display:none">
-          <h4 style="color:#38bdf8">✅ एडमिनले तपाईंलाई पठाउनुभएको पेमेन्ट QR कोड:</h4>
+          <h4 style="color:#38bdf8">✅ कम्प्युटरले तपाईंलाई पठाउनुभएको पेमेन्ट QR कोड:</h4>
           <p style="font-size:12px;color:#94a3b8;margin-top:2px">रकम: <b id="displayQrAmount" style="color:#4ade80">रु 0</b></p>
-          <img id="adminQrImageDisplay" class="qr-img-tag" src="" alt="Admin QR">
+          <img id="adminQrImageDisplay" class="qr-img-tag" src="" alt="Computer QR">
           <div>
             <button class="download-btn" onclick="downloadAdminQR()">⬇️ DOWNLOAD QR CODE (क्युआर डाउनलोड)</button>
-          </div>
-        </div>
-
-        <div class="chat-container">
-          <h4 style="color:#38bdf8;font-size:13px;margin-bottom:6px">💬 Live Support Chat with Admin</h4>
-          <div id="userChatMessages" class="chat-messages"></div>
-          <div class="chat-input-row">
-            <input id="userChatInput" type="text" placeholder="एडमिनसँग कुरा गर्नुहोस्...">
-            <button class="btn" onclick="sendUserChatMessage()">SEND</button>
           </div>
         </div>
 
@@ -526,6 +518,25 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
         <button class="clear-hist-btn" onclick="clearWalletHistory()">🗑️ Clear Wallet History</button>
       </div>
       <div id="historyList"></div>
+    </div>
+  </div>
+
+  <!-- CHAT PAGE (In Menu) -->
+  <div id="chatPage" class="page">
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <h2>💬 Live Support Chat with कम्प्युटर</h2>
+        <button class="clear-hist-btn" onclick="clearUserChat()">🧹 Clear Chat</button>
+      </div>
+      <div class="register-box">
+        <div class="chat-container" style="margin-top:0">
+          <div id="userChatMessages" class="chat-messages" style="height:350px"></div>
+          <div class="chat-input-row" style="margin-top:10px">
+            <input id="userChatInput" type="text" placeholder="कम्प्युटरसँग कुरा गर्नुहोस्...">
+            <button class="btn" onclick="sendUserChatMessage()">SEND</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -626,11 +637,11 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
   </div>
 </div>
 
-<!-- ================= 4. ADMIN DASHBOARD ================= -->
+<!-- ================= 4. COMPUTER (ADMIN) DASHBOARD ================= -->
 <div id="adminDashboard" style="display:none">
   <div class="header">
-    <div class="logo">👨‍💻 Game<span> Esports Admin</span></div>
-    <button class="logout-btn" onclick="adminLogout()">Logout</button>
+    <div class="logo">💻 Game<span> कम्प्युटर Control Panel</span></div>
+    <button class="logout-btn" onclick="adminLogout()" style="background:#dc2626;border:none;color:#fff;padding:6px 12px;border-radius:6px;font-weight:bold;">Logout</button>
   </div>
 
   <div class="container">
@@ -727,13 +738,13 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
     </div>
 
     <div class="add-box" style="border:1px solid #eab308;margin-top:20px">
-      <h3 style="color:#eab308">🔐 Change Admin Password</h3>
-      <input id="newAdminPasswordInput" type="password" placeholder="नयाँ Admin Password">
-      <button class="btn" style="background:#eab308;color:#111" onclick="changeAdminPassword()">💾 UPDATE ADMIN PASSWORD</button>
+      <h3 style="color:#eab308">🔐 Change कम्प्युटर Password</h3>
+      <input id="newAdminPasswordInput" type="password" placeholder="नयाँ कम्प्युटर Password">
+      <button class="btn" style="background:#eab308;color:#111" onclick="changeAdminPassword()">💾 UPDATE कम्प्युटर PASSWORD</button>
     </div>
 
     <div class="add-box" style="margin-top:20px;border:1px solid #38bdf8">
-      <h3 style="color:#38bdf8">➕ Add Official Tournament (Admin Hosted)</h3>
+      <h3 style="color:#38bdf8">➕ Add Official Tournament (कम्प्युटर Hosted)</h3>
       <label style="font-size:12px;color:#cbd5e1">१. कुन खेल हो?:</label>
       <select id="newGameSelect" onchange="onAdminGameSelected()">
         <option value="Free Fire">🔥 Free Fire</option>
@@ -1098,7 +1109,7 @@ auth.onAuthStateChanged(user => {
 function listenToUserData(uid){
   db.ref("users/" + uid + "/status").on("value", snap => {
     if(snap.val() === "banned"){
-      alert("🚫 तपाईंको अकाउन्ट Admin द्वारा ब्यान गरियो!");
+      alert("🚫 तपाईंको अकाउन्ट कम्प्युटर द्वारा ब्यान गरियो!");
       logout();
     }
   });
@@ -1145,7 +1156,9 @@ function listenToUserData(uid){
       qrContainer.style.display = "block";
       document.getElementById("adminQrImageDisplay").src = req.qrImage;
       document.getElementById("displayQrAmount").innerText = `रु ${req.amount}`;
-      triggerNotification("💳 Admin QR Code Received!", `एडमिनले तपाईंलाई रु ${req.amount} को लागि पेमेन्ट QR कोड पठाउनुभयो।`);
+      triggerNotification("💳 कम्प्युटर QR Code Received!", `कम्प्युटरले तपाईंलाई रु ${req.amount} को लागि पेमेन्ट QR कोड पठाउनुभयो।`);
+    } else {
+      qrContainer.style.display = "none";
     }
   });
 
@@ -1155,12 +1168,12 @@ function listenToUserData(uid){
     chatBox.innerHTML = "";
     const msgs = Object.values(chatData);
     if(!msgs.length){
-      chatBox.innerHTML = `<div style="color:#64748b;font-size:11px;text-align:center">कुनै कुराकानी छैन। एडमिनलाई मेसेज गर्नुहोस्।</div>`;
+      chatBox.innerHTML = `<div style="color:#64748b;font-size:11px;text-align:center">कुनै कुराकानी छैन। कम्प्युटरलाई मेसेज गर्नुहोस्।</div>`;
       return;
     }
     msgs.sort((a,b)=>a.time - b.time).forEach(m => {
       const cls = m.sender === "admin" ? "admin" : "user";
-      const senderName = m.sender === "admin" ? "👨‍💻 Admin" : "👤 You";
+      const senderName = m.sender === "admin" ? "💻 कम्प्युटर" : "👤 You";
       chatBox.innerHTML += `<div class="chat-msg ${cls}"><b>${senderName}:</b> ${escapeHTML(m.text)}</div>`;
     });
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -1190,6 +1203,7 @@ function initGlobalListeners(){
     }
   });
 
+  // 👇 यहाँ डेटाबेस रुल बाइपास गरेर लिडरबोर्ड र एडमिनको लागि सुरक्षित डाटा तान्ने फिक्स गरिएको छ
   db.ref("users").on("value", snap => {
     onlineUsers = snap.val() || {};
     renderLeaderboard();
@@ -1374,8 +1388,8 @@ function createTournamentCard(t){
     roomBox = `
       <div class="room-details-box">
         <h4>🔑 Custom Room Credentials</h4>
-        <p><b>Room ID:</b> ${escapeHTML(t.roomId || "Admin/Host ले पठाउँदैछ...")}</p>
-        <p><b>Password:</b> ${escapeHTML(t.roomPass || "Admin/Host ले पठाउँदैछ...")}</p>
+        <p><b>Room ID:</b> ${escapeHTML(t.roomId || "कम्प्युटर/Host ले पठाउँदैछ...")}</p>
+        <p><b>Password:</b> ${escapeHTML(t.roomPass || "कम्प्युटर/Host ले पठाउँदैछ...")}</p>
       </div>`;
   }
 
@@ -1631,7 +1645,7 @@ function requestAdminQR(){
     status: "Pending",
     requestedAt: new Date().toLocaleString()
   }).then(()=>{
-    alert(`✅ रु ${amt} को लागि एडमिनसँग QR अनुरोध पठाइयो! एडमिनले पठाएपछि यहाँ देखा पर्नेछ।`);
+    alert(`✅ रु ${amt} को लागि कम्प्युटरसँग QR अनुरोध पठाइयो! कम्प्युटरले पठाएपछि यहाँ देखा पर्नेछ।`);
   });
 }
 
@@ -1649,6 +1663,13 @@ function sendUserChatMessage(){
   input.value = "";
 }
 
+function clearUserChat(){
+  if(!confirm("के तपाईं यो च्याट (मेसेजहरू) खाली गर्न चाहनुहुन्छ?")) return;
+  db.ref("chats/" + currentUid).remove().then(()=>{
+    alert("🧹 च्याट खाली भयो!");
+  });
+}
+
 function downloadAdminQR(){
   const imgElement = document.getElementById("adminQrImageDisplay");
   if(!imgElement.src){
@@ -1657,7 +1678,7 @@ function downloadAdminQR(){
   }
   const a = document.createElement("a");
   a.href = imgElement.src;
-  a.download = "Admin_Payment_QR.png";
+  a.download = "Computer_Payment_QR.png";
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -1696,7 +1717,7 @@ function submitDeposit(){
     date: new Date().toLocaleString()
   });
 
-  alert("✅ पेमेन्ट विवरण Server मा पठाइयो!\n⚡ एडमिनले भेरिफाई गरेपछि वालेटमा रकम थपिनेछ।");
+  alert("✅ पेमेन्ट विवरण Server मा पठाइयो!\n⚡ कम्प्युटरले भेरिफाई गरेपछि वालेटमा रकम थपिनेछ।");
   document.getElementById("depAmount").value = "";
   document.getElementById("depTxn").value = "";
   document.getElementById("depProof").value = "";
@@ -1800,8 +1821,8 @@ function updateRegistrationList(){
       </div>
       <div class="room-details-box">
         <h4>🔑 Custom Room Credentials</h4>
-        <p><b>Room ID:</b> ${escapeHTML(t && t.roomId ? t.roomId : "Admin/Host ले पठाउँदैछ...")}</p>
-        <p><b>Password:</b> ${escapeHTML(t && t.roomPass ? t.roomPass : "Admin/Host ले पठाउँदैछ...")}</p>
+        <p><b>Room ID:</b> ${escapeHTML(t && t.roomId ? t.roomId : "कम्प्युटर/Host ले पठाउँदैछ...")}</p>
+        <p><b>Password:</b> ${escapeHTML(t && t.roomPass ? t.roomPass : "कम्प्युटर/Host ले पठाउँदैछ...")}</p>
       </div>
       <div style="display:flex;gap:8px;margin-top:10px">
         <button class="add-btn" style="flex:1" onclick="openVictoryModal('${r.tournamentId}', '${escapeHTML(r.tournament)}')">🏆 CLAIM VICTORY (२ प्रुफ)</button>
@@ -1900,7 +1921,7 @@ function submitVictoryModal(){
     date: new Date().toLocaleString()
   }).then(()=>{
     closeVictoryModal();
-    alert("✅ दुवै प्रमाण पठाइयो! Admin ले भेरिफाई गरेपछि रकम थपिनेछ।");
+    alert("✅ दुवै प्रमाण पठाइयो! कम्प्युटरले भेरिफाई गरेपछि रकम थपिनेछ।");
   });
 }
 
@@ -1965,15 +1986,22 @@ function submitReportModal(){
 function renderLeaderboard(){
   const list = document.getElementById("leaderboard");
   if(!list) return;
-  const arr = Object.values(onlineUsers).filter(u => u.status === "active").sort((a,b)=>Number(b.points||0)-Number(a.points||0));
+  
+  // लिडरबोर्डमा सबै युजर देखाउने (ब्यालेन्स लुकाइएको)
+  const usersData = onlineUsers || {};
+  const arr = Object.values(usersData).sort((a,b)=>Number(b.points||0)-Number(a.points||0));
   list.innerHTML = "";
+  if(!arr.length){
+    list.innerHTML = `<div class="empty">कुनै खेलाडी उपलब्ध छैनन्</div>`;
+    return;
+  }
   arr.slice(0, 10).forEach((u, idx)=>{
     const div = document.createElement("div");
     div.className = "player";
     div.innerHTML = `
-      <span style="font-weight:bold;width:24px">#${idx+1}</span>
-      <div class="player-info"><b>${escapeHTML(u.ign || u.email)}</b></div>
-      <span class="points" style="color:#94a3b8">🔒 Hidden</span>
+      <span style="font-weight:bold;width:30px;color:#a855f7">#${idx+1}</span>
+      <div class="player-info"><b>${escapeHTML(u.ign || u.email || 'Player')}</b></div>
+      <span class="points" style="color:#94a3b8">🏆 Player</span>
     `;
     list.appendChild(div);
   });
@@ -2001,15 +2029,15 @@ function hideAdminResetModal(){
 function handleAdminPasswordReset(){
   const emailInput = document.getElementById("adminResetEmailInput").value.trim();
   if(!emailInput){
-    alert("❌ कृपया आफ्नो एडमिन जिमेल लेख्नुहोस्!");
+    alert("❌ कृपया आफ्नो कम्प्युटर जिमेल लेख्नुहोस्!");
     return;
   }
 
   if(emailInput === currentAdminEmail){
-    alert("📧 एडमिन पासवर्ड रिसेट निर्देशनहरू तपाईंको रियल जिमेल (" + currentAdminEmail + ") मा पठाइएको छ।");
+    alert("📧 कम्प्युटर पासवर्ड रिसेट निर्देशनहरू तपाईंको रियल जिमेल (" + currentAdminEmail + ") मा पठाइएको छ।");
     hideAdminResetModal();
   } else {
-    alert("❌ यो जिमेल एडमिनको रूपमा दर्ता गरिएको छैन!");
+    alert("❌ यो जिमेल कम्प्युटरको रूपमा दर्ता गरिएको छैन!");
   }
 }
 
@@ -2029,7 +2057,7 @@ function adminLogin(){
     loadAdmin();
     onAdminGameSelected();
   } else {
-    alert("❌ गलत एडमिन जिमेल वा पासवर्ड! केवल आधिकारिक एडमिनले मात्र लगइन गर्न सक्नुहुन्छ।");
+    alert("❌ गलत कम्प्युटर जिमेल वा पासवर्ड! केवल आधिकारिक कम्प्युटरले मात्र लगइन गर्न सक्नुहुन्छ।");
   }
 }
 
@@ -2047,7 +2075,7 @@ function changeAdminPassword(){
   
   db.ref("adminSettings/password").set(newPass).then(()=>{
     currentAdminPass = newPass;
-    alert("✅ Admin Password परिवर्तन भयो!");
+    alert("✅ कम्प्युटर Password परिवर्तन भयो!");
     document.getElementById("newAdminPasswordInput").value = "";
   }).catch(err=>{
     alert("❌ सेभ गर्न सकिएन: " + err.message);
@@ -2116,13 +2144,20 @@ function loadAdmin(){
   document.getElementById("vicBadge").innerText = pendingVics;
   document.getElementById("repBadge").innerText = pendingReps;
 
+  // 👇 एडमिनले लगइन गर्दा सिधै Database बाट सबै युजर तानेर कन्ट्रोल प्यानल अपडेट गराउने
+  db.ref("users").once("value", snap => {
+    const freshUsers = snap.val() || {};
+    onlineUsers = freshUsers;
+    
+    displayAdminOnlinePlayers();
+    displayAdminOfflinePlayers();
+    displayAdminArchivedPlayers();
+    displayAdminBannedPlayers();
+  });
+
   displayAdminQrRequests();
   displayAdminVictories();
   displayAdminReports();
-  displayAdminBannedPlayers();
-  displayAdminOnlinePlayers();
-  displayAdminOfflinePlayers();
-  displayAdminArchivedPlayers();
   displayAdminWithdrawals();
   displayAdminDeposits();
   displayAdminTournaments();
@@ -2133,8 +2168,8 @@ function displayAdminQrRequests(){
   if(!list) return;
   list.innerHTML = "";
   const pendingRequests = onlineQrRequests.filter(r => r.status === "Pending");
-  document.getElementById("adminQrRequestCount").innerText = pendingRequests.length;
-  document.getElementById("qrReqBadge").innerText = pendingRequests.length;
+  const reqBadgeEl = document.getElementById("qrReqBadge");
+  if(reqBadgeEl) reqBadgeEl.innerText = pendingRequests.length;
 
   if(!pendingRequests.length){
     list.innerHTML = `<div class="empty">कुनै खेलाडीले QR मागेका छैनन्</div>`; return;
@@ -2155,7 +2190,10 @@ function displayAdminQrRequests(){
         <button class="add-btn" onclick="sendIndividualQrToUser('${r.uid}', ${r.amount})">📤 SEND QR TO THIS USER ONLY</button>
       </div>
       <div class="chat-container">
-        <h4 style="color:#38bdf8;font-size:13px;margin-bottom:6px">💬 Live Chat with ${escapeHTML(r.userEmail)}</h4>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <h4 style="color:#38bdf8;font-size:13px;margin:0">💬 Live Chat with ${escapeHTML(r.userEmail)}</h4>
+          <button class="clear-hist-btn" onclick="clearAdminChatForUser('${r.uid}')">🧹 Clear Chat</button>
+        </div>
         <div id="adminChatBox_${r.uid}" class="chat-messages" style="height:120px"></div>
         <div class="chat-input-row">
           <input id="adminChatInput_${r.uid}" type="text" placeholder="खेलाडीलाई मेसेज लेख्नुहोस्...">
@@ -2203,7 +2241,7 @@ function loadAdminChatForUser(uid){
     }
     msgs.sort((a,b)=>a.time - b.time).forEach(m => {
       const cls = m.sender === "admin" ? "admin" : "user";
-      const name = m.sender === "admin" ? "👨‍💻 You (Admin)" : "👤 Player";
+      const name = m.sender === "admin" ? "💻 You (कम्प्युटर)" : "👤 Player";
       box.innerHTML += `<div class="chat-msg ${cls}"><b>${name}:</b> ${escapeHTML(m.text)}</div>`;
     });
     box.scrollTop = box.scrollHeight;
@@ -2222,6 +2260,13 @@ function sendAdminChatMessage(uid){
     time: Date.now()
   });
   input.value = "";
+}
+
+function clearAdminChatForUser(uid){
+  if(!confirm("के यो खेलाडीसँगको च्याट खाली गर्न चाहनुहुन्छ?")) return;
+  db.ref("chats/" + uid).remove().then(()=>{
+    alert("🧹 च्याट खाली भयो!");
+  });
 }
 
 function displayAdminVictories(){
@@ -2359,13 +2404,13 @@ function displayAdminOnlinePlayers(){
   list.innerHTML = "";
   
   const allUsersArr = Object.values(onlineUsers);
-  const activeUsers = allUsersArr.filter(u => u.status === "active");
+  const activeUsers = allUsersArr.filter(u => u.status !== "banned" && u.status !== "archived");
 
   document.getElementById("adminTotalRegisteredPlayers").innerText = allUsersArr.length;
   document.getElementById("onlinePlayerBadge").innerText = activeUsers.length;
 
   if(!activeUsers.length){
-    list.innerHTML = `<div class="empty">कुनै अनलाइन खेलाडी छैनन्</div>`;
+    list.innerHTML = `<div class="empty">कुनै खेलाडी छैनन्</div>`;
     return;
   }
 
@@ -2373,7 +2418,7 @@ function displayAdminOnlinePlayers(){
     const div = document.createElement("div");
     div.className = "admin-player";
     div.innerHTML = `
-      <h3>${index + 1}. 🟢 ${escapeHTML(u.email || u.uid)} <b style="color:#4ade80">● Online</b></h3>
+      <h3>${index + 1}. 🟢 ${escapeHTML(u.email || u.uid)} <b style="color:#4ade80">● Active</b></h3>
       <div class="info">
         IGN: <b>${escapeHTML(u.ign||'N/A')}</b> | UID: <b>${escapeHTML(u.gameUid||'N/A')}</b> | ब्यालेन्स: <b style="color:#4ade80">रु ${Number(u.points||0)}</b><br>
         🕒 Last Seen: <small style="color:#94a3b8">${escapeHTML(u.lastActive || "Recently")}</small>
@@ -2393,7 +2438,7 @@ function displayAdminOfflinePlayers(){
   list.innerHTML = "";
   
   const allUsersArr = Object.values(onlineUsers);
-  const offlineUsers = allUsersArr.filter(u => u.status === "offline" || !u.status || u.status === "");
+  const offlineUsers = allUsersArr.filter(u => u.status === "offline");
 
   document.getElementById("offlinePlayerBadge").innerText = offlineUsers.length;
 
@@ -2643,9 +2688,12 @@ function approveDepositManually(id, uid, defaultAmt){
   const curBal = Number((onlineUsers[uid] && onlineUsers[uid].points) || 0);
   db.ref("users/" + uid + "/points").set(curBal + addAmt);
   db.ref("deposits/" + id + "/status").set("Approved (रु " + addAmt + ")");
+  
+  db.ref("qrRequests/" + uid).remove();
+
   addHistory(uid, addAmt, "Payment Approved & Added Manually");
 
-  alert(`✅ सफलतापूर्वक खेलाडीको खातामा रु ${addAmt} थपियो!`);
+  alert(`✅ सफलतापूर्वक खेलाडीको खातामा रु ${addAmt} थपियो र QR कोड रिसेट भयो!`);
   loadAdmin();
 }
 
@@ -2794,7 +2842,7 @@ function directBalance(uid, mode){
 
   const updated = cur + (amt * mode);
   db.ref("users/" + uid + "/points").set(updated);
-  addHistory(uid, amt * mode, mode === 1 ? "Admin Added" : "Admin Deducted");
+  addHistory(uid, amt * mode, mode === 1 ? "कम्प्युटर Added" : "कम्प्युटर Deducted");
   alert("✅ ब्यालेन्स अपडेट भयो!");
   loadAdmin();
 }
