@@ -155,15 +155,6 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
 .accordion-content{display:none;padding-top:6px}
 .accordion-content.open-acc{display:block}
 
-.chat-container{background:#080b16;border:1px solid #303752;border-radius:12px;padding:12px;margin-top:14px}
-.chat-messages{height:220px;overflow-y:auto;background:#03050b;padding:10px;border-radius:8px;border:1px solid #1e293b;margin-bottom:8px}
-.chat-msg{font-size:12px;margin-bottom:6px;line-height:1.4}
-.chat-msg.user{color:#38bdf8}
-.chat-msg.admin{color:#4ade80}
-.chat-input-row{display:flex;gap:6px}
-.chat-input-row input{margin:0;flex:1}
-.chat-input-row button{width:auto;margin:0;padding:0 14px;background:#9333ea}
-
 .room-details-box{
   background:#091e3a;border:1px dashed #38bdf8;border-radius:10px;padding:12px;margin-top:10px;
 }
@@ -289,7 +280,6 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
         <button onclick="showPage('profilePage'); closeMenu()">👤 Profile</button>
         <button onclick="showPage('registrations'); closeMenu()">🏅 Join</button>
         <button onclick="showPage('walletPage'); closeMenu()">💰 Wallet</button>
-        <button onclick="showPage('chatPage'); closeMenu()">💬 Live Chat (कम्प्युटर)</button>
         <button onclick="logout(); closeMenu()" style="color:#f87171">🚪 Logout</button>
       </div>
     </div>
@@ -298,6 +288,15 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
   <!-- HOME PAGE -->
   <div id="home" class="page active">
     <div class="container">
+      
+      <!-- 📢 BROADCAST NOTICE BOX FOR USERS -->
+      <div id="userBroadcastBox" style="display:none; background:linear-gradient(135deg,#9333ea,#c084fc); border:1px solid #e879f9; padding:14px 16px; border-radius:14px; margin-bottom:16px; box-shadow:0 4px 20px rgba(147,51,234,0.4);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <h4 style="color:#fff; font-size:14px; margin-bottom:4px;">📢 एडमिनको सूचना (Official Announcement)</h4>
+        </div>
+        <p id="userBroadcastText" style="color:#f3e8ff; font-size:13px; line-height:1.5; margin-top:4px;"></p>
+      </div>
+
       <div class="points-wallet">
         <div class="profile-wallet-row">
           <div class="wallet-avatar-box">
@@ -484,8 +483,9 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
           <h4 style="color:#38bdf8">✅ कम्प्युटरले तपाईंलाई पठाउनुभएको पेमेन्ट QR कोड:</h4>
           <p style="font-size:12px;color:#94a3b8;margin-top:2px">रकम: <b id="displayQrAmount" style="color:#4ade80">रु 0</b></p>
           <img id="adminQrImageDisplay" class="qr-img-tag" src="" alt="Computer QR">
-          <div>
-            <button class="download-btn" onclick="downloadAdminQR()">⬇️ DOWNLOAD QR CODE (क्युआर डाउनलोड)</button>
+          <div style="display:flex;gap:8px;justify-content:center;margin-top:6px;">
+            <button class="download-btn" onclick="downloadAdminQR()">⬇️ DOWNLOAD QR</button>
+            <button onclick="userDeleteQrRequest()" style="background:#dc2626;color:#fff;border:none;padding:9px 12px;border-radius:8px;font-weight:bold;font-size:12px;">🗑️ DELETE QR</button>
           </div>
         </div>
 
@@ -518,25 +518,6 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
         <button class="clear-hist-btn" onclick="clearWalletHistory()">🗑️ Clear Wallet History</button>
       </div>
       <div id="historyList"></div>
-    </div>
-  </div>
-
-  <!-- CHAT PAGE (In Menu) -->
-  <div id="chatPage" class="page">
-    <div class="container">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <h2>💬 Live Support Chat with कम्प्युटर</h2>
-        <button class="clear-hist-btn" onclick="clearUserChat()">🧹 Clear Chat</button>
-      </div>
-      <div class="register-box">
-        <div class="chat-container" style="margin-top:0">
-          <div id="userChatMessages" class="chat-messages" style="height:350px"></div>
-          <div class="chat-input-row" style="margin-top:10px">
-            <input id="userChatInput" type="text" placeholder="कम्प्युटरसँग कुरा गर्नुहोस्...">
-            <button class="btn" onclick="sendUserChatMessage()">SEND</button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -654,8 +635,18 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
       <div class="admin-stat"><h2 id="adminPendingCount">0</h2><p>Pending Dep</p></div>
     </div>
 
+    <!-- 📢 ADMIN BROADCAST MESSAGE PANEL -->
+    <div class="add-box" style="border:1px solid #9333ea; margin-bottom:16px;">
+      <h3 style="color:#c084fc">📢 Send Broadcast Announcement to All Users (सबै युजरलाई सूचना पठाउने)</h3>
+      <textarea id="adminBroadcastInput" rows="3" placeholder="सबै युजरहरूको होमपेजमा देखाउने महत्त्वपूर्ण सूचना वा मेसेज यहाँ लेख्नुहोस्..." style="margin-top:8px;"></textarea>
+      <div style="display:flex; gap:10px; margin-top:8px;">
+        <button class="btn" style="background:#9333ea; flex:1;" onclick="sendBroadcastMessage()">🚀 PUBLISH BROADCAST</button>
+        <button class="btn" style="background:#dc2626; flex:1;" onclick="clearBroadcastMessage()">🗑️ CLEAR / HIDE NOTICE</button>
+      </div>
+    </div>
+
     <div class="accordion-header" onclick="toggleAccordion('accQrReq')">
-      <span>🔔 Live Player QR Requests & Chats (<span id="qrReqBadge">0</span>)</span> <span>▼</span>
+      <span>🔔 Live Player QR Requests (<span id="qrReqBadge">0</span>)</span> <span>▼</span>
     </div>
     <div id="accQrReq" class="accordion-content admin-panel">
       <div id="adminQrRequestsList"></div>
@@ -1162,23 +1153,6 @@ function listenToUserData(uid){
     }
   });
 
-  db.ref("chats/" + uid).on("value", snap => {
-    const chatData = snap.val() || {};
-    const chatBox = document.getElementById("userChatMessages");
-    chatBox.innerHTML = "";
-    const msgs = Object.values(chatData);
-    if(!msgs.length){
-      chatBox.innerHTML = `<div style="color:#64748b;font-size:11px;text-align:center">कुनै कुराकानी छैन। कम्प्युटरलाई मेसेज गर्नुहोस्।</div>`;
-      return;
-    }
-    msgs.sort((a,b)=>a.time - b.time).forEach(m => {
-      const cls = m.sender === "admin" ? "admin" : "user";
-      const senderName = m.sender === "admin" ? "💻 कम्प्युटर" : "👤 You";
-      chatBox.innerHTML += `<div class="chat-msg ${cls}"><b>${senderName}:</b> ${escapeHTML(m.text)}</div>`;
-    });
-    chatBox.scrollTop = chatBox.scrollHeight;
-  });
-
   db.ref("registrations/" + uid).on("value", snap => {
     const list = snap.val() || [];
     onlineRegistrations[uid] = list;
@@ -1203,7 +1177,6 @@ function initGlobalListeners(){
     }
   });
 
-  // 👇 यहाँ डेटाबेस रुल बाइपास गरेर लिडरबोर्ड र एडमिनको लागि सुरक्षित डाटा तान्ने फिक्स गरिएको छ
   db.ref("users").on("value", snap => {
     onlineUsers = snap.val() || {};
     renderLeaderboard();
@@ -1249,6 +1222,19 @@ function initGlobalListeners(){
     onlineReports = data ? Object.values(data) : [];
     if(document.getElementById("adminDashboard").style.display === "block"){
       displayAdminReports();
+    }
+  });
+
+  // 📢 Listen to Broadcast Notice for all users
+  db.ref("broadcastNotice").on("value", snap => {
+    const notice = snap.val();
+    const noticeBox = document.getElementById("userBroadcastBox");
+    const noticeText = document.getElementById("userBroadcastText");
+    if(notice && notice.text){
+      noticeText.innerText = notice.text;
+      noticeBox.style.display = "block";
+    } else {
+      noticeBox.style.display = "none";
     }
   });
 }
@@ -1649,24 +1635,10 @@ function requestAdminQR(){
   });
 }
 
-function sendUserChatMessage(){
-  const input = document.getElementById("userChatInput");
-  const txt = input.value.trim();
-  if(!txt || !currentUid) return;
-
-  const msgId = Date.now().toString();
-  db.ref("chats/" + currentUid + "/" + msgId).set({
-    sender: "user",
-    text: txt,
-    time: Date.now()
-  });
-  input.value = "";
-}
-
-function clearUserChat(){
-  if(!confirm("के तपाईं यो च्याट (मेसेजहरू) खाली गर्न चाहनुहुन्छ?")) return;
-  db.ref("chats/" + currentUid).remove().then(()=>{
-    alert("🧹 च्याट खाली भयो!");
+function userDeleteQrRequest(){
+  if(!confirm("के तपाईं यो QR कोड हटाउन (Delete गर्न) चाहनुहुन्छ?")) return;
+  db.ref("qrRequests/" + currentUid).remove().then(()=>{
+    alert("🗑️ QR अनुरोध सफलतापूर्वक हटाइयो!");
   });
 }
 
@@ -1987,7 +1959,6 @@ function renderLeaderboard(){
   const list = document.getElementById("leaderboard");
   if(!list) return;
   
-  // लिडरबोर्डमा सबै युजर देखाउने (ब्यालेन्स लुकाइएको)
   const usersData = onlineUsers || {};
   const arr = Object.values(usersData).sort((a,b)=>Number(b.points||0)-Number(a.points||0));
   list.innerHTML = "";
@@ -2034,8 +2005,14 @@ function handleAdminPasswordReset(){
   }
 
   if(emailInput === currentAdminEmail){
-    alert("📧 कम्प्युटर पासवर्ड रिसेट निर्देशनहरू तपाईंको रियल जिमेल (" + currentAdminEmail + ") मा पठाइएको छ।");
-    hideAdminResetModal();
+    auth.sendPasswordResetEmail(emailInput)
+      .then(() => {
+        alert("📧 कम्प्युटर पासवर्ड रिसेट लिङ्क तपाईंको आधिकारिक जिमेल (" + currentAdminEmail + ") मा सफलतापूर्वक पठाइयो! कृपया आफ्नो जिमेल चेक गर्नुहोस्।");
+        hideAdminResetModal();
+      })
+      .catch(err => {
+        alert("❌ रिसेट लिङ्क पठाउन सकिएन: " + err.message);
+      });
   } else {
     alert("❌ यो जिमेल कम्प्युटरको रूपमा दर्ता गरिएको छैन!");
   }
@@ -2144,7 +2121,6 @@ function loadAdmin(){
   document.getElementById("vicBadge").innerText = pendingVics;
   document.getElementById("repBadge").innerText = pendingReps;
 
-  // 👇 एडमिनले लगइन गर्दा सिधै Database बाट सबै युजर तानेर कन्ट्रोल प्यानल अपडेट गराउने
   db.ref("users").once("value", snap => {
     const freshUsers = snap.val() || {};
     onlineUsers = freshUsers;
@@ -2189,20 +2165,17 @@ function displayAdminQrRequests(){
         <input type="file" accept="image/*" id="adminFile_${r.uid}" style="margin-top:6px">
         <button class="add-btn" onclick="sendIndividualQrToUser('${r.uid}', ${r.amount})">📤 SEND QR TO THIS USER ONLY</button>
       </div>
-      <div class="chat-container">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-          <h4 style="color:#38bdf8;font-size:13px;margin:0">💬 Live Chat with ${escapeHTML(r.userEmail)}</h4>
-          <button class="clear-hist-btn" onclick="clearAdminChatForUser('${r.uid}')">🧹 Clear Chat</button>
-        </div>
-        <div id="adminChatBox_${r.uid}" class="chat-messages" style="height:120px"></div>
-        <div class="chat-input-row">
-          <input id="adminChatInput_${r.uid}" type="text" placeholder="खेलाडीलाई मेसेज लेख्नुहोस्...">
-          <button class="btn" onclick="sendAdminChatMessage('${r.uid}')">REPLY</button>
-        </div>
-      </div>
+      <button class="del-btn" onclick="adminDeleteQrRequest('${r.uid}')" style="background:#b91c1c;margin-top:6px;">🗑️ DELETE QR REQUEST</button>
     `;
     list.appendChild(div);
-    loadAdminChatForUser(r.uid);
+  });
+}
+
+function adminDeleteQrRequest(uid){
+  if(!confirm("के यो QR अनुरोधलाई एडमिनले डिलिट गर्ने हो?")) return;
+  db.ref("qrRequests/" + uid).remove().then(()=>{
+    alert("🗑️ QR अनुरोध हटाइयो!");
+    loadAdmin();
   });
 }
 
@@ -2228,44 +2201,27 @@ function sendIndividualQrToUser(uid, amount){
   reader.readAsDataURL(file);
 }
 
-function loadAdminChatForUser(uid){
-  db.ref("chats/" + uid).on("value", snap => {
-    const data = snap.val() || {};
-    const box = document.getElementById("adminChatBox_" + uid);
-    if(!box) return;
-    box.innerHTML = "";
-    const msgs = Object.values(data);
-    if(!msgs.length){
-      box.innerHTML = `<div style="color:#64748b;font-size:11px">कुनै मेसेज छैन</div>`;
-      return;
-    }
-    msgs.sort((a,b)=>a.time - b.time).forEach(m => {
-      const cls = m.sender === "admin" ? "admin" : "user";
-      const name = m.sender === "admin" ? "💻 You (कम्प्युटर)" : "👤 Player";
-      box.innerHTML += `<div class="chat-msg ${cls}"><b>${name}:</b> ${escapeHTML(m.text)}</div>`;
-    });
-    box.scrollTop = box.scrollHeight;
-  });
-}
+// 📢 Broadcast Message Functions for Admin
+function sendBroadcastMessage(){
+  const txt = document.getElementById("adminBroadcastInput").value.trim();
+  if(!txt){
+    alert("कृपया पठाउने सूचना वा मेसेज लेख्नुहोस्!");
+    return;
+  }
 
-function sendAdminChatMessage(uid){
-  const input = document.getElementById("adminChatInput_" + uid);
-  const txt = input.value.trim();
-  if(!txt) return;
-
-  const msgId = Date.now().toString();
-  db.ref("chats/" + uid + "/" + msgId).set({
-    sender: "admin",
+  db.ref("broadcastNotice").set({
     text: txt,
-    time: Date.now()
+    time: new Date().toLocaleString()
+  }).then(()=>{
+    alert("🚀 सूचना सफलतापूर्वक सबै युजरहरूलाई पठाइयो!");
+    document.getElementById("adminBroadcastInput").value = "";
   });
-  input.value = "";
 }
 
-function clearAdminChatForUser(uid){
-  if(!confirm("के यो खेलाडीसँगको च्याट खाली गर्न चाहनुहुन्छ?")) return;
-  db.ref("chats/" + uid).remove().then(()=>{
-    alert("🧹 च्याट खाली भयो!");
+function clearBroadcastMessage(){
+  if(!confirm("के यो सूचना हटाउन चाहनुहुन्छ?")) return;
+  db.ref("broadcastNotice").remove().then(()=>{
+    alert("🗑️ सूचना हटाइयो र युजरहरूको होमपेजबाट गायब भयो!");
   });
 }
 
@@ -2688,7 +2644,6 @@ function approveDepositManually(id, uid, defaultAmt){
   const curBal = Number((onlineUsers[uid] && onlineUsers[uid].points) || 0);
   db.ref("users/" + uid + "/points").set(curBal + addAmt);
   db.ref("deposits/" + id + "/status").set("Approved (रु " + addAmt + ")");
-  
   db.ref("qrRequests/" + uid).remove();
 
   addHistory(uid, addAmt, "Payment Approved & Added Manually");
@@ -2703,7 +2658,9 @@ function rejectDeposit(id){
   if(!confirm("पेमेन्ट अस्वीकार गर्ने?")) return;
 
   db.ref("deposits/" + id + "/status").set("Rejected");
-  alert("❌ पेमेन्ट अस्वीकार गरियो!");
+  db.ref("qrRequests/" + d.uid).remove();
+
+  alert("❌ पेमेन्ट अस्वीकार गरियो र युजरको QR हटाइयो!");
   loadAdmin();
 }
 
@@ -2759,7 +2716,7 @@ function createAdminTournamentCard(t){
     </div>
     <div style="margin-top:8px; display:flex; gap:6px;">
       <button class="add-btn" style="flex:1;background:#2563eb;" onclick="toggleTournamentStatus('${t.id}', '${t.status}')">🔄 STATUS: ${t.status === 'Open' ? 'CLOSE' : 'OPEN'}</button>
-      <button class="del-btn" style="flex:1;background:#b91c1c;margin:0" onclick="deleteTournament('${t.id}')">🗑️ DELETE GAME</button>
+      <button class="btn-red" style="flex:1;padding:8px;border:none;border-radius:8px;font-weight:bold;font-size:12px;background:#b91c1c;color:#fff;" onclick="deleteTournament('${t.id}')">🗑️ DELETE GAME</button>
     </div>
   `;
   return div;
@@ -2806,7 +2763,7 @@ function addTournament(){
   const date = document.getElementById("newDate").value.trim();
   const time = document.getElementById("newTime").value.trim();
   const fee = Number(document.getElementById("newFee").value);
-  const prize = Number(document.getElementById("newPrize").value);
+  const prize = Number(document.getElementById("newPrize.value") || document.getElementById("newPrize").value);
   const slots = Number(document.getElementById("newSlots").value);
 
   if(!date || !time || slots<=0){alert("सबै विवरण भर्नुहोस्!"); return;}
