@@ -543,8 +543,32 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
     <input id="pHostRoomId" type="text" placeholder="Game को Room ID लेख्नुहोस्">
     <label style="font-size:12px;color:#34d399;font-weight:bold">🔒 Room Password:</label>
     <input id="pHostRoomPass" type="text" placeholder="Room को Password">
-    <label style="font-size:12px;color:#cbd5e1">💰 Entry Fee प्रति खेलाडी (रु):</label>
-    <input id="pHostFee" type="number" min="10" placeholder="Entry Fee">
+    
+    <!-- 💰 ENTRY FEE LIST FROM RS 5 TO RS 100 -->
+    <label style="font-size:12px;color:#cbd5e1">💰 Entry Fee प्रति खेलाडी छान्नुहोस् (२ जनामा विजेता डबल पाउने):</label>
+    <select id="pHostFee">
+      <option value="5">रु ५ (१v१ विजेता: रु १०)</option>
+      <option value="10">रु १० (१v१ विजेता: रु २०)</option>
+      <option value="15">रु १५ (१v१ विजेता: रु ३०)</option>
+      <option value="20">रु २० (१v१ विजेता: रु ४०)</option>
+      <option value="25">रु २५ (१v१ विजेता: रु ५०)</option>
+      <option value="30">रु ३० (१v१ विजेता: रु ६०)</option>
+      <option value="35">रु ३५ (१v१ विजेता: रु ७०)</option>
+      <option value="40">रु ४० (१v१ विजेता: रु ८०)</option>
+      <option value="45">रु ४५ (१v१ विजेता: रु ९०)</option>
+      <option value="50">रु ५० (१v१ विजेता: रु १००)</option>
+      <option value="55">रु ५५ (१v१ विजेता: रु ११०)</option>
+      <option value="60">रु ६० (१v१ विजेता: रु १२०)</option>
+      <option value="65">रु ६५ (१v१ विजेता: रु १३०)</option>
+      <option value="70">रु ७० (१v१ विजेता: रु १४०)</option>
+      <option value="75">रु ७५ (१v१ विजेता: रु १५०)</option>
+      <option value="80">रु ८० (१v१ विजेता: रु १६०)</option>
+      <option value="85">रु ८५ (१v१ विजेता: रु १७०)</option>
+      <option value="90">रु ९० (१v१ विजेता: रु १८०)</option>
+      <option value="95">रु ९५ (१v१ विजेता: रु १९०)</option>
+      <option value="100">रु १०० (१v१ विजेता: रु २००)</option>
+    </select>
+
     <label style="font-size:12px;color:#cbd5e1">🛡️ Gloo Wall / Ammo:</label>
     <select id="pHostWall">
       <option value="Unlimited Wall">Unlimited Gloo Wall</option>
@@ -749,9 +773,9 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
       </select>
       <label style="font-size:12px;color:#34d399;font-weight:bold;margin-top:6px;display:block">३. म्याच प्रकार:</label>
       <div class="vs-btn-group" id="adminVsPills">
-        <span class="vs-btn" onclick="selectAdminVs('1v1', 2, this)">⚔️ 1v1</span>
+        <span class="vs-btn active-vs" onclick="selectAdminVs('1v1', 2, this)">⚔️ 1v1</span>
         <span class="vs-btn" onclick="selectAdminVs('2v2', 4, this)">⚔️ 2v2</span>
-        <span class="vs-btn active-vs" onclick="selectAdminVs('4v4', 8, this)">⚔️ 4v4</span>
+        <span class="vs-btn" onclick="selectAdminVs('4v4', 8, this)">⚔️ 4v4</span>
         <span class="vs-btn" onclick="selectAdminVs('6v6', 12, this)">⚔️ 6v6</span>
         <span class="vs-btn" onclick="selectAdminVs('BR Solo', 48, this)">🗺️ Solo</span>
         <span class="vs-btn" onclick="selectAdminVs('BR Squad', 48, this)">🗺️ Squad</span>
@@ -781,9 +805,35 @@ input:focus,select:focus,textarea:focus{border-color:#9333ea}
       </div>
       <input id="newDate" placeholder="Date (e.g. 20 September 2026)">
       <input id="newTime" placeholder="Time (e.g. 7:00 PM)">
-      <input id="newFee" type="number" min="0" placeholder="Entry Fee (रु)">
-      <input id="newPrize" type="number" min="0" placeholder="Prize Pool (रु)">
-      <input id="newSlots" type="number" min="1" placeholder="Total Slots">
+      
+      <!-- 💰 ADMIN ENTRY FEE & DOUBLE PRIZE -->
+      <label style="font-size:12px;color:#cbd5e1;margin-top:6px;display:block">💰 Entry Fee छान्नुहोस् (२ जनामा डबल प्राइज):</label>
+      <select id="newFee" onchange="autoCalculateAdminPrize()">
+        <option value="5">रु ५ (विजेता पाउने: रु १०)</option>
+        <option value="10">रु १० (विजेता पाउने: रु २०)</option>
+        <option value="15">रु १५ (विजेता पाउने: रु ३०)</option>
+        <option value="20">रु २० (विजेता पाउने: रु ४०)</option>
+        <option value="25">रु २५ (विजेता पाउने: रु ५०)</option>
+        <option value="30">रु ३० (विजेता पाउने: रु ६०)</option>
+        <option value="35">रु ३५ (विजेता पाउने: रु ७०)</option>
+        <option value="40">रु ४० (विजेता पाउने: रु ८०)</option>
+        <option value="45">रु ४५ (विजेता पाउने: रु ९०)</option>
+        <option value="50">रु ५० (विजेता पाउने: रु १००)</option>
+        <option value="55">रु ५५ (विजेता पाउने: रु ११०)</option>
+        <option value="60">रु ६० (विजेता पाउने: रु १२०)</option>
+        <option value="65">रु ६५ (विजेता पाउने: रु १३०)</option>
+        <option value="70">रु ७० (विजेता पाउने: रु १४०)</option>
+        <option value="75">रु ७५ (विजेता पाउने: रु १५०)</option>
+        <option value="80">रु ८० (विजेता पाउने: रु १६०)</option>
+        <option value="85">रु ८५ (विजेता पाउने: रु १७०)</option>
+        <option value="90">रु ९० (विजेता पाउने: रु १८०)</option>
+        <option value="95">रु ९५ (विजेता पाउने: रु १९०)</option>
+        <option value="100">रु १०० (विजेता पाउने: रु २००)</option>
+      </select>
+      
+      <label style="font-size:12px;color:#cbd5e1;margin-top:6px;display:block">🏆 Prize Pool (रु):</label>
+      <input id="newPrize" type="number" value="10" placeholder="Prize Pool (रु)" readonly style="background:#1e293b;color:#4ade80;font-weight:bold;">
+      <input id="newSlots" type="number" min="1" value="2" placeholder="Total Slots" onchange="autoCalculateAdminPrize()">
       <button class="btn" style="background:#16a34a" onclick="addTournament()">➕ PUBLISH TOURNAMENT</button>
     </div>
   </div>
@@ -880,7 +930,7 @@ let selectedGameCategory = "ALL";
 let selectedGameMode = "ALL";
 let selectedVsFormat = "ALL";
 
-let adminSelectedVsFormat = "4v4";
+let adminSelectedVsFormat = "1v1";
 let currentlySelectedGuns = [];
 let playerSelectedGuns = [];
 
@@ -1488,7 +1538,7 @@ function confirmJoin(){
 function openCreateCustomModal(){
   document.getElementById("pHostRoomId").value = "";
   document.getElementById("pHostRoomPass").value = "";
-  document.getElementById("pHostFee").value = "";
+  document.getElementById("pHostFee").value = "5";
   onPlayerGameSelected();
   document.getElementById("createCustomModalOverlay").style.display = "flex";
 }
@@ -1551,8 +1601,8 @@ function submitPlayerCustomRoom(){
     alert("❌ कृपया आफ्नो Room ID र Password अनिवार्य लेख्नुहोस्!");
     return;
   }
-  if(!fee || fee < 10){
-    alert("❌ Entry Fee कम्तिमा रु १० राख्नुपर्छ!");
+  if(!fee || fee < 5){
+    alert("❌ Entry Fee कम्तिमा रु ५ हुनुपर्छ!");
     return;
   }
 
@@ -1572,7 +1622,8 @@ function submitPlayerCustomRoom(){
   if(vs === "4v4") slots = 8;
   if(vs === "6v6") slots = 12;
 
-  const totalPrize = Math.floor((fee * slots) * 0.9);
+  // २ जनाको म्याच (1v1) मा सिधै डबल (उदा. ५ को १०, २० को ४०)
+  let totalPrize = (vs === "1v1") ? (fee * 2) : Math.floor(fee * slots);
   const gunsString = playerSelectedGuns.length ? playerSelectedGuns.join(", ") : "ALL GUNS";
 
   const tId = Date.now().toString();
@@ -1613,7 +1664,7 @@ function submitPlayerCustomRoom(){
   db.ref("registrations/" + currentUid).set(hostRegs);
 
   closeCreateCustomModal();
-  alert(`🎉 तपाईंको Custom Match प्रकाशित भयो!`);
+  alert(`🎉 तपाईंको Custom Match प्रकाशित भयो! (विजेता पुरस्कार: रु ${totalPrize})`);
   showPage("registrations");
 }
 
@@ -2064,6 +2115,15 @@ function selectAdminVs(format, defaultSlots, el){
   document.querySelectorAll("#adminVsPills .vs-btn").forEach(p => p.classList.remove("active-vs"));
   el.classList.add("active-vs");
   document.getElementById("newSlots").value = defaultSlots;
+  autoCalculateAdminPrize();
+}
+
+function autoCalculateAdminPrize(){
+  const fee = Number(document.getElementById("newFee").value || 5);
+  const slots = Number(document.getElementById("newSlots").value || 2);
+  // २ जनाको म्याचमा सिधै डबल प्राइज
+  const prize = (slots === 2) ? (fee * 2) : (fee * slots);
+  document.getElementById("newPrize").value = prize;
 }
 
 function onAdminGameSelected(){
@@ -2752,7 +2812,7 @@ function deleteTournament(id){
 function addTournament(){
   const gameCat = document.getElementById("newGameSelect").value;
   const gameMode = document.getElementById("newModeSelect").value;
-  const vsFormat = adminSelectedVsFormat || "4v4";
+  const vsFormat = adminSelectedVsFormat || "1v1";
   const gameTitle = document.getElementById("newGameTitle").value.trim() || `${gameCat} ${vsFormat} (${gameMode === 'CS' ? 'CS Custom' : 'BR'})`;
   
   const ruleWall = document.getElementById("newRuleWall").value;
@@ -2763,7 +2823,7 @@ function addTournament(){
   const date = document.getElementById("newDate").value.trim();
   const time = document.getElementById("newTime").value.trim();
   const fee = Number(document.getElementById("newFee").value);
-  const prize = Number(document.getElementById("newPrize.value") || document.getElementById("newPrize").value);
+  const prize = Number(document.getElementById("newPrize").value);
   const slots = Number(document.getElementById("newSlots").value);
 
   if(!date || !time || slots<=0){alert("सबै विवरण भर्नुहोस्!"); return;}
@@ -2785,8 +2845,8 @@ function addTournament(){
     hostedByPlayer: false
   });
 
-  ["newGameTitle","newDate","newTime","newFee","newPrize","newSlots"].forEach(x=>document.getElementById(x).value="");
-  alert(`🎉 ${vsFormat} टुर्नामेन्ट सफलतापूर्वक थपियो!`);
+  ["newGameTitle","newDate","newTime"].forEach(x=>document.getElementById(x).value="");
+  alert(`🎉 ${vsFormat} टुर्नामेन्ट सफलतापूर्वक थपियो! (Prize: रु ${prize})`);
   loadAdmin();
 }
 
